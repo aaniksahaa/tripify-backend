@@ -12,6 +12,7 @@ CREATE SEQUENCE post_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE comment_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE notification_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE message_seq START WITH 1 INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE group_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 
 -- Users TABLE
 
@@ -909,6 +910,135 @@ VALUES (1, 2, 'Hello! How are you?', TO_DATE('2023-07-29 10:30:00', 'YYYY-MM-DD 
 SELECT * FROM MESSAGES;
 
 
+-- Groups
 
+-- DROP TABLE Groups
 
+CREATE TABLE Groups(
+    group_id NUMBER DEFAULT group_seq.NEXTVAL PRIMARY KEY,
+    name VARCHAR2(100) NOT NULL,
+    created_at DATE,
+    description VARCHAR2(1000),
+    rules VARCHAR2(1000),
+    is_public NUMBER(1) DEFAULT 0 CHECK (is_public IN (0, 1))
+)
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- dummy group insert
+
+INSERT INTO Groups ( name, created_at, description, rules, is_public)
+VALUES ( 'Ultima Adventurous Travelers', TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'A group for adventure seekers', 'Be respectful and have fun!', 1);
+
+SELECT * FROM GROUPS;
+
+-- Connects ( Many to Many relationship between Users and Groups )
+
+CREATE TABLE Connects (
+    user_id NUMBER NOT NULL,
+    group_id NUMBER NOT NULL,
+    connected_at DATE,
+    PRIMARY KEY (user_id, group_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (group_id) REFERENCES Groups(group_id)
+)
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- dummy connects insert
+
+INSERT INTO Connects (user_id, group_id, connected_at)
+VALUES (1, 1, TO_DATE('2023-07-29', 'YYYY-MM-DD'));
+
+SELECT * FROM CONNECTS;
+
+-- GroupPosts ( isA Post )
+
+CREATE TABLE GroupPosts (
+    post_id NUMBER,
+    group_id NUMBER,
+    PRIMARY KEY (post_id),
+    FOREIGN KEY (post_id) REFERENCES Posts (post_id),
+    FOREIGN KEY (group_id) REFERENCES Groups (group_id)
+)
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- dummy grouppost insert 
+
+INSERT INTO GroupPosts (post_id, group_id)
+VALUES (1, 1);
+
+SELECT * FROM GROUPPOSTS;
+
+-- GroupMessages ( isA Message )
+
+CREATE TABLE GroupMessages (
+    message_id NUMBER,
+    group_id NUMBER,
+    PRIMARY KEY (message_id),
+    FOREIGN KEY (message_id) REFERENCES Messages (message_id),
+    FOREIGN KEY (group_id) REFERENCES Groups (group_id)
+)
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- dummy groupmessages insert 
+
+INSERT INTO GroupMessages (message_id, group_id)
+VALUES (1, 1);
+
+SELECT * FROM GROUPMESSAGES;
 
