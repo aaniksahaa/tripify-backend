@@ -11,12 +11,12 @@ destinations = [
     },
     {
         'destination_id': 2,
-        'name': 'Cox\'s Bazar',
-        'address': 'Cox\'s Bazar, Chittagong',
+        'name': 'Coxs Bazar',
+        'address': 'Coxs Bazar, Chittagong',
         'city_id': 2,
         'latitude': 21.4272,
         'longitude': 92.0058,
-        'description': 'Cox\'s Bazar is the longest sea beach in the world, located in southeastern Bangladesh.',
+        'description': 'Coxs Bazar is the longest sea beach in the world, located in southeastern Bangladesh.',
         'image_url': 'dummy.jpg'
     },
     {
@@ -36,17 +36,17 @@ destinations = [
         'city_id': 8,
         'latitude': 24.3133,
         'longitude': 91.7258,
-        'description': 'Srimangal is known as the "Tea Capital" of Bangladesh and offers beautiful tea gardens.',
+        'description': 'Srimangal is known as the Tea Capital of Bangladesh and offers beautiful tea gardens.',
         'image_url': 'dummy.jpg'
     },
     {
         'destination_id': 5,
-        'name': 'Saint Martin\'s Island',
-        'address': 'Saint Martin\'s Island, Cox\'s Bazar',
+        'name': 'Saint Martins Island',
+        'address': 'Saint Martins Island, Coxs Bazar',
         'city_id': 2,
         'latitude': 20.5951,
         'longitude': 92.3186,
-        'description': 'Saint Martin\'s Island is a popular tourist destination known for its pristine beaches.',
+        'description': 'Saint Martins Island is a popular tourist destination known for its pristine beaches.',
         'image_url': 'dummy.jpg'
     },
     {
@@ -181,12 +181,12 @@ destinations = [
     },
     {
         'destination_id': 19,
-        'name': 'Cox\'s Bazar Marine Aquarium',
-        'address': 'Cox\'s Bazar, Chittagong',
+        'name': 'Coxs Bazar Marine Aquarium',
+        'address': 'Coxs Bazar, Chittagong',
         'city_id': 2,
         'latitude': 21.4320,
         'longitude': 92.0141,
-        'description': 'Cox\'s Bazar Marine Aquarium is an aquarium showcasing marine life and biodiversity.',
+        'description': 'Coxs Bazar Marine Aquarium is an aquarium showcasing marine life and biodiversity.',
         'image_url': 'dummy.jpg'
     },
     {
@@ -202,7 +202,7 @@ destinations = [
     {
         'destination_id': 21,
         'name': 'Inani Beach',
-        'address': 'Cox\'s Bazar, Chittagong',
+        'address': 'Coxs Bazar, Chittagong',
         'city_id': 2,
         'latitude': 21.4225,
         'longitude': 92.0093,
@@ -261,12 +261,12 @@ destinations = [
     },
     {
         'destination_id': 27,
-        'name': 'Saint Martin\'s Island',
-        'address': 'Saint Martin\'s Island, Cox\'s Bazar',
+        'name': 'Saint Martins Island',
+        'address': 'Saint Martins Island, Coxs Bazar',
         'city_id': 2,
         'latitude': 20.5951,
         'longitude': 92.3186,
-        'description': 'Saint Martin\'s Island is a popular tourist destination known for its pristine beaches.',
+        'description': 'Saint Martins Island is a popular tourist destination known for its pristine beaches.',
         'image_url': 'dummy.jpg'
     },
     {
@@ -442,7 +442,7 @@ destinations = [
     {
         'destination_id': 45,
         'name': 'Chera Dwip',
-        'address': 'Cox\'s Bazar, Chittagong',
+        'address': 'Coxs Bazar, Chittagong',
         'city_id': 2,
         'latitude': 21.4072,
         'longitude': 92.1095,

@@ -183,7 +183,7 @@ cities = [
     },
     {
         "city_id": 27,
-        "name": "Cox's Bazar",
+        "name": "Coxs Bazar",
         "country_name": "Bangladesh",
         "population": 249000,
         "weather_type": "sunny"

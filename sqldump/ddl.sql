@@ -48,7 +48,7 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy user insertion 
-
+/*
 INSERT INTO Users (
     email,
     password_hash,
@@ -106,6 +106,7 @@ INSERT INTO Users (
 );
 
 SELECT * FROM USERS;
+*/
 
 -- Cities Table 
 
@@ -134,6 +135,7 @@ DISABLE ROW MOVEMENT
 
 -- dummy city insertion 
 
+/*
 INSERT INTO Cities (name, country_name, population, weather_type)
 VALUES ('Dhaka', 'Bangladesh', 20000000, 'sunny');
 
@@ -141,6 +143,7 @@ INSERT INTO Cities (name, country_name, population, weather_type)
 VALUES ('Chattogram', 'Bangladesh', 5000000, 'sunny');
 
 SELECT * FROM CITIES;
+*/
 
 -- Destinations Table
 
@@ -173,10 +176,12 @@ DISABLE ROW MOVEMENT
 
 -- dummy destination insertion 
 
+/*
 INSERT INTO Destinations (name, address, city_id, latitude, longitude, description, image_url)
 VALUES ('Fantasy Kingdom', 'Ashulia, Savar, Dhaka', 1, 23.9249, 90.2570, 'Amusement park and resort in Dhaka, Bangladesh', 'fantasy_kingdom.jpg');
 
 SELECT * FROM DESTINATIONS;
+*/
 
 -- Activities Table
 
@@ -207,10 +212,12 @@ DISABLE ROW MOVEMENT
 
 -- dummy activity insertion 
 
+/*
 INSERT INTO Activities (name, category, description, image_url, min_age, max_age)
 VALUES ('Roller Coaster', 'Adventure', 'Thrilling roller coaster ride for adrenaline junkies', 'roller_coaster.jpg', 12, 50);
 
 SELECT * FROM Activities;
+*/
 
 -- Trips Table
 
@@ -247,10 +254,12 @@ DISABLE ROW MOVEMENT
 
 -- dummy trip insertion 
 
+/*
 INSERT INTO Trips (from_city_id, to_city_id, name, description, image_url, total_price, start_date, end_date)
 VALUES (1, 2, 'Exciting Adventure in Cox''s Bazar', 'Experience the beauty of Cox''s Bazar with thrilling adventures', 'cox_adventure.jpg', 20000, TO_DATE('2023-08-15', 'YYYY-MM-DD'), TO_DATE('2023-08-22', 'YYYY-MM-DD'));
 
 SELECT * FROM TRIPS;
+*/
 
 -- Hotels Table 
 
@@ -289,10 +298,12 @@ DISABLE ROW MOVEMENT
 
 -- dummy hotel insertion
 
+/*
 INSERT INTO Hotels (name, address, city_id, description, image_url, price_per_day, phone, email, has_wifi, has_parking, has_gym)
 VALUES ('Westin Hotel Dhaka', '123 Main Street, Dhaka', 1, 'Experience luxury and comfort at our hotel in the heart of Dhaka', 'luxury_hotel_dhaka.jpg', 1500, '1234567890', 'info@luxuryhoteldhaka.com', 1, 1, 1);
 
 SELECT * FROM HOTELS;
+*/
 
 -- Flights
 
@@ -331,10 +342,12 @@ DISABLE ROW MOVEMENT
 
 -- dummy flight insertion 
 
+/*
 INSERT INTO Flights (from_city_id, to_city_id, airline_name, departure_date, return_date, price, seat_class, flight_duration, booking_url)
 VALUES (1, 2, 'Bangladesh Airlines', TO_DATE('2023-08-15', 'YYYY-MM-DD'), TO_DATE('2023-08-25', 'YYYY-MM-DD'), 5000, 'Economy', 30, 'https://www.bangladeshairlines.com/book-flight');
 
 SELECT * FROM FLIGHTS;
+*/
 
 -- Restaurants Table
 
@@ -371,10 +384,12 @@ DISABLE ROW MOVEMENT
 
 -- dummy restaurant insertion 
 
+/*
 INSERT INTO Restaurants (name, reservation_price, address, city_id, description, image_url, cuisine_type, contact, email)
 VALUES ('Morning Moon', 500, '45 Gulshan Avenue, Dhaka', 1, 'Experience the authentic taste of Dhaka', 'morning_moon.jpg', 'continental', '0123456789', 'info@moon.com');
 
 SELECT * FROM RESTAURANTS;
+*/
 
 -- TripBookings (Many to Many relationship between Users and Trips)
 
@@ -416,7 +431,9 @@ NOCACHE
 DISABLE ROW MOVEMENT
 ;
 
+-- dummy tripbooking insert 
 
+/*
 INSERT INTO TripBookings (
     user_id, trip_id, booking_date, is_paid, is_processed, is_completed,
     payment_method, transaction_id, payment_date, completion_date, is_private
@@ -427,6 +444,7 @@ INSERT INTO TripBookings (
 );
 
 SELECT * FROM TripBookings;
+*/
 
 -- Provides (Many to Many relationship between Destinations and Activities)
 
@@ -459,10 +477,12 @@ DISABLE ROW MOVEMENT
 
 -- dummy provides insert 
 
+/*
 INSERT INTO Provides (destination_id, activity_id, price, is_available)
 VALUES (1, 1, 300, 1);
 
 SELECT * FROM PROVIDES;
+*/
 
 -- ResidenceIn ( Many to Many relationship between Trips and Hotels )
 
@@ -495,12 +515,12 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy ResidenceIn insert 
-
+/*
 INSERT INTO ResidenceIn (trip_id, hotel_id, checkin_date, checkout_date)
 VALUES (1, 1, TO_DATE('2023-07-30', 'YYYY-MM-DD'), TO_DATE('2023-08-05', 'YYYY-MM-DD'));
 
 SELECT * FROM ResidenceIn;
-
+*/
 -- Contains ( Many to Many relationship between Trips and  Destinations and Activities)
 
 -- DROP TABLE Contains 
@@ -532,10 +552,12 @@ DISABLE ROW MOVEMENT
 
 -- dummy contains insert
 
+/*
 INSERT INTO Contains (trip_id, destination_id, activity_id, tentative_date)
 VALUES (1, 1, 1, TO_DATE('2023-08-10', 'YYYY-MM-DD'));
 
 SELECT * FROM CONTAINS;
+*/
 
 -- MealsIn (  Many to Many relationship between Trips and  Restaurants )
 
@@ -564,14 +586,18 @@ NOCACHE
 DISABLE ROW MOVEMENT
 ;
 
+-- dummy mealsin insert 
+
+/*
 INSERT INTO MealsIn(trip_id, restaurant_id) 
 VALUES(1,1);
 
 SELECT * FROM MealsIn;
+*/
 
 -- Reviews 
 
--- DROP TABLE Reviews 
+-- DROP TABLE Reviews; 
 
 CREATE TABLE Reviews(
     review_id NUMBER DEFAULT review_seq.NEXTVAL PRIMARY KEY,
@@ -601,17 +627,19 @@ DISABLE ROW MOVEMENT
 
 -- dummy review insert 
 
+/*
 INSERT INTO Reviews (user_id, posting_date, description, rating, image_url, upvote_count)
 VALUES (1, TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'This hotel is excellent!', 4 , 'http://example.com/image1.jpg', 10);
 
 SELECT * FROM Reviews;
+*/
 
 -- TripReviews ( isA Review )
 
 -- DROP TABLE TripReviews 
 
 CREATE TABLE TripReviews(
-    review_id NUMBER NOT NULL,
+    review_id NUMBER NOT NULL PRIMARY KEY,
     trip_id NUMBER NOT NULL,
     management_quality VARCHAR2(100),
     FOREIGN KEY (review_id) REFERENCES Reviews(review_id) ON DELETE CASCADE,
@@ -634,23 +662,23 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy tripreview insert
-
+/*
 INSERT INTO TripReviews (review_id, trip_id, management_quality)
 VALUES (1, 1, 'Excellent');
 
 SELECT * FROM TRIPREVIEWS;
-
+*/
 -- HotelReviews ( isA Review )
 
--- DROP TABLE HotelReviews 
+-- DROP TABLE HotelReviews; 
 
 CREATE TABLE HotelReviews(
-    review_id NUMBER NOT NULL,
+    review_id NUMBER NOT NULL PRIMARY KEY,
     hotel_id NUMBER NOT NULL,
     security_quality VARCHAR2(100),
     staff_quality VARCHAR2(100),
-    FOREIGN KEY (review_id) REFERENCES Reviews(review_id),
-    FOREIGN KEY (hotel_id) REFERENCES Hotels(hotel_id)
+    FOREIGN KEY (review_id) REFERENCES Reviews(review_id) ON DELETE CASCADE,
+    FOREIGN KEY (hotel_id) REFERENCES Hotels(hotel_id) ON DELETE CASCADE
 )
 LOGGING
 NOCOMPRESS
@@ -670,20 +698,21 @@ DISABLE ROW MOVEMENT
 
 
 -- dummy hotelreview insert
-
+/*
 INSERT INTO HotelReviews (review_id, hotel_id, security_quality, staff_quality)
 VALUES (1, 1, 'Good', 'Excellent');
 
 SELECT * FROM HOTELREVIEWS;
+*/
 
 -- RestaurantReviews ( isA Review )
 
 CREATE TABLE RestaurantReviews(
-    review_id NUMBER NOT NULL,
+    review_id NUMBER NOT NULL PRIMARY KEY,
     restaurant_id NUMBER NOT NULL,
     food_quality VARCHAR2(100),
-    FOREIGN KEY (review_id) REFERENCES Reviews(review_id),
-    FOREIGN KEY (restaurant_id) REFERENCES Restaurants(restaurant_id)
+    FOREIGN KEY (review_id) REFERENCES Reviews(review_id) ON DELETE CASCADE,
+    FOREIGN KEY (restaurant_id) REFERENCES Restaurants(restaurant_id) ON DELETE CASCADE
 )
 LOGGING
 NOCOMPRESS
@@ -703,10 +732,12 @@ DISABLE ROW MOVEMENT
 
 -- dummy restaurantreview insert
 
+/*
 INSERT INTO RestaurantReviews (review_id, restaurant_id, food_quality)
 VALUES (1, 1, 'Delicious');
 
 SELECT * FROM RESTAURANTREVIEWS;
+*/
 
 -- Follows (  Many to Many relationship between Users and  Users )
 
@@ -715,8 +746,8 @@ CREATE TABLE Follows(
     followee_id NUMBER NOT NULL,
     since_date DATE,
     PRIMARY KEY (follower_id, followee_id),
-    FOREIGN KEY (follower_id) REFERENCES Users(user_id),
-    FOREIGN KEY (followee_id) REFERENCES Users(user_id)
+    FOREIGN KEY (follower_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (followee_id) REFERENCES Users(user_id) ON DELETE CASCADE
 )
 LOGGING
 NOCOMPRESS
@@ -735,11 +766,12 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy follows insert
-
+/*
 INSERT INTO Follows (follower_id, followee_id, since_date)
 VALUES (1, 2, TO_DATE('2023-07-29', 'YYYY-MM-DD'));
 
 SELECT * FROM FOLLOWS;
+*/
 
 -- Posts Table
 
@@ -749,7 +781,7 @@ CREATE TABLE Posts(
     posting_date DATE,
     description VARCHAR2(1000),
     image_url VARCHAR2(200),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 )
 LOGGING
 NOCOMPRESS
@@ -768,11 +800,12 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy post insert
-
+/*
 INSERT INTO Posts (user_id, posting_date, description, image_url)
 VALUES (1, TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'Enjoying a beautiful sunset!', 'https://example.com/sunset.jpg');
 
 SELECT * FROM POSTS;
+*/
 
 -- Reacts
 
@@ -782,8 +815,8 @@ CREATE TABLE Reacts(
     reacting_date DATE,
     react_type VARCHAR2(20),
     PRIMARY KEY (user_id, post_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (post_id) REFERENCES Posts(post_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE
 )
 LOGGING
 NOCOMPRESS
@@ -802,11 +835,12 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy react insert
-
+/*
 INSERT INTO Reacts (user_id, post_id, reacting_date, react_type)
 VALUES (1, 1, TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'love');
 
 SELECT * FROM REACTS;
+*/
 
 --  Comments  ( An entity, not a many to many relationship, because one user can post multiple comments in a single post )
 
@@ -837,12 +871,12 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy comment insert
-
+/*
 INSERT INTO Comments ( user_id, post_id, commenting_date, text, upvote_count)
 VALUES (1, 1, TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'This is a great post!', 10);
 
 SELECT * FROM COMMENTS;
-
+*/
 
 -- Notifications
 
@@ -851,7 +885,7 @@ CREATE TABLE Notifications(
     user_id NUMBER NOT NULL,
     notifying_date DATE,
     text VARCHAR2(1000),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 )
 LOGGING
 NOCOMPRESS
@@ -871,10 +905,12 @@ DISABLE ROW MOVEMENT
 
 -- dummy notification insert
 
+/*
 INSERT INTO Notifications (user_id, notifying_date, text)
 VALUES (1, TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'You have a new message!');
 
 SELECT * FROM NOTIFICATIONS;
+*/
 
 -- Messages 
 
@@ -885,8 +921,8 @@ CREATE TABLE Messages(
     text VARCHAR2(1000),
     sent_at DATE,
     is_seen NUMBER(1) DEFAULT 0 CHECK (is_seen IN (0, 1)),
-    FOREIGN KEY (sender_id) REFERENCES Users(user_id),
-    FOREIGN KEY (receiver_id) REFERENCES Users(user_id)
+    FOREIGN KEY (sender_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES Users(user_id) ON DELETE CASCADE
 )
 LOGGING
 NOCOMPRESS
@@ -904,15 +940,18 @@ NOCACHE
 DISABLE ROW MOVEMENT
 ;
 
+-- dummy message insert 
+
+/*
 INSERT INTO Messages (sender_id, receiver_id, text, sent_at, is_seen)
 VALUES (1, 2, 'Hello! How are you?', TO_DATE('2023-07-29 10:30:00', 'YYYY-MM-DD HH24:MI:SS'), 0);
 
 SELECT * FROM MESSAGES;
-
+*/
 
 -- Groups
 
--- DROP TABLE Groups
+-- DROP TABLE Groups;
 
 CREATE TABLE Groups(
     group_id NUMBER DEFAULT group_seq.NEXTVAL PRIMARY KEY,
@@ -939,12 +978,12 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy group insert
-
+/*
 INSERT INTO Groups ( name, created_at, description, rules, is_public)
 VALUES ( 'Ultima Adventurous Travelers', TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'A group for adventure seekers', 'Be respectful and have fun!', 1);
 
 SELECT * FROM GROUPS;
-
+*/
 -- Connects ( Many to Many relationship between Users and Groups )
 
 CREATE TABLE Connects (
@@ -952,8 +991,8 @@ CREATE TABLE Connects (
     group_id NUMBER NOT NULL,
     connected_at DATE,
     PRIMARY KEY (user_id, group_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (group_id) REFERENCES Groups(group_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (group_id) REFERENCES Groups(group_id) ON DELETE CASCADE
 )
 LOGGING
 NOCOMPRESS
@@ -972,20 +1011,20 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy connects insert
-
+/*
 INSERT INTO Connects (user_id, group_id, connected_at)
 VALUES (1, 1, TO_DATE('2023-07-29', 'YYYY-MM-DD'));
 
 SELECT * FROM CONNECTS;
-
+*/
 -- GroupPosts ( isA Post )
 
 CREATE TABLE GroupPosts (
     post_id NUMBER,
     group_id NUMBER,
     PRIMARY KEY (post_id),
-    FOREIGN KEY (post_id) REFERENCES Posts (post_id),
-    FOREIGN KEY (group_id) REFERENCES Groups (group_id)
+    FOREIGN KEY (post_id) REFERENCES Posts (post_id) ON DELETE CASCADE,
+    FOREIGN KEY (group_id) REFERENCES Groups (group_id) ON DELETE CASCADE
 )
 LOGGING
 NOCOMPRESS
@@ -1004,11 +1043,12 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy grouppost insert 
-
+/*
 INSERT INTO GroupPosts (post_id, group_id)
 VALUES (1, 1);
 
 SELECT * FROM GROUPPOSTS;
+*/
 
 -- GroupMessages ( isA Message )
 
@@ -1016,8 +1056,8 @@ CREATE TABLE GroupMessages (
     message_id NUMBER,
     group_id NUMBER,
     PRIMARY KEY (message_id),
-    FOREIGN KEY (message_id) REFERENCES Messages (message_id),
-    FOREIGN KEY (group_id) REFERENCES Groups (group_id)
+    FOREIGN KEY (message_id) REFERENCES Messages (message_id) ON DELETE CASCADE,
+    FOREIGN KEY (group_id) REFERENCES Groups (group_id) ON DELETE CASCADE
 )
 LOGGING
 NOCOMPRESS
@@ -1036,9 +1076,10 @@ DISABLE ROW MOVEMENT
 ;
 
 -- dummy groupmessages insert 
-
+/*
 INSERT INTO GroupMessages (message_id, group_id)
 VALUES (1, 1);
 
 SELECT * FROM GROUPMESSAGES;
+*/
 

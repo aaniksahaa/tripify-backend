@@ -41,7 +41,7 @@ def generate_random_restaurant():
     return {
         "restaurant_id": restaurant_id,
         "name": name,
-        "reservation_price_per_person": reservation_price_per_person,
+        "reservation_price": reservation_price_per_person,
         "address": f"{random.randint(1, 100)} {random.choice(streets)}",
         "city_id": city_id,
         "description": f"A restaurant serving {random.choice(adverbs)} {random.choice(adjectives)} {random.choice(cuisines)} {random.choice(food_types)}.",

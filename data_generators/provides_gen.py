@@ -1,6 +1,9 @@
 import random 
 import json 
 
+from data.destinations import destinations
+from data.activities import activities
+
 activities_by_destination = [
     {'destination_id': 1, 'activity_ids': [1, 4, 6]},  # Ahsan Manzil
     {'destination_id': 2, 'activity_ids': [8, 9, 20]},  # Cox's Bazar
@@ -69,8 +72,8 @@ activities_by_destination = [
     {'destination_id': 65, 'activity_ids': [41, 42, 43]},  # Zia Park
     {'destination_id': 66, 'activity_ids': [26, 28, 34]},  # Bhairab Upazila
     {'destination_id': 67, 'activity_ids': [38, 39, 48]},  # Narsingdi Town Hall
-    {'destination_id': 68, 'activity_ids': [49, 50, 52]},  # Meghna River
-    {'destination_id': 69, 'activity_ids': [49, 50, 52]},  # Fulkuri River View
+    {'destination_id': 68, 'activity_ids': [49, 50]},  # Meghna River
+    {'destination_id': 69, 'activity_ids': [49, 50]},  # Fulkuri River View
     {'destination_id': 70, 'activity_ids': [26, 28, 34]},  # Charbhadrasan Bridge
     {'destination_id': 71, 'activity_ids': [30, 31, 34]},  # Charvadrason Zamindar Bari
     {'destination_id': 72, 'activity_ids': [10, 11, 49]},  # Dhalchar
@@ -91,6 +94,8 @@ cnt = 0
 for x in activities_by_destination:
     d = x['destination_id']
     for a in x['activity_ids']:
+        if(a > len(activities)):
+            continue
         entry = {}
         entry['destination_id'] = d 
         entry['activity_id'] = a 

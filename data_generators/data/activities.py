@@ -237,7 +237,7 @@ activities = [
         'activity_id': 27,
         'name': 'Helicopter Tour',
         'category': 'Adventure',
-        'description': 'Get a bird\'s eye view of the destination with an exciting helicopter tour.',
+        'description': 'Get a birds eye view of the destination with an exciting helicopter tour.',
         'image_url': 'helicopter_tour.jpg',
         'min_age': 10,
         'max_age': 70
