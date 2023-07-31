@@ -25,15 +25,20 @@ seq_tables = ['user', 'destination', 'activity', 'trip', 'hotel', 'city', 'fligh
 
 sql += "\n---Deleting previous entries...\n\n"
 
-tables_to_be_modified = ['Cities', 'Destinations', 'Activities', 'Hotels', 'Flights', 'Restaurants', 'Flights', 'Provides']
+tables_to_be_modified = ['Users','Guides','Cities', 'Destinations', 'Activities', 'Hotels', 'Flights', 'Restaurants', 'Flights', 'Provides']
 
 for t in tables_to_be_modified:
     sql += f"DELETE FROM {t};\n"
 
 sql += "\n---Users\n\n"
 
-sql += "INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, registration_date, status, dob ) VALUES ( 'abc@gmail.com', '123', 'client', 'Anik Saha', 'Little Coder', 'facebook.com/abc', 'twitter.com/abc', 'instagram.com/abc', 'dummy.jpg', TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'active', TO_DATE('2002-09-17', 'YYYY-MM-DD') );\n"
-sql += "INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, registration_date, status, dob ) VALUES ( 'xyz@gmail.com', '456', 'client', 'Jaber Ahmed Deeder', 'Pro Coder', 'facebook.com/xyz', 'twitter.com/xyz', 'instagram.com/xyz', 'dummy.jpg', TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'active', TO_DATE('2002-09-17', 'YYYY-MM-DD') );\n"
+sql += "INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, dob ) VALUES ( 'abc@gmail.com', '123', 'client', 'Anik Saha', 'Little Coder', 'facebook.com/abc', 'twitter.com/abc', 'instagram.com/abc', 'dummy.jpg', TO_DATE('2002-09-17', 'YYYY-MM-DD') );\n"
+sql += "INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, dob ) VALUES ( 'xyz@gmail.com', '456', 'client', 'Jaber Ahmed Deeder', 'Pro Coder', 'facebook.com/xyz', 'twitter.com/xyz', 'instagram.com/xyz', 'dummy.jpg', TO_DATE('2002-09-17', 'YYYY-MM-DD') );\n"
+
+sql += "\n---Guides\n\n"
+
+sql += "INSERT INTO Guides (user_id) VALUES (1);\n"
+sql += "INSERT INTO Guides (user_id) VALUES (2);\n"
 
 sql += "\n---Cities\n\n"
 

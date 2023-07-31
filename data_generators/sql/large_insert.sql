@@ -1,6 +1,8 @@
 
 ---Deleting previous entries...
 
+DELETE FROM Users;
+DELETE FROM Guides;
 DELETE FROM Cities;
 DELETE FROM Destinations;
 DELETE FROM Activities;
@@ -12,8 +14,13 @@ DELETE FROM Provides;
 
 ---Users
 
-INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, registration_date, status, dob ) VALUES ( 'abc@gmail.com', '123', 'client', 'Anik Saha', 'Little Coder', 'facebook.com/abc', 'twitter.com/abc', 'instagram.com/abc', 'dummy.jpg', TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'active', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
-INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, registration_date, status, dob ) VALUES ( 'xyz@gmail.com', '456', 'client', 'Jaber Ahmed Deeder', 'Pro Coder', 'facebook.com/xyz', 'twitter.com/xyz', 'instagram.com/xyz', 'dummy.jpg', TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'active', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
+INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, dob ) VALUES ( 'abc@gmail.com', '123', 'client', 'Anik Saha', 'Little Coder', 'facebook.com/abc', 'twitter.com/abc', 'instagram.com/abc', 'dummy.jpg', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
+INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, dob ) VALUES ( 'xyz@gmail.com', '456', 'client', 'Jaber Ahmed Deeder', 'Pro Coder', 'facebook.com/xyz', 'twitter.com/xyz', 'instagram.com/xyz', 'dummy.jpg', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
+
+---Guides
+
+INSERT INTO Guides (user_id) VALUES (1);
+INSERT INTO Guides (user_id) VALUES (2);
 
 ---Cities
 

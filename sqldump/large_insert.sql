@@ -1,40 +1,8 @@
 
----Dropping previous sequences...
-
-DROP SEQUENCE user_seq;
-DROP SEQUENCE destination_seq;
-DROP SEQUENCE activity_seq;
-DROP SEQUENCE trip_seq;
-DROP SEQUENCE hotel_seq;
-DROP SEQUENCE city_seq;
-DROP SEQUENCE flight_seq;
-DROP SEQUENCE restaurant_seq;
-DROP SEQUENCE review_seq;
-DROP SEQUENCE post_seq;
-DROP SEQUENCE comment_seq;
-DROP SEQUENCE notification_seq;
-DROP SEQUENCE message_seq;
-DROP SEQUENCE group_seq;
-
----Creating new sequences...
-
-CREATE SEQUENCE user_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE destination_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE activity_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE trip_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE hotel_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE city_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE flight_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE restaurant_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE review_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE post_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE comment_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE notification_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE message_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE group_seq START WITH 1 INCREMENT BY 1 NOCACHE;
-
 ---Deleting previous entries...
 
+DELETE FROM Users;
+DELETE FROM Guides;
 DELETE FROM Cities;
 DELETE FROM Destinations;
 DELETE FROM Activities;
@@ -43,6 +11,16 @@ DELETE FROM Flights;
 DELETE FROM Restaurants;
 DELETE FROM Flights;
 DELETE FROM Provides;
+
+---Users
+
+INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, dob ) VALUES ( 'abc@gmail.com', '123', 'client', 'Anik Saha', 'Little Coder', 'facebook.com/abc', 'twitter.com/abc', 'instagram.com/abc', 'dummy.jpg', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
+INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, dob ) VALUES ( 'xyz@gmail.com', '456', 'client', 'Jaber Ahmed Deeder', 'Pro Coder', 'facebook.com/xyz', 'twitter.com/xyz', 'instagram.com/xyz', 'dummy.jpg', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
+
+---Guides
+
+INSERT INTO Guides (user_id) VALUES (1);
+INSERT INTO Guides (user_id) VALUES (2);
 
 ---Cities
 

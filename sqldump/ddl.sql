@@ -13,8 +13,9 @@ CREATE SEQUENCE comment_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE notification_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE message_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE group_seq START WITH 1 INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE guide_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 
--- Users TABLE
+-- 1. Users 
 
 CREATE TABLE Users(
 		user_id NUMBER DEFAULT user_seq.NEXTVAL PRIMARY KEY,
@@ -27,9 +28,12 @@ CREATE TABLE Users(
     twitter_url VARCHAR2(50),
 		instagram_url VARCHAR2(50),
     profile_picture VARCHAR2(200),
-    registration_date DATE NOT NULL,
-    status VARCHAR2(20),
-    dob DATE NOT NULL
+    registration_date DATE DEFAULT CURRENT_DATE NOT NULL,
+    status VARCHAR2(20) DEFAULT 'active',
+    dob DATE NOT NULL,
+		created_on DATE DEFAULT CURRENT_DATE,
+    last_updated_on DATE DEFAULT CURRENT_DATE,
+    deleted_on DATE  -- will be null until soft deleted
 )
 LOGGING
 NOCOMPRESS
@@ -59,7 +63,6 @@ INSERT INTO Users (
     twitter_url,
     instagram_url,
     profile_picture,
-    registration_date,
     status,
     dob
 ) VALUES (
@@ -72,7 +75,6 @@ INSERT INTO Users (
     'twitter.com/abc',
     'instagram.com/abc',
     'dummy.jpg',
-    TO_DATE('2023-07-29', 'YYYY-MM-DD'),
     'active',
     TO_DATE('2002-09-17', 'YYYY-MM-DD')
 );
@@ -108,7 +110,7 @@ INSERT INTO Users (
 SELECT * FROM USERS;
 */
 
--- Cities Table 
+-- 2. Cities  
 
 CREATE TABLE Cities (
     city_id NUMBER DEFAULT city_seq.NEXTVAL PRIMARY KEY,
@@ -145,7 +147,7 @@ VALUES ('Chattogram', 'Bangladesh', 5000000, 'sunny');
 SELECT * FROM CITIES;
 */
 
--- Destinations Table
+-- 3. Destinations
 
 CREATE TABLE Destinations (
     destination_id NUMBER DEFAULT destination_seq.NEXTVAL PRIMARY KEY,
@@ -183,7 +185,7 @@ VALUES ('Fantasy Kingdom', 'Ashulia, Savar, Dhaka', 1, 23.9249, 90.2570, 'Amusem
 SELECT * FROM DESTINATIONS;
 */
 
--- Activities Table
+-- 4. Activities
 
 CREATE TABLE Activities (
     activity_id NUMBER DEFAULT activity_seq.NEXTVAL PRIMARY KEY,
@@ -219,7 +221,7 @@ VALUES ('Roller Coaster', 'Adventure', 'Thrilling roller coaster ride for adrena
 SELECT * FROM Activities;
 */
 
--- Trips Table
+-- 5. Trips
 
 -- DROP TABLE Trips;
 
@@ -233,6 +235,9 @@ CREATE TABLE Trips (
     total_price NUMBER CHECK(total_price > 0),
     start_date DATE,
     end_date DATE,
+		created_on DATE DEFAULT CURRENT_DATE,
+    last_updated_on DATE DEFAULT CURRENT_DATE,
+    deleted_on DATE,  -- will be null until soft deleted
     FOREIGN KEY (from_city_id) REFERENCES Cities(city_id) ON DELETE SET NULL,
     FOREIGN KEY (to_city_id) REFERENCES Cities(city_id) ON DELETE SET NULL
 )
@@ -261,7 +266,7 @@ VALUES (1, 2, 'Exciting Adventure in Cox''s Bazar', 'Experience the beauty of Co
 SELECT * FROM TRIPS;
 */
 
--- Hotels Table 
+-- 6. Hotels 
 
 -- DROP TABLE Hotels;
 
@@ -278,6 +283,8 @@ CREATE TABLE Hotels (
     has_wifi NUMBER(1) DEFAULT 1 CHECK (has_wifi IN (0, 1)),
     has_parking NUMBER(1) DEFAULT 1 CHECK (has_parking IN (0, 1)),
     has_gym NUMBER(1) DEFAULT 1 CHECK (has_gym IN (0, 1)),
+		created_on DATE DEFAULT CURRENT_DATE,
+		last_updated_on DATE DEFAULT CURRENT_DATE,
     FOREIGN KEY (city_id) REFERENCES Cities(city_id) ON DELETE CASCADE
 )
 LOGGING
@@ -305,7 +312,7 @@ VALUES ('Westin Hotel Dhaka', '123 Main Street, Dhaka', 1, 'Experience luxury an
 SELECT * FROM HOTELS;
 */
 
--- Flights
+-- 7. Flights
 
 -- DROP TABLE Flights;
 
@@ -349,7 +356,7 @@ VALUES (1, 2, 'Bangladesh Airlines', TO_DATE('2023-08-15', 'YYYY-MM-DD'), TO_DAT
 SELECT * FROM FLIGHTS;
 */
 
--- Restaurants Table
+-- 8. Restaurants
 
 -- DROP TABLE Restaurants;
 
@@ -391,14 +398,14 @@ VALUES ('Morning Moon', 500, '45 Gulshan Avenue, Dhaka', 1, 'Experience the auth
 SELECT * FROM RESTAURANTS;
 */
 
--- TripBookings (Many to Many relationship between Users and Trips)
+-- 9. TripBookings (Many to Many relationship between Users and Trips)
 
 -- DROP TABLE TripBookings;
 
 CREATE TABLE TripBookings (
     user_id NUMBER,
     trip_id NUMBER,
-    booking_date DATE,
+    booking_date DATE DEFAULT CURRENT_DATE,
     is_paid NUMBER(1) DEFAULT 0 CHECK (is_paid IN (0, 1)),
     is_processed NUMBER(1) DEFAULT 0 CHECK (is_processed IN (0, 1)),
     is_completed NUMBER(1) DEFAULT 0 CHECK (is_completed IN (0, 1)),
@@ -410,6 +417,14 @@ CREATE TABLE TripBookings (
     PRIMARY KEY (user_id, trip_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (trip_id) REFERENCES Trips(trip_id) ON DELETE CASCADE,
+		CHECK (
+        (is_paid = 0 AND payment_method IS NULL AND transaction_id IS NULL AND payment_date IS NULL) OR
+        (is_paid = 1 AND payment_method IS NOT NULL AND transaction_id IS NOT NULL AND payment_date IS NOT NULL)
+    ),
+		CHECK (
+        (is_completed = 0 AND completion_date IS NULL) OR
+        (is_completed = 1 AND completion_date IS NOT NULL)
+    ),
 		CHECK ((is_paid = 0 AND is_processed = 0 AND is_completed = 0) OR
            (is_paid = 1 AND is_processed = 0 AND is_completed = 0) OR
            (is_paid = 1 AND is_processed = 1 AND is_completed = 0) OR
@@ -446,14 +461,14 @@ INSERT INTO TripBookings (
 SELECT * FROM TripBookings;
 */
 
--- Provides (Many to Many relationship between Destinations and Activities)
+-- 10. Provides (Many to Many relationship between Destinations and Activities)
 
 -- DROP TABLE Provides 
 
 CREATE TABLE Provides (
     destination_id NUMBER,
     activity_id NUMBER,
-    price NUMBER CHECK(price > 0),
+    price NUMBER CHECK(price >= 0),
     is_available NUMBER(1) DEFAULT 1 CHECK (is_available IN (0, 1)),
     PRIMARY KEY (destination_id, activity_id),
     FOREIGN KEY (destination_id) REFERENCES Destinations(destination_id) ON DELETE CASCADE,
@@ -484,7 +499,7 @@ VALUES (1, 1, 300, 1);
 SELECT * FROM PROVIDES;
 */
 
--- ResidenceIn ( Many to Many relationship between Trips and Hotels )
+-- 11. ResidenceIn ( Many to Many relationship between Trips and Hotels )
 
 -- DROP TABLE ResidenceIn 
 
@@ -521,7 +536,7 @@ VALUES (1, 1, TO_DATE('2023-07-30', 'YYYY-MM-DD'), TO_DATE('2023-08-05', 'YYYY-M
 
 SELECT * FROM ResidenceIn;
 */
--- Contains ( Many to Many relationship between Trips and  Destinations and Activities)
+-- 12. Contains ( Many to Many relationship between Trips and  Destinations and Activities)
 
 -- DROP TABLE Contains 
 
@@ -559,7 +574,7 @@ VALUES (1, 1, 1, TO_DATE('2023-08-10', 'YYYY-MM-DD'));
 SELECT * FROM CONTAINS;
 */
 
--- MealsIn (  Many to Many relationship between Trips and  Restaurants )
+-- 13. MealsIn (  Many to Many relationship between Trips and  Restaurants )
 
 -- DROP TABLE MealsIn 
 
@@ -595,18 +610,18 @@ VALUES(1,1);
 SELECT * FROM MealsIn;
 */
 
--- Reviews 
+-- 14. Reviews 
 
 -- DROP TABLE Reviews; 
 
 CREATE TABLE Reviews(
     review_id NUMBER DEFAULT review_seq.NEXTVAL PRIMARY KEY,
     user_id NUMBER NOT NULL,
-    posting_date DATE,
+    posting_date DATE DEFAULT CURRENT_DATE,
     description VARCHAR2(1000),
     rating NUMBER CHECK (rating >= 0 AND rating <= 5),
     image_url VARCHAR2(200),
-    upvote_count NUMBER,
+    upvote_count NUMBER DEFAULT 0 CHECK(upvote_count >= 0),
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 )
 LOGGING
@@ -634,7 +649,7 @@ VALUES (1, TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'This hotel is excellent!', 4 , 
 SELECT * FROM Reviews;
 */
 
--- TripReviews ( isA Review )
+-- 15. TripReviews ( isA Review )
 
 -- DROP TABLE TripReviews 
 
@@ -668,7 +683,7 @@ VALUES (1, 1, 'Excellent');
 
 SELECT * FROM TRIPREVIEWS;
 */
--- HotelReviews ( isA Review )
+-- 16. HotelReviews ( isA Review )
 
 -- DROP TABLE HotelReviews; 
 
@@ -705,7 +720,7 @@ VALUES (1, 1, 'Good', 'Excellent');
 SELECT * FROM HOTELREVIEWS;
 */
 
--- RestaurantReviews ( isA Review )
+-- 17. RestaurantReviews ( isA Review )
 
 CREATE TABLE RestaurantReviews(
     review_id NUMBER NOT NULL PRIMARY KEY,
@@ -739,12 +754,12 @@ VALUES (1, 1, 'Delicious');
 SELECT * FROM RESTAURANTREVIEWS;
 */
 
--- Follows (  Many to Many relationship between Users and  Users )
+-- 18. Follows (  Many to Many relationship between Users and  Users )
 
 CREATE TABLE Follows(
     follower_id NUMBER NOT NULL,
     followee_id NUMBER NOT NULL,
-    since_date DATE,
+    since_date DATE DEFAULT CURRENT_DATE,
     PRIMARY KEY (follower_id, followee_id),
     FOREIGN KEY (follower_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (followee_id) REFERENCES Users(user_id) ON DELETE CASCADE
@@ -773,12 +788,12 @@ VALUES (1, 2, TO_DATE('2023-07-29', 'YYYY-MM-DD'));
 SELECT * FROM FOLLOWS;
 */
 
--- Posts Table
+-- 19. Posts Table
 
 CREATE TABLE Posts(
     post_id NUMBER DEFAULT post_seq.NEXTVAL PRIMARY KEY,
     user_id NUMBER NOT NULL,
-    posting_date DATE,
+    posting_date DATE DEFAULT CURRENT_DATE,
     description VARCHAR2(1000),
     image_url VARCHAR2(200),
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
@@ -807,12 +822,12 @@ VALUES (1, TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'Enjoying a beautiful sunset!', 
 SELECT * FROM POSTS;
 */
 
--- Reacts
+-- 20. Reacts
 
 CREATE TABLE Reacts(
     user_id NUMBER NOT NULL,
     post_id NUMBER NOT NULL,
-    reacting_date DATE,
+    reacting_date DATE DEFAULT CURRENT_DATE,
     react_type VARCHAR2(20),
     PRIMARY KEY (user_id, post_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
@@ -842,15 +857,15 @@ VALUES (1, 1, TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'love');
 SELECT * FROM REACTS;
 */
 
---  Comments  ( An entity, not a many to many relationship, because one user can post multiple comments in a single post )
+--  21. Comments  ( An entity, not a many to many relationship, because one user can post multiple comments in a single post )
 
 CREATE TABLE Comments(
     comment_id NUMBER DEFAULT comment_seq.NEXTVAL PRIMARY KEY,
     user_id NUMBER NOT NULL,
     post_id NUMBER NOT NULL,
-    commenting_date DATE,
+    commenting_date DATE DEFAULT CURRENT_DATE,
     text VARCHAR2(1000),
-    upvote_count NUMBER CHECK(upvote_count > 0),
+    upvote_count NUMBER DEFAULT 0 CHECK(upvote_count >= 0),
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE
 )
@@ -878,12 +893,12 @@ VALUES (1, 1, TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'This is a great post!', 10);
 SELECT * FROM COMMENTS;
 */
 
--- Notifications
+-- 22. Notifications
 
 CREATE TABLE Notifications(
     notification_id NUMBER DEFAULT notification_seq.NEXTVAL PRIMARY KEY,
     user_id NUMBER NOT NULL,
-    notifying_date DATE,
+    notifying_date DATE DEFAULT CURRENT_DATE,
     text VARCHAR2(1000),
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 )
@@ -912,14 +927,14 @@ VALUES (1, TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'You have a new message!');
 SELECT * FROM NOTIFICATIONS;
 */
 
--- Messages 
+-- 23. Messages 
 
 CREATE TABLE Messages(
     message_id NUMBER DEFAULT message_seq.NEXTVAL PRIMARY KEY,
     sender_id NUMBER NOT NULL,
     receiver_id NUMBER NOT NULL,
     text VARCHAR2(1000),
-    sent_at DATE,
+    sent_at DATE DEFAULT CURRENT_DATE,
     is_seen NUMBER(1) DEFAULT 0 CHECK (is_seen IN (0, 1)),
     FOREIGN KEY (sender_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (receiver_id) REFERENCES Users(user_id) ON DELETE CASCADE
@@ -949,14 +964,14 @@ VALUES (1, 2, 'Hello! How are you?', TO_DATE('2023-07-29 10:30:00', 'YYYY-MM-DD 
 SELECT * FROM MESSAGES;
 */
 
--- Groups
+-- 24. Groups
 
 -- DROP TABLE Groups;
 
 CREATE TABLE Groups(
     group_id NUMBER DEFAULT group_seq.NEXTVAL PRIMARY KEY,
     name VARCHAR2(100) NOT NULL,
-    created_at DATE,
+    created_at DATE DEFAULT CURRENT_DATE,
     description VARCHAR2(1000),
     rules VARCHAR2(1000),
     is_public NUMBER(1) DEFAULT 0 CHECK (is_public IN (0, 1))
@@ -984,12 +999,13 @@ VALUES ( 'Ultima Adventurous Travelers', TO_DATE('2023-07-29', 'YYYY-MM-DD'), 'A
 
 SELECT * FROM GROUPS;
 */
--- Connects ( Many to Many relationship between Users and Groups )
+
+-- 25. Connects ( Many to Many relationship between Users and Groups )
 
 CREATE TABLE Connects (
     user_id NUMBER NOT NULL,
     group_id NUMBER NOT NULL,
-    connected_at DATE,
+    connected_at DATE DEFAULT CURRENT_DATE,
     PRIMARY KEY (user_id, group_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (group_id) REFERENCES Groups(group_id) ON DELETE CASCADE
@@ -1017,7 +1033,7 @@ VALUES (1, 1, TO_DATE('2023-07-29', 'YYYY-MM-DD'));
 
 SELECT * FROM CONNECTS;
 */
--- GroupPosts ( isA Post )
+-- 26. GroupPosts ( isA Post )
 
 CREATE TABLE GroupPosts (
     post_id NUMBER,
@@ -1050,7 +1066,7 @@ VALUES (1, 1);
 SELECT * FROM GROUPPOSTS;
 */
 
--- GroupMessages ( isA Message )
+-- 27. GroupMessages ( isA Message )
 
 CREATE TABLE GroupMessages (
     message_id NUMBER,
@@ -1083,3 +1099,72 @@ VALUES (1, 1);
 SELECT * FROM GROUPMESSAGES;
 */
 
+-- 28. Guides ( isA User )
+
+-- DROP TABLE GUIDES;
+
+CREATE TABLE Guides (
+    user_id NUMBER PRIMARY KEY,
+    guide_id NUMBER DEFAULT guide_seq.NEXTVAL UNIQUE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+)
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- dummy guide insertion 
+/*
+INSERT INTO Guides (user_id)
+VALUES (1);
+
+SELECT * FROM GUIDES;
+*/
+
+-- 29. TripGuides ( Many to Many relationship between Trips and Guides )
+
+-- DROP TABLE TripGuides;
+
+CREATE TABLE TripGuides (
+    trip_id NUMBER NOT NULL,
+    guide_id NUMBER NOT NULL,
+    registered_on DATE DEFAULT CURRENT_DATE,
+    PRIMARY KEY (trip_id, guide_id),
+    FOREIGN KEY (trip_id) REFERENCES Trips(trip_id) ON DELETE CASCADE,
+    FOREIGN KEY (guide_id) REFERENCES Guides(guide_id) ON DELETE CASCADE
+)
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- dummy tripguide insertion
+
+/*
+INSERT INTO TripGuides (trip_id, guide_id)
+VALUES (1, 1);
+
+SELECT * FROM TRIPGUIDES;
+*/

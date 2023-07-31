@@ -11,6 +11,8 @@ db.startup()
 // Routes
 
 const demoRouter = require('./routes/demo')
+const tripRouter = require('./routes/trip')
+const hotelRouter = require('./routes/hotel')
 
 // Middleswares
 
@@ -34,6 +36,8 @@ app.use(
 // Link routes to routers, demo url = 'api/v1/demo?data=anik'
 
 app.use('/api/v1/demo', demoRouter)
+app.use('/api/v1/trip', tripRouter)
+app.use('/api/v1/hotel', hotelRouter)
 
 // Use errorhandler
 

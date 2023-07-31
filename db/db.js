@@ -35,7 +35,7 @@ async function execute(sql, binds, options){
         connection = await oracledb.getConnection();
         results = await connection.execute(sql, binds, options);
     } catch (err) {
-        console.log("ERROR executing sql: " + err.message);
+        console.log("\n\nERROR executing sql: \n" + err.message + '\n\n');
         console.log('The provided SQL was \n' + sql)
     } finally {
         if (connection) {
@@ -47,7 +47,7 @@ async function execute(sql, binds, options){
             }
         }
     }
-    console.log(results)
+    //console.log(results)
     return results;
 }
 
