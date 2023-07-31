@@ -22,7 +22,7 @@ Request Body:
 {
     "from_city_id" : 1,
     "to_city_id" : 2,
-    "name" : "Oh sheiii",
+    "name" : "Magnificient Seashore Exploration",
     "description" : "A wonderful Trip, it will be.",
     "image_url" : "dummy.jpg",
     "start_date" : "2023-07-01",
@@ -48,7 +48,7 @@ Request Body:
         {
             "hotel_id" : 2,
             "checkin_date" : "2023-07-15",
-            "checkout_date" : "2023-07-18"
+            "checkout_date" : "2023-07-17"
         }
     ],
     "restaurants" : [
@@ -67,6 +67,14 @@ Request Body:
 Example Response:  
 ```json
 {
-  
+    "trip_id": 36,
+    "from_city_id": 1,
+    "to_city_id": 2,
+    "name": "Magnificient Seashore Exploration",
+    "description": "A wonderful Trip, it will be.",
+    "image_url": "dummy.jpg",
+    "total_price": 32571,
+    "start_date": "2023-06-30T18:00:00.000Z",
+    "end_date": "2023-07-24T18:00:00.000Z"
 }
 ```
