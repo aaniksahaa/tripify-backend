@@ -6,7 +6,7 @@
 The API Endpoints belong to  major routes. The routes are as follows:   
 
 ## 1. [Trip](#book)
-## 2. [User](#user)
+## 2. [Hotel](#hotel)
 ## 3. [Login](#login)
 ## 4. [Chat](#chat)
 
@@ -87,8 +87,7 @@ Example Response:
 
 ## c. Create New Trip
 Endpoint URL: `POST /api/v1/trip`  
-Request Body: 
-Request Body:   
+Request Body:    
 ```json
 {
     "from_city_id" : 1,
@@ -148,4 +147,44 @@ Example Response:
     "start_date": "2023-06-30T18:00:00.000Z",
     "end_date": "2023-07-24T18:00:00.000Z"
 }
+```
+
+# Hotel
+
+## c. Get Hotels by querying on attributes
+Endpoint URL: 
+`GET /api/v1/hotel?name=hotel&address=bangladesh&city_id=24,25,26,1,2,3&min_price=500&max_price=8000&has_wifi=1&has_parking=1&has_gym=1&orderby=price_per_day&ordertype=desc&page=1&per_page=2`  
+Request Body: `None`    
+Example Response:    
+```json
+[
+    {
+        "hotel_id": 50,
+        "name": "Elegant Retreat Hotel",
+        "address": "69 Main Street Bandarban , Bangladesh",
+        "city_id": 24,
+        "description": "A Wonderfully Charming hotel in Bandarban.",
+        "image_url": "dummy.jpg",
+        "price_per_day": 4820,
+        "phone": "014815893554",
+        "email": "elegantretreathotel@outlook.com",
+        "has_wifi": 1,
+        "has_parking": 1,
+        "has_gym": 1
+    },
+    {
+        "hotel_id": 70,
+        "name": "Modern Castle Hotel",
+        "address": "57 Park Avenue Manikganj , Bangladesh",
+        "city_id": 26,
+        "description": "A Exquisitely Elevated hotel in Manikganj.",
+        "image_url": "dummy.jpg",
+        "price_per_day": 3764,
+        "phone": "011338126183",
+        "email": "moderncastlehotel@yahoo.com",
+        "has_wifi": 1,
+        "has_parking": 1,
+        "has_gym": 1
+    }
+]
 ```
