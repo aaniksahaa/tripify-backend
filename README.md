@@ -92,7 +92,7 @@ Request Body:
 {
     "from_city_id" : 1,
     "to_city_id" : 2,
-    "name" : "Magnificient Seashore Exploration",
+    "name" : "Departmental Tour to Infinity",
     "description" : "A wonderful Trip, it will be.",
     "image_url" : "dummy.jpg",
     "start_date" : "2023-07-01",
@@ -131,23 +131,31 @@ Request Body:
         {
             "restaurant_id" : 3
         }
+    ],
+    "guides" : [
+        {
+            "guide_id" : 1
+        },
+        {
+            "guide_id" : 2
+        }
     ]
 }
 ```
 Example Response:  
 ```json
 {
-    "trip_id": 2,
+    "trip_id": 3,
     "from_city_id": 1,
     "to_city_id": 2,
-    "name": "Magnificient Seashore Exploration",
+    "name": "Departmental Tour to Infinity",
     "description": "A wonderful Trip, it will be.",
     "image_url": "dummy.jpg",
     "total_price": 32571,
     "start_date": "2023-06-30T18:00:00.000Z",
     "end_date": "2023-07-24T18:00:00.000Z",
-    "created_on": "2023-07-31T20:08:58.000Z",
-    "last_updated_on": "2023-07-31T20:08:58.000Z",
+    "created_on": "2023-07-31T21:59:52.000Z",
+    "last_updated_on": "2023-07-31T21:59:52.000Z",
     "deleted_on": null
 }
 ```
