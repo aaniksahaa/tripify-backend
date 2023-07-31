@@ -153,7 +153,7 @@ Example Response:
 
 ## c. Get Hotels by querying on attributes   
 
-### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
 Endpoint URL: 
 `GET /api/v1/hotel?name=hotel&address=bangladesh&city_id=24,25,26,1,2,3&min_price=500&max_price=8000&has_wifi=1&has_parking=1&has_gym=1&orderby=price_per_day&ordertype=desc&page=1&per_page=2`  
