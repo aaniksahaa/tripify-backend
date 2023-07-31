@@ -83,7 +83,7 @@ Example Response:
         }
     ]
 }
-```json
+```
 
 ## c. Create New Trip
 Endpoint URL: `POST /api/v1/trip`  
