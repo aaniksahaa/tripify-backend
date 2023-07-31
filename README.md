@@ -316,3 +316,28 @@ Example Response:
     "last_updated_on": "2023-07-31T19:17:46.000Z"
 }
 ```
+
+## e. Delete a Hotel
+
+Endpoint URL:     
+`DELETE api/v1/hotel/99`  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "hotel_id": 99,
+    "name": "Cozy Castle Hotel",
+    "address": "44 Ocean Drive Tangail , Bangladesh",
+    "city_id": 29,
+    "description": "A Exquisitely Elevated hotel in Tangail.",
+    "image_url": "dummy.jpg",
+    "price_per_day": 3857,
+    "phone": "014298582868",
+    "email": "cozycastlehotel@outlook.com",
+    "has_wifi": 1,
+    "has_parking": 0,
+    "has_gym": 1,
+    "created_on": "2023-07-31T19:43:37.000Z",
+    "last_updated_on": "2023-07-31T19:43:37.000Z"
+}
+```
