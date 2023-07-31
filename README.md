@@ -155,7 +155,7 @@ Example Response:
 ## e. Delete a Trip
 
 Endpoint URL:     
-`DELETE api/v1/trip/2'  
+`DELETE api/v1/trip/2`  
 Request Body: `None`    
 Example Response:    
 ```json
