@@ -137,7 +137,7 @@ Request Body:
 Example Response:  
 ```json
 {
-    "trip_id": 36,
+    "trip_id": 2,
     "from_city_id": 1,
     "to_city_id": 2,
     "name": "Magnificient Seashore Exploration",
@@ -145,7 +145,33 @@ Example Response:
     "image_url": "dummy.jpg",
     "total_price": 32571,
     "start_date": "2023-06-30T18:00:00.000Z",
-    "end_date": "2023-07-24T18:00:00.000Z"
+    "end_date": "2023-07-24T18:00:00.000Z",
+    "created_on": "2023-07-31T20:08:58.000Z",
+    "last_updated_on": "2023-07-31T20:08:58.000Z",
+    "deleted_on": null
+}
+```
+
+## e. Delete a Trip
+
+Endpoint URL:     
+`DELETE api/v1/trip/2'  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "trip_id": 2,
+    "from_city_id": 1,
+    "to_city_id": 2,
+    "name": "Magnificient Seashore Exploration",
+    "description": "A wonderful Trip, it will be.",
+    "image_url": "dummy.jpg",
+    "total_price": 32571,
+    "start_date": "2023-06-30T18:00:00.000Z",
+    "end_date": "2023-07-24T18:00:00.000Z",
+    "created_on": "2023-07-31T20:08:58.000Z",
+    "last_updated_on": "2023-07-31T20:08:58.000Z",
+    "deleted_on": null
 }
 ```
 
@@ -154,7 +180,7 @@ Example Response:
 ## a. Get Single Hotel by hotel_id
 
 Endpoint URL:     
-`GET api/v1/hotel/21'  
+`GET /api/v1/hotel/21'  
 Request Body: `None`    
 Example Response:    
 ```json
@@ -236,7 +262,7 @@ Request Body:
 Example Response:  
 ```json
 {
-    "hotel_id": 101,
+    "hotel_id": 103,
     "name": "Barbie Oppenheimer Hotel",
     "address": "57 Park Avenue Manikganj , Bangladesh",
     "city_id": 26,
@@ -247,6 +273,46 @@ Example Response:
     "email": "barbiehotel@yahoo.com",
     "has_wifi": 1,
     "has_parking": 1,
+    "has_gym": 1,
+    "created_on": "2023-07-31T19:17:46.000Z",
+    "last_updated_on": "2023-07-31T19:17:46.000Z"
+}
+```
+## d. Update a Hotel
+Endpoint URL: `PUT /api/v1/hotel/`  
+Request Body:    
+```json
+{
+    "hotel_id": 103,
+    "name": "New Barbie Oppenheimer Hotel",
+    "address": "57 Park Avenue Manikganj , Bangladesh",
+    "city_id": 26,
+    "description": "A Exquisitely Elevated hotel in Manikganj.",
+    "image_url": "dummy.jpg",
+    "price_per_day": 4500,
+    "phone": "011338126183",
+    "email": "barbiehotel@yahoo.com",
+    "has_wifi": 1,
+    "has_parking": 1,
     "has_gym": 1
+}
+```
+Example Response:  
+```json
+{
+    "hotel_id": 103,
+    "name": "Barbie Oppenheimer Hotel",
+    "address": "57 Park Avenue Manikganj , Bangladesh",
+    "city_id": 26,
+    "description": "A Exquisitely Elevated hotel in Manikganj.",
+    "image_url": "dummy.jpg",
+    "price_per_day": 2500,
+    "phone": "011338126183",
+    "email": "barbiehotel@yahoo.com",
+    "has_wifi": 1,
+    "has_parking": 1,
+    "has_gym": 1,
+    "created_on": "2023-07-31T19:17:46.000Z",
+    "last_updated_on": "2023-07-31T19:17:46.000Z"
 }
 ```
