@@ -151,7 +151,30 @@ Example Response:
 
 # Hotel
 
-## c. Get Hotels by querying on attributes ( Paginated )  
+## a. Get Single Hotel by hotel_id
+
+Endpoint URL:     
+`GET api/v1/hotel/21'  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "hotel_id": 21,
+    "name": "Seaside Lodge Hotel",
+    "address": "68 Garden Lane Coxs Bazar , Bangladesh",
+    "city_id": 27,
+    "description": "A Gracefully Charming hotel in Coxs Bazar.",
+    "image_url": "dummy.jpg",
+    "price_per_day": 4080,
+    "phone": "016748298191",
+    "email": "seasidelodgehotel@yahoo.com",
+    "has_wifi": 1,
+    "has_parking": 1,
+    "has_gym": 1
+}
+```
+
+## b. Get Hotels by querying on attributes ( Paginated )  
 
 #### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
