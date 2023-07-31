@@ -151,7 +151,7 @@ Example Response:
 
 # Hotel
 
-## c. Get Hotels by querying on attributes   
+## c. Get Hotels by querying on attributes ( Paginated )  
 
 #### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
