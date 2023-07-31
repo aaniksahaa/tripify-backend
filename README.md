@@ -14,7 +14,25 @@ The respective API endpoints are as follows:
 
 # Trip
 
-## a. Create New Trip
+## a. Get Single Trip by trip_id
+Endpoint URL: `GET /api/v1/trip/16`  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "trip_id": 16,
+    "from_city_id": 1,
+    "to_city_id": 2,
+    "name": "Very Cool trip",
+    "description": "A wonderful Trip, it will be.",
+    "image_url": "dummy.jpg",
+    "total_price": 33473,
+    "start_date": "2023-06-30T18:00:00.000Z",
+    "end_date": "2023-07-24T18:00:00.000Z"
+}
+```
+
+## b. Create New Trip
 Endpoint URL: `POST /api/v1/trip`  
 Request Body: 
 Request Body:   
