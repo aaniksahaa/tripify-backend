@@ -9,6 +9,7 @@ The API Endpoints belong to  major routes. The routes are as follows:
 ## [City](#city-1)
 ## [Trip](#trip-1)
 ## [Hotel](#hotel)
+## [Restaurant](#restaurant)
 ## [Chat](#chat)
 
 The respective API endpoints are as follows:    
@@ -788,3 +789,205 @@ Example Response:
     "last_updated_on": "2023-07-31T19:43:37.000Z"
 }
 ```
+
+# Restaurant
+
+## a. Get Single Restaurant by restaurant_id
+
+Endpoint URL:     
+`GET /api/v1/restaurant/3'  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "restaurant_id": 3,
+    "name": "Quaint Brasserie Curry Restaurant",
+    "reservation_price": 421,
+    "address": "92 Riverfront",
+    "city_id": 4,
+    "description": "A restaurant serving Enchantingly Authentic Bangladeshi Kebab.",
+    "image_url": "dummy.jpg",
+    "cuisine_type": "Chinese",
+    "contact": "012735241493",
+    "email": "quaintbrasseriecurryrestaurant@outlook.com",
+    "created_on": "2023-08-01T10:46:20.000Z",
+    "last_updated_on": "2023-08-01T10:46:20.000Z",
+    "city": {
+        "city_id": 4,
+        "name": "Rajshahi",
+        "country_name": "Bangladesh",
+        "population": 9536714,
+        "weather_type": "sunny"
+    }
+}
+```
+
+## b. Get Restaurants by querying on attributes ( Paginated )  
+
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+
+Endpoint URL: 
+```
+GET/api/v1/restaurant?name=cafe&city_id=6,22,28&min_price=50&max_price=300&page=1&per_page=2&orderby=price&ordertype=desc
+```  
+Request Body: `None`    
+Example Response:    
+```json
+[
+    {
+        "restaurant_id": 22,
+        "name": "Cozy Cafe Seafood Restaurant",
+        "reservation_price": 175,
+        "address": "37 Main Street",
+        "city_id": 22,
+        "description": "A restaurant serving Exquisitely Rustic Mediterranean Burger.",
+        "image_url": "dummy.jpg",
+        "cuisine_type": "Indian",
+        "contact": "015311347085",
+        "email": "cozycafeseafoodrestaurant@yahoo.com",
+        "created_on": "2023-08-01T10:46:20.000Z",
+        "last_updated_on": "2023-08-01T10:46:20.000Z",
+        "city": {
+            "city_id": 22,
+            "name": "Narsingdi",
+            "country_name": "Bangladesh",
+            "population": 705768,
+            "weather_type": "cold"
+        }
+    },
+    {
+        "restaurant_id": 43,
+        "name": "Gourmet Cafe Pasta Restaurant",
+        "reservation_price": 85,
+        "address": "98 Restaurant Row",
+        "city_id": 6,
+        "description": "A restaurant serving Delightfully Delicious Mexican Seafood.",
+        "image_url": "dummy.jpg",
+        "cuisine_type": "Indian",
+        "contact": "019843367500",
+        "email": "gourmetcafepastarestaurant@outlook.com",
+        "created_on": "2023-08-01T10:46:20.000Z",
+        "last_updated_on": "2023-08-01T10:46:20.000Z",
+        "city": {
+            "city_id": 6,
+            "name": "Mymensingh",
+            "country_name": "Bangladesh",
+            "population": 22058771,
+            "weather_type": "cold"
+        }
+    }
+]
+```
+## c. Create New restaurant
+
+Endpoint URL: `POST /api/v1/restaurant/`  
+Request Body:    
+```json
+{
+    "name": "Delicious Delights",
+    "reservation_price": 75,
+    "address": "123 Main Street",
+    "city_id": 1,
+    "description": "A cozy restaurant serving delicious delights.",
+    "image_url": "https://example.com/restaurant.jpg",
+    "cuisine_type": "Italian",
+    "contact": "123-456-7890",
+    "email": "info@deliciousdelights.com"
+}
+```
+Example Response:  
+```json
+{
+    "restaurant_id": 102,
+    "name": "Delicious Delights",
+    "reservation_price": 75,
+    "address": "123 Main Street",
+    "city_id": 1,
+    "description": "A cozy restaurant serving delicious delights.",
+    "image_url": "https://example.com/restaurant.jpg",
+    "cuisine_type": "Italian",
+    "contact": "123-456-7890",
+    "email": "info@deliciousdelights.com",
+    "created_on": "2023-08-01T13:50:25.000Z",
+    "last_updated_on": "2023-08-01T13:50:25.000Z",
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
+```
+## d. Update a restaurant
+Endpoint URL: `PUT /api/v1/restaurant/`  
+Request Body:    
+```json
+{
+    "restaurant_id" : 102,
+    "name": "Ultra Delicious Delights 2",
+    "reservation_price": 55,
+    "address": "123 Main Street",
+    "city_id": 1,
+    "description": "A cozy restaurant serving delicious delights.",
+    "image_url": "https://example.com/restaurant.jpg",
+    "cuisine_type": "Italian",
+    "contact": "123-456-7890",
+    "email": "info@deliciousdelights.com"
+}
+```
+Example Response:  
+```json
+{
+    "restaurant_id": 102,
+    "name": "Ultra Delicious Delights 2",
+    "reservation_price": 55,
+    "address": "123 Main Street",
+    "city_id": 1,
+    "description": "A cozy restaurant serving delicious delights.",
+    "image_url": "https://example.com/restaurant.jpg",
+    "cuisine_type": "Italian",
+    "contact": "123-456-7890",
+    "email": "info@deliciousdelights.com",
+    "created_on": "2023-08-01T13:50:25.000Z",
+    "last_updated_on": "2023-08-01T13:53:31.000Z",
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
+```
+
+## e. Delete a restaurant
+
+Endpoint URL:     
+`DELETE api/v1/restaurant/104`  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "restaurant_id": 104,
+    "name": "Ultra Delicious Delights 2",
+    "reservation_price": 55,
+    "address": "123 Main Street",
+    "city_id": 1,
+    "description": "A cozy restaurant serving delicious delights.",
+    "image_url": "https://example.com/restaurant.jpg",
+    "cuisine_type": "Italian",
+    "contact": "123-456-7890",
+    "email": "info@deliciousdelights.com",
+    "created_on": "2023-08-01T13:53:09.000Z",
+    "last_updated_on": "2023-08-01T13:53:09.000Z",
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
+```
+
