@@ -11,7 +11,7 @@ The API Endpoints belong to  major routes. The routes are as follows:
 ## [Trip](#trip-1)
 ## [Hotel](#hotel-1)
 ## [Restaurant](#restaurant-1)
-## [Chat](#chat)
+## [Flight](#flight-1)
 
 The respective API endpoints are as follows:    
 
@@ -1619,6 +1619,289 @@ Example Response:
         "name": "Dhaka",
         "country_name": "Bangladesh",
         "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
+```
+
+
+# Flight
+
+## a. Get Single Flight by flight_id
+
+Endpoint URL:    
+```
+GET
+```
+```
+/api/v1/flight/1
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "flight_id": 1,
+    "from_city_id": 28,
+    "to_city_id": 16,
+    "airline_name": "International Flights Airlines",
+    "departure_date": "2023-08-09T18:00:00.000Z",
+    "return_date": "2023-08-11T18:00:00.000Z",
+    "price": 12204,
+    "seat_class": "Business",
+    "flight_duration": 55,
+    "booking_url": "booking.com",
+    "created_on": "2023-08-01T10:46:20.000Z",
+    "last_updated_on": "2023-08-01T10:46:20.000Z",
+    "from_city": {
+        "city_id": 28,
+        "name": "Rangamati",
+        "country_name": "Bangladesh",
+        "population": 3482659,
+        "weather_type": "cold"
+    },
+    "to_city": {
+        "city_id": 16,
+        "name": "Jessore",
+        "country_name": "Bangladesh",
+        "population": 237478,
+        "weather_type": "rainy"
+    }
+}
+```
+
+## b. Get Flights by querying on attributes ( Paginated )  
+
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+
+Endpoint URL:  
+```
+GET
+```
+```
+/api/v1/flight?from_city_id=28,12,17,20&to_city_id=16,4,23,22&airline_name=e&min_price=2000&max_price=20000&seat_class=economy&min_duration=20&max_duration=150&departure_date=2023-01-01&return_date=2023-08-25&page=1&per_page=2&orderby=price&ordertype=asc
+```
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+[
+    {
+        "flight_id": 4,
+        "from_city_id": 20,
+        "to_city_id": 22,
+        "airline_name": "Luxury Airways Airlines",
+        "departure_date": "2023-08-11T18:00:00.000Z",
+        "return_date": "2023-08-14T18:00:00.000Z",
+        "price": 3897,
+        "seat_class": "Economy",
+        "flight_duration": 74,
+        "booking_url": "booking.com",
+        "created_on": "2023-08-01T10:46:20.000Z",
+        "last_updated_on": "2023-08-01T10:46:20.000Z",
+        "from_city": {
+            "city_id": 20,
+            "name": "Netrokona",
+            "country_name": "Bangladesh",
+            "population": 229752,
+            "weather_type": "sunny"
+        },
+        "to_city": {
+            "city_id": 22,
+            "name": "Narsingdi",
+            "country_name": "Bangladesh",
+            "population": 705768,
+            "weather_type": "cold"
+        }
+    },
+    {
+        "flight_id": 2,
+        "from_city_id": 12,
+        "to_city_id": 4,
+        "airline_name": "Luxury Flights Airlines",
+        "departure_date": "2023-08-15T18:00:00.000Z",
+        "return_date": "2023-08-21T18:00:00.000Z",
+        "price": 18850,
+        "seat_class": "Economy",
+        "flight_duration": 39,
+        "booking_url": "booking.com",
+        "created_on": "2023-08-01T10:46:20.000Z",
+        "last_updated_on": "2023-08-01T10:46:20.000Z",
+        "from_city": {
+            "city_id": 12,
+            "name": "Narsingdi",
+            "country_name": "Bangladesh",
+            "population": 705768,
+            "weather_type": "rainy"
+        },
+        "to_city": {
+            "city_id": 4,
+            "name": "Rajshahi",
+            "country_name": "Bangladesh",
+            "population": 9536714,
+            "weather_type": "sunny"
+        }
+    }
+]
+```
+
+## c. Create New Flight
+
+Endpoint URL: 
+```
+POST
+```
+```
+/api/v1/flight/
+```  
+Request Body:    
+```json
+{
+    "from_city_id": 29,
+    "to_city_id": 30,
+    "airline_name": "Cool Airlines",
+    "departure_date": "2023-08-09T18:00:00.000Z",
+    "return_date": "2023-08-11T18:00:00.000Z",
+    "price": 12204,
+    "seat_class": "Business",
+    "flight_duration": 55,
+    "booking_url": "booking.com",
+    "created_on": "2023-08-01T10:46:20.000Z",
+    "last_updated_on": "2023-08-01T10:46:20.000Z"
+}
+```
+Example Response:  
+```json
+{
+    "flight_id": 102,
+    "from_city_id": 29,
+    "to_city_id": 30,
+    "airline_name": "Cool Airlines",
+    "departure_date": "2023-08-09T18:00:00.000Z",
+    "return_date": "2023-08-11T18:00:00.000Z",
+    "price": 12204,
+    "seat_class": "Business",
+    "flight_duration": 55,
+    "booking_url": "booking.com",
+    "created_on": "2023-08-01T18:01:27.000Z",
+    "last_updated_on": "2023-08-01T18:01:27.000Z",
+    "from_city": {
+        "city_id": 29,
+        "name": "Tangail",
+        "country_name": "Bangladesh",
+        "population": 160937,
+        "weather_type": "rainy"
+    },
+    "to_city": {
+        "city_id": 30,
+        "name": "Chandpur",
+        "country_name": "Bangladesh",
+        "population": 115000,
+        "weather_type": "rainy"
+    }
+}
+```
+## d. Update a Flight
+Endpoint URL: 
+```
+PUT
+```
+```
+/api/v1/flight/
+```  
+Request Body:    
+```json
+{
+    "flight_id": 102,
+    "from_city_id": 29,
+    "to_city_id": 30,
+    "airline_name": "New Cool Airlines",
+    "departure_date": "2023-08-09T18:00:00.000Z",
+    "return_date": "2023-08-11T18:00:00.000Z",
+    "price": 12204,
+    "seat_class": "Business",
+    "flight_duration": 55,
+    "booking_url": "booking.com",
+    "created_on": "2023-08-01T10:46:20.000Z",
+    "last_updated_on": "2023-08-01T10:46:20.000Z"
+}
+```
+Example Response:  
+```json
+{
+    "flight_id": 103,
+    "from_city_id": 29,
+    "to_city_id": 30,
+    "airline_name": "New Cool Airlines",
+    "departure_date": "2023-08-09T18:00:00.000Z",
+    "return_date": "2023-08-11T18:00:00.000Z",
+    "price": 12204,
+    "seat_class": "Business",
+    "flight_duration": 55,
+    "booking_url": "booking.com",
+    "created_on": "2023-08-01T18:04:40.000Z",
+    "last_updated_on": "2023-08-01T18:04:40.000Z",
+    "from_city": {
+        "city_id": 29,
+        "name": "Tangail",
+        "country_name": "Bangladesh",
+        "population": 160937,
+        "weather_type": "rainy"
+    },
+    "to_city": {
+        "city_id": 30,
+        "name": "Chandpur",
+        "country_name": "Bangladesh",
+        "population": 115000,
+        "weather_type": "rainy"
+    }
+}
+```
+
+## e. Delete a Flight
+
+Endpoint URL:  
+```
+DELETE
+```
+```
+api/v1/flight/102
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "flight_id": 102,
+    "from_city_id": 29,
+    "to_city_id": 30,
+    "airline_name": "Cool Airlines",
+    "departure_date": "2023-08-09T18:00:00.000Z",
+    "return_date": "2023-08-11T18:00:00.000Z",
+    "price": 12204,
+    "seat_class": "Business",
+    "flight_duration": 55,
+    "booking_url": "booking.com",
+    "created_on": "2023-08-01T18:01:27.000Z",
+    "last_updated_on": "2023-08-01T18:01:27.000Z",
+    "from_city": {
+        "city_id": 29,
+        "name": "Tangail",
+        "country_name": "Bangladesh",
+        "population": 160937,
+        "weather_type": "rainy"
+    },
+    "to_city": {
+        "city_id": 30,
+        "name": "Chandpur",
+        "country_name": "Bangladesh",
+        "population": 115000,
         "weather_type": "rainy"
     }
 }
