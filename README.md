@@ -586,7 +586,7 @@ Example Response:
 }
 ```
 
-## e. Delete a Trip
+## e. Delete a Trip ( Soft Deletion )
 
 Endpoint URL:     
 `DELETE api/v1/trip/2`  
@@ -606,6 +606,19 @@ Example Response:
     "created_on": "2023-07-31T20:08:58.000Z",
     "last_updated_on": "2023-07-31T20:08:58.000Z",
     "deleted_on": null
+}
+```
+
+## f. Delete a Trip ( Permanent )
+
+Endpoint URL:     
+`DELETE api/v1/trip/danger/2`  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "trip_id": "2",
+    "status": "permanently deleted"
 }
 ```
 
