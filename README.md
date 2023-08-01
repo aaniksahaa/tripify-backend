@@ -14,6 +14,7 @@ The API Endpoints belong to  major routes. The routes are as follows:
 ## [Restaurant](#restaurant-1)
 ## [Flight](#flight-1)
 ## [Review](#review-1)
+## [TripBooking](#tripbooking-1)
 
 The respective API endpoints are as follows:    
 
@@ -2756,4 +2757,3 @@ Example Response:
     }
 }
 ```
-
