@@ -136,7 +136,7 @@ Example Response:
 ```
 
 ## c. Create New User
-
+### If a user is also a guide, just include the substring 'guide' in his role...
 Endpoint URL: 
 ```
 POST
@@ -149,7 +149,7 @@ Request Body:
 {
     "email": "example@example.com",
     "password_hash": "hashed_password",
-    "role": "user",
+    "role": "user,guide",
     "name": "John Doe",
     "bio": "I love traveling and exploring new places.",
     "city_id": 1,
