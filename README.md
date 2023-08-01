@@ -5,11 +5,11 @@
 # API Endpoints
 The API Endpoints belong to  major routes. The routes are as follows:   
 
-## [User](#user)
+## [User](#user-1)
 ## [City](#city-1)
 ## [Trip](#trip-1)
-## [Hotel](#hotel)
-## [Restaurant](#restaurant)
+## [Hotel](#hotel-1)
+## [Restaurant](#restaurant-1)
 ## [Chat](#chat)
 
 The respective API endpoints are as follows:    
@@ -18,8 +18,10 @@ The respective API endpoints are as follows:
 
 ## a. Get Single User by user_id
 
-Endpoint URL:     
-`GET /api/v1/user/1`    
+Endpoint URL: 
+```
+GET /api/v1/user/1
+```  
 Request Body: `None`    
 Example Response:    
 ```json
@@ -54,8 +56,10 @@ Example Response:
 
 #### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
-Endpoint URL:     
-`GET /api/v1/user?name=e&city_id=1,2,3&min_age=5&max_age=92&page=1&per_page=3&orderby=name&ordertype=desc`  
+Endpoint URL:  
+```
+GET /api/v1/user?name=e&city_id=1,2,3&min_age=5&max_age=92&page=1&per_page=3&orderby=name&ordertype=desc
+```
 Request Body: `None`    
 Example Response:    
 ```json
@@ -119,7 +123,10 @@ Example Response:
 
 ## c. Create New User
 
-Endpoint URL: `POST /api/v1/user/`  
+Endpoint URL: 
+```
+POST /api/v1/user/
+```  
 Request Body:    
 ```json
 {
@@ -166,7 +173,10 @@ Example Response:
 }
 ```
 ## d. Update a User
-Endpoint URL: `PUT /api/v1/user/`  
+Endpoint URL: 
+```
+PUT /api/v1/user/
+```  
 Request Body:    
 ```json
 {
@@ -216,7 +226,9 @@ Example Response:
 ## e. Delete a User ( Soft Delete )
 
 Endpoint URL:     
-`DELETE api/v1/user/4`  
+```
+DELETE api/v1/user/4
+```  
 Request Body: `None`    
 Example Response:    
 ```json
@@ -250,7 +262,9 @@ Example Response:
 ## f. Delete a User ( Permanent Delete )
 
 Endpoint URL:     
-`DELETE api/v1/user/danger/5`  
+```
+DELETE api/v1/user/danger/5
+``` 
 Request Body: `None`    
 Example Response:    
 ```json
@@ -265,7 +279,9 @@ Example Response:
 ## a. Get Single City by city_id
 
 Endpoint URL:     
-`GET /api/v1/city/1'  
+```
+GET /api/v1/city/1
+``` 
 Request Body: `None`    
 Example Response:    
 ```json
@@ -282,8 +298,10 @@ Example Response:
 
 #### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
-Endpoint URL:     
-`GET /api/v1/city?name=a&country_name=ban&population_min=1000000&population_max=231231231&weather_type=rainy&orderby=population&ordertype=desc&page=1&per_page=10`  
+Endpoint URL:  
+```
+GET /api/v1/city?name=a&country_name=ban&population_min=1000000&population_max=231231231&weather_type=rainy&orderby=population&ordertype=desc&page=1&per_page=10
+``` 
 Request Body: `None`    
 Example Response:    
 ```json
@@ -313,7 +331,10 @@ Example Response:
 ```
 ## c. Create New City
 
-Endpoint URL: `POST /api/v1/city/`  
+Endpoint URL: 
+```
+POST /api/v1/city/
+```  
 Request Body:    
 ```json
 {
@@ -334,7 +355,10 @@ Example Response:
 }
 ```
 ## d. Update a City
-Endpoint URL: `PUT /api/v1/city/`  
+Endpoint URL: 
+```
+PUT /api/v1/city/
+```  
 Request Body:    
 ```json
 {
@@ -359,7 +383,9 @@ Example Response:
 ## e. Delete a City
 
 Endpoint URL:     
-`DELETE api/v1/city/32`  
+```
+DELETE api/v1/city/32
+```
 Request Body: `None`    
 Example Response:    
 ```json
@@ -376,7 +402,10 @@ Example Response:
 # Trip
 
 ## a. Get Single Trip by trip_id
-Endpoint URL: `GET /api/v1/trip/16`  
+Endpoint URL: 
+```
+GET /api/v1/trip/16
+```
 Request Body: `None`    
 Example Response:    
 ```json
@@ -394,7 +423,10 @@ Example Response:
 ```
 
 ## b. Get Single Trip Details by trip_id
-Endpoint URL: `GET /api/v1/trip/details/2`  
+Endpoint URL: 
+```
+GET /api/v1/trip/details/2
+```  
 Request Body: `None`    
 Example Response:    
 ```json
@@ -513,7 +545,10 @@ Example Response:
 ```
 
 ## c. Create New Trip
-Endpoint URL: `POST /api/v1/trip`  
+Endpoint URL: 
+```
+POST /api/v1/trip
+```  
 Request Body:    
 ```json
 {
@@ -590,7 +625,9 @@ Example Response:
 ## e. Delete a Trip ( Soft Deletion )
 
 Endpoint URL:     
-`DELETE api/v1/trip/2`  
+```
+DELETE api/v1/trip/2
+``` 
 Request Body: `None`    
 Example Response:    
 ```json
@@ -613,7 +650,9 @@ Example Response:
 ## f. Delete a Trip ( Permanent )
 
 Endpoint URL:     
-`DELETE api/v1/trip/danger/2`  
+```
+DELETE api/v1/trip/danger/2
+```  
 Request Body: `None`    
 Example Response:    
 ```json
@@ -628,7 +667,9 @@ Example Response:
 ## a. Get Single Hotel by hotel_id
 
 Endpoint URL:     
-`GET /api/v1/hotel/21'  
+```
+GET /api/v1/hotel/21
+``` 
 Request Body: `None`    
 Example Response:    
 ```json
@@ -653,7 +694,9 @@ Example Response:
 #### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
 Endpoint URL:     
-`GET /api/v1/hotel?name=hotel&address=bangladesh&city_id=24,25,26,1,2,3&min_price=500&max_price=8000&has_wifi=1&has_parking=1&has_gym=1&orderby=price_per_day&ordertype=desc&page=1&per_page=2`  
+```
+GET /api/v1/hotel?name=hotel&address=bangladesh&city_id=24,25,26,1,2,3&min_price=500&max_price=8000&has_wifi=1&has_parking=1&has_gym=1&orderby=price_per_day&ordertype=desc&page=1&per_page=2
+```
 Request Body: `None`    
 Example Response:    
 ```json
@@ -690,7 +733,10 @@ Example Response:
 ```
 ## c. Create New Hotel
 
-Endpoint URL: `POST /api/v1/hotel/`  
+Endpoint URL: 
+```
+POST /api/v1/hotel/
+```  
 Request Body:    
 ```json
 {
@@ -727,7 +773,10 @@ Example Response:
 }
 ```
 ## d. Update a Hotel
-Endpoint URL: `PUT /api/v1/hotel/`  
+Endpoint URL: 
+```
+PUT /api/v1/hotel/
+```  
 Request Body:    
 ```json
 {
@@ -768,7 +817,9 @@ Example Response:
 ## e. Delete a Hotel
 
 Endpoint URL:     
-`DELETE api/v1/hotel/99`  
+```
+DELETE api/v1/hotel/99
+```  
 Request Body: `None`    
 Example Response:    
 ```json
@@ -795,7 +846,9 @@ Example Response:
 ## a. Get Single Restaurant by restaurant_id
 
 Endpoint URL:     
-`GET /api/v1/restaurant/3'  
+```
+GET /api/v1/restaurant/3
+```  
 Request Body: `None`    
 Example Response:    
 ```json
@@ -880,7 +933,10 @@ Example Response:
 ```
 ## c. Create New restaurant
 
-Endpoint URL: `POST /api/v1/restaurant/`  
+Endpoint URL: 
+```
+POST /api/v1/restaurant/
+```  
 Request Body:    
 ```json
 {
@@ -920,7 +976,10 @@ Example Response:
 }
 ```
 ## d. Update a restaurant
-Endpoint URL: `PUT /api/v1/restaurant/`  
+Endpoint URL: 
+```
+PUT /api/v1/restaurant/
+``` 
 Request Body:    
 ```json
 {
@@ -964,7 +1023,9 @@ Example Response:
 ## e. Delete a restaurant
 
 Endpoint URL:     
-`DELETE api/v1/restaurant/104`  
+```
+DELETE api/v1/restaurant/104
+```  
 Request Body: `None`    
 Example Response:    
 ```json
