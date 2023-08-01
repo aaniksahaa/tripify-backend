@@ -881,7 +881,7 @@ Example Response:
 
 Endpoint URL: 
 ```
-GET/api/v1/restaurant?name=cafe&city_id=6,22,28&min_price=50&max_price=300&page=1&per_page=2&orderby=price&ordertype=desc
+GET /api/v1/restaurant?name=cafe&city_id=6,22,28&min_price=50&max_price=300&page=1&per_page=2&orderby=price&ordertype=desc
 ```  
 Request Body: `None`    
 Example Response:    
