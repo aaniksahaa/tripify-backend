@@ -25,7 +25,10 @@ GET
 ```
 /api/v1/user/1
 ```  
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
@@ -66,7 +69,10 @@ GET
 ```
 /api/v1/user?name=e&city_id=1,2,3&min_age=5&max_age=92&page=1&per_page=3&orderby=name&ordertype=desc
 ```
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 [
@@ -131,7 +137,10 @@ Example Response:
 
 Endpoint URL: 
 ```
-POST /api/v1/user/
+POST
+```
+```
+/api/v1/user/
 ```  
 Request Body:    
 ```json
@@ -181,7 +190,10 @@ Example Response:
 ## d. Update a User
 Endpoint URL: 
 ```
-PUT /api/v1/user/
+PUT
+```
+```
+/api/v1/user/
 ```  
 Request Body:    
 ```json
@@ -231,11 +243,17 @@ Example Response:
 
 ## e. Delete a User ( Soft Delete )
 
-Endpoint URL:     
+Endpoint URL:  
 ```
-DELETE api/v1/user/4
+DELETE
+```
+```
+api/v1/user/4
 ```  
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
@@ -267,9 +285,12 @@ Example Response:
 
 ## f. Delete a User ( Permanent Delete )
 
-Endpoint URL:     
+Endpoint URL:
 ```
-DELETE api/v1/user/danger/5
+DELETE
+```
+```
+/api/v1/user/danger/5
 ``` 
 Request Body: `None`    
 Example Response:    
@@ -291,7 +312,10 @@ GET
 ```
 /api/v1/city/1
 ``` 
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
@@ -314,7 +338,10 @@ GET
 ```
 /api/v1/city?name=a&country_name=ban&population_min=1000000&population_max=231231231&weather_type=rainy&orderby=population&ordertype=desc&page=1&per_page=10
 ``` 
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 [
@@ -343,9 +370,12 @@ Example Response:
 ```
 ## c. Create New City
 
-Endpoint URL: 
+Endpoint URL:
 ```
-POST /api/v1/city/
+POST
+```
+```
+/api/v1/city/
 ```  
 Request Body:    
 ```json
@@ -369,7 +399,10 @@ Example Response:
 ## d. Update a City
 Endpoint URL: 
 ```
-PUT /api/v1/city/
+PUT
+```
+```
+/api/v1/city/
 ```  
 Request Body:    
 ```json
@@ -394,11 +427,17 @@ Example Response:
 
 ## e. Delete a City
 
-Endpoint URL:     
+Endpoint URL:  
 ```
-DELETE api/v1/city/32
+DELETE
 ```
-Request Body: `None`    
+```
+/api/v1/city/32
+```
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
@@ -421,7 +460,10 @@ GET
 ```
 /api/v1/trip/16
 ```
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
@@ -445,7 +487,10 @@ GET
 ```
 /api/v1/trip/details/2
 ```  
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
@@ -565,7 +610,10 @@ Example Response:
 ## c. Create New Trip
 Endpoint URL: 
 ```
-POST /api/v1/trip
+POST
+```
+```
+/api/v1/trip
 ```  
 Request Body:    
 ```json
@@ -642,11 +690,17 @@ Example Response:
 
 ## e. Delete a Trip ( Soft Deletion )
 
-Endpoint URL:     
+Endpoint URL:  
 ```
-DELETE api/v1/trip/2
+DELETE
+```
+```
+/api/v1/trip/2
 ``` 
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
@@ -667,9 +721,12 @@ Example Response:
 
 ## f. Delete a Trip ( Permanent )
 
-Endpoint URL:     
+Endpoint URL:  
 ```
-DELETE api/v1/trip/danger/2
+DELETE
+```
+```
+/api/v1/trip/danger/2
 ```  
 Request Body: `None`    
 Example Response:    
@@ -691,7 +748,10 @@ GET
 ```
 /api/v1/hotel/21
 ``` 
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
@@ -721,7 +781,10 @@ GET
 ```
 /api/v1/hotel?name=hotel&address=bangladesh&city_id=24,25,26,1,2,3&min_price=500&max_price=8000&has_wifi=1&has_parking=1&has_gym=1&orderby=price_per_day&ordertype=desc&page=1&per_page=2
 ```
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 [
@@ -759,7 +822,10 @@ Example Response:
 
 Endpoint URL: 
 ```
-POST /api/v1/hotel/
+POST
+```
+```
+/api/v1/hotel/
 ```  
 Request Body:    
 ```json
@@ -799,7 +865,10 @@ Example Response:
 ## d. Update a Hotel
 Endpoint URL: 
 ```
-PUT /api/v1/hotel/
+PUT
+```
+```
+/api/v1/hotel/
 ```  
 Request Body:    
 ```json
@@ -840,11 +909,17 @@ Example Response:
 
 ## e. Delete a Hotel
 
-Endpoint URL:     
+Endpoint URL: 
 ```
-DELETE api/v1/hotel/99
+DELETE
+```
+```
+/api/v1/hotel/99
 ```  
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
@@ -876,7 +951,10 @@ GET
 ```
 /api/v1/restaurant/3
 ```  
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
@@ -913,7 +991,10 @@ GET
 ```
 /api/v1/restaurant?name=cafe&city_id=6,22,28&min_price=50&max_price=300&page=1&per_page=2&orderby=price&ordertype=desc
 ```  
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 [
@@ -965,7 +1046,10 @@ Example Response:
 
 Endpoint URL: 
 ```
-POST /api/v1/restaurant/
+POST
+```
+```
+/api/v1/restaurant/
 ```  
 Request Body:    
 ```json
@@ -1008,7 +1092,10 @@ Example Response:
 ## d. Update a restaurant
 Endpoint URL: 
 ```
-PUT /api/v1/restaurant/
+PUT
+```
+```
+/api/v1/restaurant/
 ``` 
 Request Body:    
 ```json
@@ -1052,11 +1139,17 @@ Example Response:
 
 ## e. Delete a restaurant
 
-Endpoint URL:     
+Endpoint URL:  
 ```
-DELETE api/v1/restaurant/104
+DELETE
+```
+```
+/api/v1/restaurant/104
 ```  
-Request Body: `None`    
+Request Body: 
+```
+None
+```
 Example Response:    
 ```json
 {
