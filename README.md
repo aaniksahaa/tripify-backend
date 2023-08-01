@@ -393,29 +393,32 @@ Example Response:
 ```
 
 ## b. Get Single Trip Details by trip_id
-Endpoint URL: `GET /api/v1/trip/details/21`  
+Endpoint URL: `GET /api/v1/trip/details/2`  
 Request Body: `None`    
 Example Response:    
 ```json
 {
-    "trip_id": 21,
+    "trip_id": 2,
     "from_city_id": 1,
     "to_city_id": 2,
-    "name": "Very Cool trip",
+    "from_city_name": "Dhaka",
+    "to_city_name": "Chittagong",
+    "name": "Mini Tour",
     "description": "A wonderful Trip, it will be.",
     "image_url": "dummy.jpg",
-    "total_price": 33473,
+    "total_price": 29728,
     "start_date": "2023-06-30T18:00:00.000Z",
     "end_date": "2023-07-24T18:00:00.000Z",
+    "created_on": "2023-08-01T13:07:00.000Z",
+    "last_updated_on": "2023-08-01T13:07:00.000Z",
+    "deleted_on": null,
     "contains": [
         {
             "destination_id": 1,
-            "activity_id": 1,
-            "tentative_date": "2023-07-16T18:00:00.000Z"
-        },
-        {
-            "destination_id": 1,
+            "destination_name": "Ahsan Manzil",
             "activity_id": 4,
+            "activity_name": "Cultural Tour",
+            "price": 250,
             "tentative_date": "2023-07-14T18:00:00.000Z"
         }
     ],
@@ -423,23 +426,86 @@ Example Response:
         {
             "hotel_id": 1,
             "checkin_date": "2023-06-30T18:00:00.000Z",
-            "checkout_date": "2023-07-06T18:00:00.000Z"
-        },
-        {
-            "hotel_id": 2,
-            "checkin_date": "2023-07-14T18:00:00.000Z",
-            "checkout_date": "2023-07-17T18:00:00.000Z"
+            "checkout_date": "2023-07-06T18:00:00.000Z",
+            "hotel": {
+                "hotel_id": 1,
+                "name": "Quaint Villa Hotel",
+                "address": "48 Lakeview Drive Bhola , Bangladesh",
+                "city_id": 25,
+                "description": "A Exquisitely Rustic hotel in Bhola.",
+                "image_url": "dummy.jpg",
+                "price_per_day": 4867,
+                "phone": "019157054121",
+                "email": "quaintvillahotel@gmail.com",
+                "has_wifi": 1,
+                "has_parking": 1,
+                "has_gym": 0,
+                "created_on": "2023-08-01T10:46:19.000Z",
+                "last_updated_on": "2023-08-01T10:46:19.000Z",
+                "city": {
+                    "city_id": 25,
+                    "name": "Bhola",
+                    "country_name": "Bangladesh",
+                    "population": 183113,
+                    "weather_type": "sunny"
+                }
+            }
         }
     ],
     "restaurants": [
         {
-            "restaurant_id": 1
-        },
+            "restaurant_id": 1,
+            "restaurant": {
+                "restaurant_id": 1,
+                "name": "Authentic Eatery Dim Sum Restaurant",
+                "reservation_price": 276,
+                "address": "24 Culinary Avenue",
+                "city_id": 19,
+                "description": "A restaurant serving Authentically Cozy Italian Curry.",
+                "image_url": "dummy.jpg",
+                "cuisine_type": "Italian",
+                "contact": "011242474493",
+                "email": "authenticeaterydimsumrestaurant@outlook.com",
+                "created_on": "2023-08-01T10:46:20.000Z",
+                "last_updated_on": "2023-08-01T10:46:20.000Z",
+                "city": {
+                    "city_id": 19,
+                    "name": "Tangail",
+                    "country_name": "Bangladesh",
+                    "population": 160937,
+                    "weather_type": "rainy"
+                }
+            }
+        }
+    ],
+    "guides": [
         {
-            "restaurant_id": 2
-        },
-        {
-            "restaurant_id": 3
+            "guide_id": 1,
+            "guide": {
+                "user_id": 1,
+                "email": "changed_email@example.com",
+                "password_hash": "hashed_password",
+                "role": "user",
+                "name": "John Doe",
+                "bio": "I love traveling and exploring new places.",
+                "city_id": 1,
+                "facebook_url": "https://www.facebook.com/johndoe",
+                "twitter_url": "https://twitter.com/johndoe",
+                "instagram_url": "https://www.instagram.com/johndoe",
+                "profile_picture": "https://example.com/profile_picture.jpg",
+                "dob": "1990-05-14T18:00:00.000Z",
+                "registration_date": "2023-08-01T10:46:19.000Z",
+                "status": "active",
+                "created_on": "2023-08-01T10:46:19.000Z",
+                "last_updated_on": "2023-08-01T11:46:58.000Z",
+                "city": {
+                    "city_id": 1,
+                    "name": "Dhaka",
+                    "country_name": "Bangladesh",
+                    "population": 168957745,
+                    "weather_type": "rainy"
+                }
+            }
         }
     ]
 }
