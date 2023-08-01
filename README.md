@@ -19,7 +19,7 @@ The respective API endpoints are as follows:
 ## a. Get Single User by user_id
 
 Endpoint URL:    
-`GET`
+``GET``
 ```
 /api/v1/user/1
 ```  
