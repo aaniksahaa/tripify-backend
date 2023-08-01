@@ -49,6 +49,73 @@ Example Response:
 }
 ```
 
+## b. Get Users by querying on attributes ( Paginated )  
+
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+
+Endpoint URL:     
+`GET /api/v1/user?name=e&city_id=1,2,3&min_age=5&max_age=92&page=1&per_page=3&orderby=name&ordertype=desc`  
+Request Body: `None`    
+Example Response:    
+```json
+[
+    {
+        "user_id": 7,
+        "email": "12@example.com",
+        "password_hash": "hashed_password",
+        "role": "user",
+        "name": "Newton",
+        "bio": "I love traveling and exploring new places.",
+        "city_id": 1,
+        "facebook_url": "https://www.facebook.com/johndoe",
+        "twitter_url": "https://twitter.com/johndoe",
+        "instagram_url": "https://www.instagram.com/johndoe",
+        "profile_picture": "https://example.com/profile_picture.jpg",
+        "dob": "2010-05-14T18:00:00.000Z",
+        "registration_date": "2023-08-01T12:25:51.000Z",
+        "status": "active",
+        "created_on": "2023-08-01T12:25:51.000Z",
+        "last_updated_on": "2023-08-01T12:25:51.000Z"
+    },
+    {
+        "user_id": 1,
+        "email": "changed_email@example.com",
+        "password_hash": "hashed_password",
+        "role": "user",
+        "name": "John Doe",
+        "bio": "I love traveling and exploring new places.",
+        "city_id": 1,
+        "facebook_url": "https://www.facebook.com/johndoe",
+        "twitter_url": "https://twitter.com/johndoe",
+        "instagram_url": "https://www.instagram.com/johndoe",
+        "profile_picture": "https://example.com/profile_picture.jpg",
+        "dob": "1990-05-14T18:00:00.000Z",
+        "registration_date": "2023-08-01T10:46:19.000Z",
+        "status": "active",
+        "created_on": "2023-08-01T10:46:19.000Z",
+        "last_updated_on": "2023-08-01T11:46:58.000Z"
+    },
+    {
+        "user_id": 2,
+        "email": "xyz@gmail.com",
+        "password_hash": "456",
+        "role": "client",
+        "name": "Jaber Ahmed Deeder",
+        "bio": "Pro Coder",
+        "city_id": 1,
+        "facebook_url": "facebook.com/xyz",
+        "twitter_url": "twitter.com/xyz",
+        "instagram_url": "instagram.com/xyz",
+        "profile_picture": "dummy.jpg",
+        "dob": "2002-09-16T18:00:00.000Z",
+        "registration_date": "2023-08-01T10:46:19.000Z",
+        "status": "active",
+        "created_on": "2023-08-01T10:46:19.000Z",
+        "last_updated_on": "2023-08-01T10:46:19.000Z"
+    }
+]
+```
+
 ## c. Create New User
 
 Endpoint URL: `POST /api/v1/user/`  
