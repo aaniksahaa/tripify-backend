@@ -687,7 +687,297 @@ Example Response:
     "deleted_on": null
 }
 ```
-
+## d. Update a Trip
+Endpoint URL: 
+```
+PUT
+```
+```
+/api/v1/trip/
+```  
+Request Body:    
+```json
+{
+    "trip_id":1,
+    "from_city_id" : 1,
+    "to_city_id" : 2,
+    "name" : "Novelty Tour",
+    "description" : "A wonderful Trip, it will be.",
+    "image_url" : "dummy.jpg",
+    "start_date" : "2023-07-01",
+    "end_date" : "2023-07-25",
+    "contains" : [
+        {
+            "destination_id" : 1,
+            "activity_id" : 6,
+            "tentative_date" : "2023-07-15"
+        },
+        {
+            "destination_id" : 2,
+            "activity_id" : 8,
+            "tentative_date" : "2023-07-17"
+        }
+    ],
+    "hotels" : [
+        {
+            "hotel_id" : 5,
+            "checkin_date" : "2023-07-01",
+            "checkout_date" : "2023-07-07"
+        },
+        {
+            "hotel_id" : 6,
+            "checkin_date" : "2023-07-15",
+            "checkout_date" : "2023-07-17"
+        }
+    ],
+    "restaurants" : [
+        {
+            "restaurant_id" : 4
+        },
+        {
+            "restaurant_id" : 5
+        },
+        {
+            "restaurant_id" : 6
+        }
+    ],
+    "guides" : [
+        {
+            "guide_id" : 1
+        },
+        {
+            "guide_id" : 2
+        }
+    ]
+}
+```
+Example Response:  
+```json
+{
+    "trip_id": 1,
+    "from_city_id": 1,
+    "to_city_id": 2,
+    "from_city_name": "Dhaka",
+    "to_city_name": "Chittagong",
+    "name": "Novelty Tour",
+    "description": "A wonderful Trip, it will be.",
+    "image_url": "dummy.jpg",
+    "total_price": 22799,
+    "start_date": "2023-06-30T18:00:00.000Z",
+    "end_date": "2023-07-24T18:00:00.000Z",
+    "created_on": "2023-08-01T12:57:17.000Z",
+    "last_updated_on": "2023-08-01T12:57:17.000Z",
+    "deleted_on": null,
+    "contains": [
+        {
+            "destination_id": 1,
+            "destination_name": "Ahsan Manzil",
+            "activity_id": 6,
+            "activity_name": "Wildlife Safari",
+            "price": 400,
+            "tentative_date": "2023-07-14T18:00:00.000Z"
+        },
+        {
+            "destination_id": 2,
+            "destination_name": "Coxs Bazar",
+            "activity_id": 8,
+            "activity_name": "Beach Relaxation",
+            "price": 300,
+            "tentative_date": "2023-07-16T18:00:00.000Z"
+        }
+    ],
+    "hotels": [
+        {
+            "hotel_id": 6,
+            "checkin_date": "2023-07-14T18:00:00.000Z",
+            "checkout_date": "2023-07-16T18:00:00.000Z",
+            "hotel": {
+                "hotel_id": 6,
+                "name": "Charming Sanctuary Hotel",
+                "address": "55 Beach Road Jessore , Bangladesh",
+                "city_id": 16,
+                "description": "A Majestically Elevated hotel in Jessore.",
+                "image_url": "dummy.jpg",
+                "price_per_day": 961,
+                "phone": "015116405724",
+                "email": "charmingsanctuaryhotel@gmail.com",
+                "has_wifi": 1,
+                "has_parking": 0,
+                "has_gym": 1,
+                "created_on": "2023-08-01T10:46:19.000Z",
+                "last_updated_on": "2023-08-01T10:46:19.000Z",
+                "city": {
+                    "city_id": 16,
+                    "name": "Jessore",
+                    "country_name": "Bangladesh",
+                    "population": 237478,
+                    "weather_type": "rainy"
+                }
+            }
+        },
+        {
+            "hotel_id": 5,
+            "checkin_date": "2023-06-30T18:00:00.000Z",
+            "checkout_date": "2023-07-06T18:00:00.000Z",
+            "hotel": {
+                "hotel_id": 5,
+                "name": "Glorious Hideaway Hotel",
+                "address": "18 Beach Road Dinajpur , Bangladesh",
+                "city_id": 17,
+                "description": "A Extravagantly Glorious hotel in Dinajpur.",
+                "image_url": "dummy.jpg",
+                "price_per_day": 3256,
+                "phone": "015238514617",
+                "email": "glorioushideawayhotel@gmail.com",
+                "has_wifi": 0,
+                "has_parking": 0,
+                "has_gym": 0,
+                "created_on": "2023-08-01T10:46:19.000Z",
+                "last_updated_on": "2023-08-01T10:46:19.000Z",
+                "city": {
+                    "city_id": 17,
+                    "name": "Dinajpur",
+                    "country_name": "Bangladesh",
+                    "population": 204874,
+                    "weather_type": "cold"
+                }
+            }
+        }
+    ],
+    "restaurants": [
+        {
+            "restaurant_id": 4,
+            "restaurant": {
+                "restaurant_id": 4,
+                "name": "Delicious Cafe Biryani Restaurant",
+                "reservation_price": 460,
+                "address": "19 Lakeview Drive",
+                "city_id": 28,
+                "description": "A restaurant serving Wonderfully Cozy Thai Pasta.",
+                "image_url": "dummy.jpg",
+                "cuisine_type": "Thai",
+                "contact": "017157505197",
+                "email": "deliciouscafebiryanirestaurant@yahoo.com",
+                "created_on": "2023-08-01T10:46:20.000Z",
+                "last_updated_on": "2023-08-01T10:46:20.000Z",
+                "city": {
+                    "city_id": 28,
+                    "name": "Rangamati",
+                    "country_name": "Bangladesh",
+                    "population": 3482659,
+                    "weather_type": "cold"
+                }
+            }
+        },
+        {
+            "restaurant_id": 5,
+            "restaurant": {
+                "restaurant_id": 5,
+                "name": "Elegant Steakhouse Tacos Restaurant",
+                "reservation_price": 69,
+                "address": "52 Gourmet Street",
+                "city_id": 2,
+                "description": "A restaurant serving Exquisitely Savory Bangladeshi Kebab.",
+                "image_url": "dummy.jpg",
+                "cuisine_type": "Japanese",
+                "contact": "018488659370",
+                "email": "elegantsteakhousetacosrestaurant@outlook.com",
+                "created_on": "2023-08-01T10:46:20.000Z",
+                "last_updated_on": "2023-08-01T10:46:20.000Z",
+                "city": {
+                    "city_id": 2,
+                    "name": "Chittagong",
+                    "country_name": "Bangladesh",
+                    "population": 28607074,
+                    "weather_type": "sunny"
+                }
+            }
+        },
+        {
+            "restaurant_id": 6,
+            "restaurant": {
+                "restaurant_id": 6,
+                "name": "Delicious Bistro Biryani Restaurant",
+                "reservation_price": 112,
+                "address": "40 Cafeteria Lane",
+                "city_id": 17,
+                "description": "A restaurant serving Tastefully Fusion Indian Kebab.",
+                "image_url": "dummy.jpg",
+                "cuisine_type": "Mexican",
+                "contact": "018679129439",
+                "email": "deliciousbistrobiryanirestaurant@yahoo.com",
+                "created_on": "2023-08-01T10:46:20.000Z",
+                "last_updated_on": "2023-08-01T10:46:20.000Z",
+                "city": {
+                    "city_id": 17,
+                    "name": "Dinajpur",
+                    "country_name": "Bangladesh",
+                    "population": 204874,
+                    "weather_type": "cold"
+                }
+            }
+        }
+    ],
+    "guides": [
+        {
+            "guide_id": 1,
+            "guide": {
+                "user_id": 1,
+                "email": "changed_email@example.com",
+                "password_hash": "hashed_password",
+                "role": "user",
+                "name": "John Doe",
+                "bio": "I love traveling and exploring new places.",
+                "city_id": 1,
+                "facebook_url": "https://www.facebook.com/johndoe",
+                "twitter_url": "https://twitter.com/johndoe",
+                "instagram_url": "https://www.instagram.com/johndoe",
+                "profile_picture": "https://example.com/profile_picture.jpg",
+                "dob": "1990-05-14T18:00:00.000Z",
+                "registration_date": "2023-08-01T10:46:19.000Z",
+                "status": "active",
+                "created_on": "2023-08-01T10:46:19.000Z",
+                "last_updated_on": "2023-08-01T11:46:58.000Z",
+                "city": {
+                    "city_id": 1,
+                    "name": "Dhaka",
+                    "country_name": "Bangladesh",
+                    "population": 168957745,
+                    "weather_type": "rainy"
+                }
+            }
+        },
+        {
+            "guide_id": 2,
+            "guide": {
+                "user_id": 2,
+                "email": "xyz@gmail.com",
+                "password_hash": "456",
+                "role": "client",
+                "name": "Jaber Ahmed Deeder",
+                "bio": "Pro Coder",
+                "city_id": 1,
+                "facebook_url": "facebook.com/xyz",
+                "twitter_url": "twitter.com/xyz",
+                "instagram_url": "instagram.com/xyz",
+                "profile_picture": "dummy.jpg",
+                "dob": "2002-09-16T18:00:00.000Z",
+                "registration_date": "2023-08-01T10:46:19.000Z",
+                "status": "active",
+                "created_on": "2023-08-01T10:46:19.000Z",
+                "last_updated_on": "2023-08-01T10:46:19.000Z",
+                "city": {
+                    "city_id": 1,
+                    "name": "Dhaka",
+                    "country_name": "Bangladesh",
+                    "population": 168957745,
+                    "weather_type": "rainy"
+                }
+            }
+        }
+    ]
+}
+```
 ## e. Delete a Trip ( Soft Deletion )
 
 Endpoint URL:  
