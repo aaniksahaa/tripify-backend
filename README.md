@@ -483,6 +483,7 @@ Example Response:
     "activities": [
         {
             "activity_id": 1,
+            "price": 400,
             "activity": {
                 "activity_id": 1,
                 "name": "Boat Tour",
@@ -495,6 +496,7 @@ Example Response:
         },
         {
             "activity_id": 4,
+            "price": 250,
             "activity": {
                 "activity_id": 4,
                 "name": "Cultural Tour",
@@ -507,6 +509,7 @@ Example Response:
         },
         {
             "activity_id": 6,
+            "price": 400,
             "activity": {
                 "activity_id": 6,
                 "name": "Wildlife Safari",
@@ -560,6 +563,7 @@ Example Response:
         "activities": [
             {
                 "activity_id": 25,
+                "price": 450,
                 "activity": {
                     "activity_id": 25,
                     "name": "River Rafting",
@@ -572,6 +576,7 @@ Example Response:
             },
             {
                 "activity_id": 29,
+                "price": 150,
                 "activity": {
                     "activity_id": 29,
                     "name": "Educational Visit to Museum",
@@ -584,6 +589,7 @@ Example Response:
             },
             {
                 "activity_id": 45,
+                "price": 100,
                 "activity": {
                     "activity_id": 45,
                     "name": "Jet Skiing",
@@ -617,6 +623,7 @@ Example Response:
         "activities": [
             {
                 "activity_id": 4,
+                "price": 450,
                 "activity": {
                     "activity_id": 4,
                     "name": "Cultural Tour",
@@ -629,6 +636,7 @@ Example Response:
             },
             {
                 "activity_id": 15,
+                "price": 350,
                 "activity": {
                     "activity_id": 15,
                     "name": "Yoga Retreat",
@@ -641,6 +649,7 @@ Example Response:
             },
             {
                 "activity_id": 18,
+                "price": 400,
                 "activity": {
                     "activity_id": 18,
                     "name": "Volunteer and Community Service",
