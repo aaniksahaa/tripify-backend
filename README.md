@@ -5,12 +5,125 @@
 # API Endpoints
 The API Endpoints belong to  major routes. The routes are as follows:   
 
-## 1. [Trip](#book)
-## 2. [Hotel](#hotel)
-## 3. [Login](#login)
-## 4. [Chat](#chat)
+## [City](#city)
+## [Trip](#book)
+## [Hotel](#hotel)
+## [City](#login)
+## [Chat](#chat)
 
 The respective API endpoints are as follows:    
+
+# City
+
+## a. Get Single City by city_id
+
+Endpoint URL:     
+`GET /api/v1/city/1'  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "city_id": 1,
+    "name": "Dhaka",
+    "country_name": "Bangladesh",
+    "population": 168957745,
+    "weather_type": "rainy"
+}
+```
+
+## b. Get Cities by querying on attributes ( Paginated )  
+
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+
+Endpoint URL:     
+`GET /api/v1/city?name=a&country_name=ban&population_min=1000000&population_max=231231231&weather_type=rainy&orderby=population&ordertype=desc&page=1&per_page=10`  
+Request Body: `None`    
+Example Response:    
+```json
+[
+    {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    },
+    {
+        "city_id": 3,
+        "name": "Khulna",
+        "country_name": "Bangladesh",
+        "population": 15563000,
+        "weather_type": "rainy"
+    },
+    {
+        "city_id": 9,
+        "name": "Barisal",
+        "country_name": "Bangladesh",
+        "population": 3393084,
+        "weather_type": "rainy"
+    }
+]
+```
+## c. Create New City
+
+Endpoint URL: `POST /api/v1/city/`  
+Request Body:    
+```json
+{
+    "name": "Savar",
+    "country_name": "Bangladesh",
+    "population": 957745,
+    "weather_type": "rainy"
+}
+```
+Example Response:  
+```json
+{
+    "city_id": 32,
+    "name": "Savar",
+    "country_name": "Bangladesh",
+    "population": 957745,
+    "weather_type": "rainy"
+}
+```
+## d. Update a City
+Endpoint URL: `PUT /api/v1/city/`  
+Request Body:    
+```json
+{
+  "city_id": 32,
+  "name": "New Savar",
+  "country_name": "Bangladesh",
+  "population": 1500000,
+  "weather_type": "sunny"
+}
+```
+Example Response:  
+```json
+{
+    "city_id": 32,
+    "name": "New Savar",
+    "country_name": "Bangladesh",
+    "population": 1500000,
+    "weather_type": "sunny"
+}
+```
+
+## e. Delete a City
+
+Endpoint URL:     
+`DELETE api/v1/city/32`  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "city_id": 32,
+    "name": "New Savar",
+    "country_name": "Bangladesh",
+    "population": 1500000,
+    "weather_type": "sunny"
+}
+```
 
 # Trip
 
