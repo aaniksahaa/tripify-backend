@@ -165,7 +165,7 @@ Example Response:
 }
 ```
 ## d. Update a User
-Endpoint URL: `PUT /api/v1/city/`  
+Endpoint URL: `PUT /api/v1/user/`  
 Request Body:    
 ```json
 {
