@@ -13,6 +13,185 @@ The API Endpoints belong to  major routes. The routes are as follows:
 
 The respective API endpoints are as follows:    
 
+# User
+
+## a. Get Single User by user_id
+
+Endpoint URL:     
+`GET /api/v1/user/1'  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "user_id": 1,
+    "email": "abc@gmail.com",
+    "password_hash": "123",
+    "role": "client",
+    "name": "Anik Saha",
+    "bio": "Little Coder",
+    "city_id": 1,
+    "facebook_url": "facebook.com/abc",
+    "twitter_url": "twitter.com/abc",
+    "instagram_url": "instagram.com/abc",
+    "profile_picture": "dummy.jpg",
+    "dob": "2002-09-16T18:00:00.000Z",
+    "registration_date": "2023-08-01T10:46:19.000Z",
+    "status": "active",
+    "created_on": "2023-08-01T10:46:19.000Z",
+    "last_updated_on": "2023-08-01T10:46:19.000Z",
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
+```
+
+## c. Create New User
+
+Endpoint URL: `POST /api/v1/user/`  
+Request Body:    
+```json
+{
+    "email": "example@example.com",
+    "password_hash": "hashed_password",
+    "role": "user",
+    "name": "John Doe",
+    "bio": "I love traveling and exploring new places.",
+    "city_id": 1,
+    "facebook_url": "https://www.facebook.com/johndoe",
+    "twitter_url": "https://twitter.com/johndoe",
+    "instagram_url": "https://www.instagram.com/johndoe",
+    "profile_picture": "https://example.com/profile_picture.jpg",
+    "dob": "1990-05-15"
+}
+
+```
+Example Response:  
+```json
+{
+    "user_id": 4,
+    "email": "example@example.com",
+    "password_hash": "hashed_password",
+    "role": "user",
+    "name": "John Doe",
+    "bio": "I love traveling and exploring new places.",
+    "city_id": 1,
+    "facebook_url": "https://www.facebook.com/johndoe",
+    "twitter_url": "https://twitter.com/johndoe",
+    "instagram_url": "https://www.instagram.com/johndoe",
+    "profile_picture": "https://example.com/profile_picture.jpg",
+    "dob": "1990-05-14T18:00:00.000Z",
+    "registration_date": "2023-08-01T11:37:45.000Z",
+    "status": "active",
+    "created_on": "2023-08-01T11:37:45.000Z",
+    "last_updated_on": "2023-08-01T11:37:45.000Z",
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
+```
+## d. Update a User
+Endpoint URL: `PUT /api/v1/city/`  
+Request Body:    
+```json
+{
+    "user_id":1,
+    "email": "changed_email@example.com",
+    "password_hash": "hashed_password",
+    "role": "user",
+    "name": "John Doe",
+    "bio": "I love traveling and exploring new places.",
+    "city_id": 1,
+    "facebook_url": "https://www.facebook.com/johndoe",
+    "twitter_url": "https://twitter.com/johndoe",
+    "instagram_url": "https://www.instagram.com/johndoe",
+    "profile_picture": "https://example.com/profile_picture.jpg",
+    "dob": "1990-05-15"
+}
+```
+Example Response:  
+```json
+{
+    "user_id": 1,
+    "email": "changed_email@example.com",
+    "password_hash": "hashed_password",
+    "role": "user",
+    "name": "John Doe",
+    "bio": "I love traveling and exploring new places.",
+    "city_id": 1,
+    "facebook_url": "https://www.facebook.com/johndoe",
+    "twitter_url": "https://twitter.com/johndoe",
+    "instagram_url": "https://www.instagram.com/johndoe",
+    "profile_picture": "https://example.com/profile_picture.jpg",
+    "dob": "1990-05-14T18:00:00.000Z",
+    "registration_date": "2023-08-01T10:46:19.000Z",
+    "status": "active",
+    "created_on": "2023-08-01T10:46:19.000Z",
+    "last_updated_on": "2023-08-01T11:46:58.000Z",
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
+```
+
+## e. Delete a User ( Soft Delete )
+
+Endpoint URL:     
+`DELETE api/v1/user/4`  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "user_id": 4,
+    "email": "example@example.com",
+    "password_hash": "hashed_password",
+    "role": "user",
+    "name": "John Doe",
+    "bio": "I love traveling and exploring new places.",
+    "city_id": 1,
+    "facebook_url": "https://www.facebook.com/johndoe",
+    "twitter_url": "https://twitter.com/johndoe",
+    "instagram_url": "https://www.instagram.com/johndoe",
+    "profile_picture": "https://example.com/profile_picture.jpg",
+    "dob": "1990-05-14T18:00:00.000Z",
+    "registration_date": "2023-08-01T11:37:45.000Z",
+    "status": "active",
+    "created_on": "2023-08-01T11:37:45.000Z",
+    "last_updated_on": "2023-08-01T11:37:45.000Z",
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
+```
+
+## f. Delete a User ( Permanent Delete )
+
+Endpoint URL:     
+`DELETE api/v1/user/danger/5`  
+Request Body: `None`    
+Example Response:    
+```json
+{
+    "user_id": "5",
+    "status": "permanently deleted"
+}
+```
+
 # City
 
 ## a. Get Single City by city_id
@@ -124,6 +303,7 @@ Example Response:
     "weather_type": "sunny"
 }
 ```
+
 
 # Trip
 
