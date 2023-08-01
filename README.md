@@ -9,7 +9,6 @@ The API Endpoints belong to  major routes. The routes are as follows:
 ## [City](#city)
 ## [Trip](#book)
 ## [Hotel](#hotel)
-## [City](#login)
 ## [Chat](#chat)
 
 The respective API endpoints are as follows:    
