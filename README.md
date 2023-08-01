@@ -683,11 +683,75 @@ POST
 ```  
 Request Body:    
 ```json
-
+{
+    "name": "Shishu Park",
+    "address": "Ramna, Dhaka",
+    "city_id": 1,
+    "latitude": 23.7104,
+    "longitude": 90.4074,
+    "description": "Shishu Park is a fantastic place for children in Dhaka.",
+    "image_url": "dummy.jpg",
+    "activities": [
+        {
+            "activity_id": 1,
+            "price": 50
+        },
+        {
+            "activity_id": 33,
+            "price": 100
+        }
+    ]
+}
 ```
 Example Response:  
 ```json
-
+{
+    "destination_id": 83,
+    "name": "Shishu Park",
+    "address": "Ramna, Dhaka",
+    "city_id": 1,
+    "latitude": 23.7104,
+    "longitude": 90.4074,
+    "description": "Shishu Park is a fantastic place for children in Dhaka.",
+    "image_url": "dummy.jpg",
+    "created_on": "2023-08-01T19:24:43.000Z",
+    "last_updated_on": "2023-08-01T19:24:43.000Z",
+    "activities": [
+        {
+            "activity_id": 1,
+            "price": 50,
+            "activity": {
+                "activity_id": 1,
+                "name": "Boat Tour",
+                "category": "Adventure",
+                "description": "Experience the breathtaking beauty of a boat tour in a mangrove forest.",
+                "image_url": "boat_tour.jpg",
+                "min_age": 8,
+                "max_age": 60
+            }
+        },
+        {
+            "activity_id": 33,
+            "price": 100,
+            "activity": {
+                "activity_id": 33,
+                "name": "Gardens and Parks",
+                "category": "Adventure",
+                "description": "Relax and take a leisurely stroll in beautiful gardens and parks.",
+                "image_url": "gardens_parks.jpg",
+                "min_age": 5,
+                "max_age": 80
+            }
+        }
+    ],
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
 ```
 ## d. Update a Destination
 Endpoint URL: 
@@ -699,21 +763,69 @@ PUT
 ```  
 Request Body:    
 ```json
-
+{
+    "destination_id":1,
+    "name": "New Magnificent Ahsan Manzil",
+    "address": "Bangsha Road, Old Dhaka",
+    "city_id": 1,
+    "latitude": 23.7104,
+    "longitude": 90.4074,
+    "description": "Ahsan Manzil, also known as Pink Palace, is a historic mansion and museum in Dhaka.",
+    "image_url": "dummy.jpg",
+    "activities": [
+        {
+            "activity_id": 4,
+            "price": 250
+        }
+    ]
+}
 ```
 Example Response:  
 ```json
-
+{
+    "destination_id": 1,
+    "name": "New Magnificent Ahsan Manzil",
+    "address": "Bangsha Road, Old Dhaka",
+    "city_id": 1,
+    "latitude": 23.7104,
+    "longitude": 90.4074,
+    "description": "Ahsan Manzil, also known as Pink Palace, is a historic mansion and museum in Dhaka.",
+    "image_url": "dummy.jpg",
+    "created_on": "2023-08-01T10:46:19.000Z",
+    "last_updated_on": "2023-08-01T19:29:24.000Z",
+    "activities": [
+        {
+            "activity_id": 4,
+            "price": 250,
+            "activity": {
+                "activity_id": 4,
+                "name": "Cultural Tour",
+                "category": "Culture",
+                "description": "Immerse in the local culture and traditions with a guided cultural tour.",
+                "image_url": "cultural_tour.jpg",
+                "min_age": 15,
+                "max_age": 65
+            }
+        }
+    ],
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
 ```
 
-## e. Delete a Destination ( Soft Deletion )
+## e. Delete a Destination
 
 Endpoint URL:  
 ```
 DELETE
 ```
 ```
-api/v1/destination/4
+api/v1/destination/83
 ```  
 Request Body: 
 ```
@@ -721,24 +833,54 @@ None
 ```
 Example Response:    
 ```json
-
+{
+    "destination_id": 83,
+    "name": "Shishu Park",
+    "address": "Ramna, Dhaka",
+    "city_id": 1,
+    "latitude": 23.7104,
+    "longitude": 90.4074,
+    "description": "Shishu Park is a fantastic place for children in Dhaka.",
+    "image_url": "dummy.jpg",
+    "created_on": "2023-08-01T19:24:43.000Z",
+    "last_updated_on": "2023-08-01T19:24:43.000Z",
+    "activities": [
+        {
+            "activity_id": 1,
+            "price": 50,
+            "activity": {
+                "activity_id": 1,
+                "name": "Boat Tour",
+                "category": "Adventure",
+                "description": "Experience the breathtaking beauty of a boat tour in a mangrove forest.",
+                "image_url": "boat_tour.jpg",
+                "min_age": 8,
+                "max_age": 60
+            }
+        },
+        {
+            "activity_id": 33,
+            "price": 100,
+            "activity": {
+                "activity_id": 33,
+                "name": "Gardens and Parks",
+                "category": "Adventure",
+                "description": "Relax and take a leisurely stroll in beautiful gardens and parks.",
+                "image_url": "gardens_parks.jpg",
+                "min_age": 5,
+                "max_age": 80
+            }
+        }
+    ],
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
 ```
-
-## f. Delete a Destination ( Permanent Deletion )
-
-Endpoint URL:
-```
-DELETE
-```
-```
-/api/v1/destination/danger/5
-``` 
-Request Body: `None`    
-Example Response:    
-```json
-
-```
-
 
 # Activity
 
