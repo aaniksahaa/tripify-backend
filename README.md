@@ -7,6 +7,7 @@ The API Endpoints belong to  major routes. The routes are as follows:
 
 ## [User](#user-1)
 ## [City](#city-1)
+## [Destination](#destination-1)
 ## [Activity](#activity-1)
 ## [Trip](#trip-1)
 ## [Hotel](#hotel-1)
@@ -448,6 +449,285 @@ Example Response:
     "population": 1500000,
     "weather_type": "sunny"
 }
+```
+
+
+# Destination
+
+## a. Get Single Destination by destination_id
+
+Endpoint URL:    
+```
+GET
+```
+```
+/api/v1/destination/1
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "destination_id": 1,
+    "name": "Ahsan Manzil",
+    "address": "Bangsha Road, Old Dhaka",
+    "city_id": 1,
+    "latitude": 23.7104,
+    "longitude": 90.4074,
+    "description": "Ahsan Manzil, also known as Pink Palace, is a historic mansion and museum in Dhaka.",
+    "image_url": "dummy.jpg",
+    "created_on": "2023-08-01T10:46:19.000Z",
+    "last_updated_on": "2023-08-01T10:46:19.000Z",
+    "activities": [
+        {
+            "activity_id": 1,
+            "activity": {
+                "activity_id": 1,
+                "name": "Boat Tour",
+                "category": "Adventure",
+                "description": "Experience the breathtaking beauty of a boat tour in a mangrove forest.",
+                "image_url": "boat_tour.jpg",
+                "min_age": 8,
+                "max_age": 60
+            }
+        },
+        {
+            "activity_id": 4,
+            "activity": {
+                "activity_id": 4,
+                "name": "Cultural Tour",
+                "category": "Culture",
+                "description": "Immerse in the local culture and traditions with a guided cultural tour.",
+                "image_url": "cultural_tour.jpg",
+                "min_age": 15,
+                "max_age": 65
+            }
+        },
+        {
+            "activity_id": 6,
+            "activity": {
+                "activity_id": 6,
+                "name": "Wildlife Safari",
+                "category": "Adventure",
+                "description": "Embark on a thrilling wildlife safari and spot exotic animals.",
+                "image_url": "wildlife_safari.jpg",
+                "min_age": 18,
+                "max_age": 60
+            }
+        }
+    ],
+    "city": {
+        "city_id": 1,
+        "name": "Dhaka",
+        "country_name": "Bangladesh",
+        "population": 168957745,
+        "weather_type": "rainy"
+    }
+}
+```
+
+## b. Get Destinations by querying on attributes ( Paginated )  
+
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+
+Endpoint URL:  
+```
+GET
+```
+```
+/api/v1/destination?name=e&address=dhaka&city_id=1,2,3&page=2&per_page=2&orderby=name&ordertype=asc
+```
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+[
+    {
+        "destination_id": 12,
+        "name": "Jamuna Future Park",
+        "address": "Kuril, Dhaka",
+        "city_id": 1,
+        "latitude": 23.8166,
+        "longitude": 90.4232,
+        "description": "Jamuna Future Park is the largest shopping mall in South Asia, located in Dhaka.",
+        "image_url": "dummy.jpg",
+        "created_on": "2023-08-01T10:46:19.000Z",
+        "last_updated_on": "2023-08-01T10:46:19.000Z",
+        "activities": [
+            {
+                "activity_id": 25,
+                "activity": {
+                    "activity_id": 25,
+                    "name": "River Rafting",
+                    "category": "Adventure",
+                    "description": "Challenge the rapids of the river with an exciting rafting adventure.",
+                    "image_url": "river_rafting.jpg",
+                    "min_age": 18,
+                    "max_age": 50
+                }
+            },
+            {
+                "activity_id": 29,
+                "activity": {
+                    "activity_id": 29,
+                    "name": "Educational Visit to Museum",
+                    "category": "Education",
+                    "description": "Discover the art, history, and culture of the region in museums.",
+                    "image_url": "museum_visits.jpg",
+                    "min_age": 8,
+                    "max_age": 80
+                }
+            },
+            {
+                "activity_id": 45,
+                "activity": {
+                    "activity_id": 45,
+                    "name": "Jet Skiing",
+                    "category": "Adventure",
+                    "description": "Feel the rush of adrenaline with an exciting jet skiing adventure.",
+                    "image_url": "jet_skiing.jpg",
+                    "min_age": 16,
+                    "max_age": 55
+                }
+            }
+        ],
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    },
+    {
+        "destination_id": 13,
+        "name": "Lalbagh Kella Mosque",
+        "address": "Lalbagh, Old Dhaka",
+        "city_id": 1,
+        "latitude": 23.7176,
+        "longitude": 90.4041,
+        "description": "Lalbagh Kella Mosque is an ancient mosque within the premises of Lalbagh Fort.",
+        "image_url": "dummy.jpg",
+        "created_on": "2023-08-01T10:46:19.000Z",
+        "last_updated_on": "2023-08-01T10:46:19.000Z",
+        "activities": [
+            {
+                "activity_id": 4,
+                "activity": {
+                    "activity_id": 4,
+                    "name": "Cultural Tour",
+                    "category": "Culture",
+                    "description": "Immerse in the local culture and traditions with a guided cultural tour.",
+                    "image_url": "cultural_tour.jpg",
+                    "min_age": 15,
+                    "max_age": 65
+                }
+            },
+            {
+                "activity_id": 15,
+                "activity": {
+                    "activity_id": 15,
+                    "name": "Yoga Retreat",
+                    "category": "Relaxation",
+                    "description": "Rejuvenate your mind and body with a peaceful yoga retreat.",
+                    "image_url": "yoga_retreat.jpg",
+                    "min_age": 20,
+                    "max_age": 70
+                }
+            },
+            {
+                "activity_id": 18,
+                "activity": {
+                    "activity_id": 18,
+                    "name": "Volunteer and Community Service",
+                    "category": "Culture",
+                    "description": "Contribute to the community by participating in volunteer activities.",
+                    "image_url": "volunteer_community_service.jpg",
+                    "min_age": 18,
+                    "max_age": 65
+                }
+            }
+        ],
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    }
+]
+```
+
+## c. Create New Destination
+
+Endpoint URL: 
+```
+POST
+```
+```
+/api/v1/destination/
+```  
+Request Body:    
+```json
+
+```
+Example Response:  
+```json
+
+```
+## d. Update a Destination
+Endpoint URL: 
+```
+PUT
+```
+```
+/api/v1/destination/
+```  
+Request Body:    
+```json
+
+```
+Example Response:  
+```json
+
+```
+
+## e. Delete a Destination ( Soft Deletion )
+
+Endpoint URL:  
+```
+DELETE
+```
+```
+api/v1/destination/4
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+
+```
+
+## f. Delete a Destination ( Permanent Deletion )
+
+Endpoint URL:
+```
+DELETE
+```
+```
+/api/v1/destination/danger/5
+``` 
+Request Body: `None`    
+Example Response:    
+```json
+
 ```
 
 
