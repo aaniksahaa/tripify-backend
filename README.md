@@ -6,8 +6,8 @@
 The API Endpoints belong to  major routes. The routes are as follows:   
 
 ## [User](#user)
-## [City](#city)
-## [Trip](#book)
+## [City](#city-1)
+## [Trip](#trip-1)
 ## [Hotel](#hotel)
 ## [Chat](#chat)
 
