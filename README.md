@@ -7,6 +7,7 @@ The API Endpoints belong to  major routes. The routes are as follows:
 
 ## [User](#user-1)
 ## [City](#city-1)
+## [Activity](#activity-1)
 ## [Trip](#trip-1)
 ## [Hotel](#hotel-1)
 ## [Restaurant](#restaurant-1)
@@ -449,6 +450,164 @@ Example Response:
 }
 ```
 
+
+# Activity
+
+## a. Get Single Activity by activity_id
+
+Endpoint URL:    
+```
+GET
+```
+```
+/api/v1/activity/1
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "activity_id": 1,
+    "name": "Boat Tour",
+    "category": "Adventure",
+    "description": "Experience the breathtaking beauty of a boat tour in a mangrove forest.",
+    "image_url": "boat_tour.jpg",
+    "min_age": 8,
+    "max_age": 60
+}
+```
+
+## b. Get Activitys by querying on attributes ( Paginated )  
+
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+
+Endpoint URL:  
+```
+GET
+```
+```
+/api/v1/activity?name=k&category=adventure&age=10&page=1&per_page=2&orderby=name&ordertype=desc
+```
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+[
+    {
+        "activity_id": 3,
+        "name": "Snorkeling",
+        "category": "Adventure",
+        "description": "Discover the underwater world and vibrant marine life through snorkeling.",
+        "image_url": "snorkeling.jpg",
+        "min_age": 10,
+        "max_age": 50
+    },
+    {
+        "activity_id": 7,
+        "name": "Nature Walks",
+        "category": "Adventure",
+        "description": "Take peaceful walks in nature and enjoy the tranquility it offers.",
+        "image_url": "nature_walks.jpg",
+        "min_age": 8,
+        "max_age": 65
+    }
+]
+```
+
+## c. Create New Activity
+
+Endpoint URL: 
+```
+POST
+```
+```
+/api/v1/activity/
+```  
+Request Body:    
+```json
+{
+    "name": "Photography Session",
+    "category": "Adventure",
+    "description": "Experience the breathtaking beauty of a boat tour in a mangrove forest.",
+    "image_url": "photo.jpg",
+    "min_age": 5,
+    "max_age": 90
+}
+```
+Example Response:  
+```json
+{
+    "activity_id": 52,
+    "name": "Photography Session",
+    "category": "Adventure",
+    "description": "Experience the breathtaking beauty of a boat tour in a mangrove forest.",
+    "image_url": "photo.jpg",
+    "min_age": 5,
+    "max_age": 90
+}
+```
+## d. Update a Activity
+Endpoint URL: 
+```
+PUT
+```
+```
+/api/v1/activity/
+```  
+Request Body:    
+```json
+{
+    "activity_id": 52,
+    "name": "New Photography Session",
+    "category": "Adventure",
+    "description": "Experience the breathtaking beauty of a boat tour in a mangrove forest.",
+    "image_url": "photo.jpg",
+    "min_age": 5,
+    "max_age": 90
+}
+```
+Example Response:  
+```json
+{
+    "activity_id": 52,
+    "name": "New Photography Session",
+    "category": "Adventure",
+    "description": "Experience the breathtaking beauty of a boat tour in a mangrove forest.",
+    "image_url": "photo.jpg",
+    "min_age": 5,
+    "max_age": 90
+}
+```
+
+## e. Delete an Activity 
+
+Endpoint URL:  
+```
+DELETE
+```
+```
+api/v1/activity/52
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "activity_id": 52,
+    "name": "New Photography Session",
+    "category": "Adventure",
+    "description": "Experience the breathtaking beauty of a boat tour in a mangrove forest.",
+    "image_url": "photo.jpg",
+    "min_age": 5,
+    "max_age": 90
+}
+```
 
 # Trip
 
