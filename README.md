@@ -2425,7 +2425,7 @@ Endpoint URL:
 GET
 ```
 ```
-/api/v1/review?query=value
+/api/v1/review?user_id=2&rating_min=3&rating_max=5&page=1&per_page=2&orderby=rating&ordertype=desc
 ```
 Request Body: 
 ```
@@ -2433,7 +2433,103 @@ None
 ```
 Example Response:    
 ```json
-
+[
+    {
+        "review_id": 4,
+        "user_id": 2,
+        "posting_date": "2023-08-01T21:08:54.000Z",
+        "description": "Absolutely amazing restaurant",
+        "rating": 5,
+        "image_url": "dummy.jpg",
+        "upvote_count": 0,
+        "object": {
+            "object_id": 15,
+            "object_type": "restaurant",
+            "object": {
+                "restaurant_id": 15,
+                "name": "Authentic Pizzeria Burger Restaurant",
+                "reservation_price": 72,
+                "address": "60 Riverfront",
+                "city_id": 10,
+                "description": "A restaurant serving Passionately Elegant Greek Dim Sum.",
+                "image_url": "dummy.jpg",
+                "cuisine_type": "Italian",
+                "contact": "015135654557",
+                "email": "authenticpizzeriaburgerrestaurant@outlook.com",
+                "created_on": "2023-08-01T10:46:20.000Z",
+                "last_updated_on": "2023-08-01T10:46:20.000Z",
+                "city": {
+                    "city_id": 10,
+                    "name": "Narayanganj",
+                    "country_name": "Bangladesh",
+                    "population": 2200000,
+                    "weather_type": "sunny"
+                }
+            }
+        },
+        "user": {
+            "user_id": 2,
+            "email": "xyz@gmail.com",
+            "role": "client",
+            "name": "Jaber Ahmed Deeder",
+            "bio": "Pro Coder",
+            "city_id": 1,
+            "facebook_url": "facebook.com/xyz",
+            "twitter_url": "twitter.com/xyz",
+            "instagram_url": "instagram.com/xyz",
+            "profile_picture": "dummy.jpg",
+            "dob": "2002-09-16T18:00:00.000Z",
+            "registration_date": "2023-08-01T10:46:19.000Z",
+            "status": "active",
+            "created_on": "2023-08-01T10:46:19.000Z",
+            "last_updated_on": "2023-08-01T10:46:19.000Z",
+            "city": {
+                "city_id": 1,
+                "name": "Dhaka",
+                "country_name": "Bangladesh",
+                "population": 168957745,
+                "weather_type": "rainy"
+            }
+        }
+    },
+    {
+        "review_id": 2,
+        "user_id": 2,
+        "posting_date": "2023-08-01T20:34:37.000Z",
+        "description": "This restaurant was amazing! The staff was friendly, and the room was clean and comfortable.",
+        "rating": 3,
+        "image_url": "dummy.jpg",
+        "upvote_count": 0,
+        "object": {
+            "object_id": null,
+            "object_type": null
+        },
+        "user": {
+            "user_id": 2,
+            "email": "xyz@gmail.com",
+            "role": "client",
+            "name": "Jaber Ahmed Deeder",
+            "bio": "Pro Coder",
+            "city_id": 1,
+            "facebook_url": "facebook.com/xyz",
+            "twitter_url": "twitter.com/xyz",
+            "instagram_url": "instagram.com/xyz",
+            "profile_picture": "dummy.jpg",
+            "dob": "2002-09-16T18:00:00.000Z",
+            "registration_date": "2023-08-01T10:46:19.000Z",
+            "status": "active",
+            "created_on": "2023-08-01T10:46:19.000Z",
+            "last_updated_on": "2023-08-01T10:46:19.000Z",
+            "city": {
+                "city_id": 1,
+                "name": "Dhaka",
+                "country_name": "Bangladesh",
+                "population": 168957745,
+                "weather_type": "rainy"
+            }
+        }
+    }
+]
 ```
 
 ## c. Create New Review
@@ -2447,13 +2543,73 @@ POST
 ```  
 Request Body:    
 ```json
-
+{
+  "user_id": 2,
+  "description": "Wholesome Trip !!!",
+  "rating": 5,
+  "image_url": "dummy.jpg",
+  "object_type": "trip",
+  "object_id": 1
+}
 ```
 Example Response:  
 ```json
-
+{
+    "review_id": 5,
+    "user_id": 2,
+    "posting_date": "2023-08-01T21:49:11.000Z",
+    "description": "Wholesome Trip !!!",
+    "rating": 5,
+    "image_url": "dummy.jpg",
+    "upvote_count": 0,
+    "object": {
+        "object_id": 1,
+        "object_type": "trip",
+        "object": {
+            "trip_id": 1,
+            "from_city_id": 1,
+            "to_city_id": 2,
+            "from_city_name": "Dhaka",
+            "to_city_name": "Chittagong",
+            "name": "Novelty Tour",
+            "description": "A wonderful Trip, it will be.",
+            "image_url": "dummy.jpg",
+            "total_price": 22799,
+            "start_date": "2023-06-30T18:00:00.000Z",
+            "end_date": "2023-07-24T18:00:00.000Z",
+            "created_on": "2023-08-01T12:57:17.000Z",
+            "last_updated_on": "2023-08-01T12:57:17.000Z",
+            "deleted_on": null
+        }
+    },
+    "user": {
+        "user_id": 2,
+        "email": "xyz@gmail.com",
+        "role": "client",
+        "name": "Jaber Ahmed Deeder",
+        "bio": "Pro Coder",
+        "city_id": 1,
+        "facebook_url": "facebook.com/xyz",
+        "twitter_url": "twitter.com/xyz",
+        "instagram_url": "instagram.com/xyz",
+        "profile_picture": "dummy.jpg",
+        "dob": "2002-09-16T18:00:00.000Z",
+        "registration_date": "2023-08-01T10:46:19.000Z",
+        "status": "active",
+        "created_on": "2023-08-01T10:46:19.000Z",
+        "last_updated_on": "2023-08-01T10:46:19.000Z",
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    }
+}
 ```
 ## d. Update a Review
+### Note that, the object_type of the review cannot be changed
 Endpoint URL: 
 ```
 PUT
@@ -2463,14 +2619,75 @@ PUT
 ```  
 Request Body:    
 ```json
+{
+  "review_id": 5,
+  "user_id": 2,
+  "description": "Veryyy Wholesome Trip !!!",
+  "rating": 5,
+  "image_url": "dummy.jpg",
+  "object_type": "trip",
+  "object_id": 1
+}
 
 ```
 Example Response:  
 ```json
-
+{
+    "review_id": 6,
+    "user_id": 2,
+    "posting_date": "2023-08-01T21:50:35.000Z",
+    "description": "Veryyy Wholesome Trip !!!",
+    "rating": 5,
+    "image_url": "dummy.jpg",
+    "upvote_count": 0,
+    "object": {
+        "object_id": 1,
+        "object_type": "trip",
+        "object": {
+            "trip_id": 1,
+            "from_city_id": 1,
+            "to_city_id": 2,
+            "from_city_name": "Dhaka",
+            "to_city_name": "Chittagong",
+            "name": "Novelty Tour",
+            "description": "A wonderful Trip, it will be.",
+            "image_url": "dummy.jpg",
+            "total_price": 22799,
+            "start_date": "2023-06-30T18:00:00.000Z",
+            "end_date": "2023-07-24T18:00:00.000Z",
+            "created_on": "2023-08-01T12:57:17.000Z",
+            "last_updated_on": "2023-08-01T12:57:17.000Z",
+            "deleted_on": null
+        }
+    },
+    "user": {
+        "user_id": 2,
+        "email": "xyz@gmail.com",
+        "role": "client",
+        "name": "Jaber Ahmed Deeder",
+        "bio": "Pro Coder",
+        "city_id": 1,
+        "facebook_url": "facebook.com/xyz",
+        "twitter_url": "twitter.com/xyz",
+        "instagram_url": "instagram.com/xyz",
+        "profile_picture": "dummy.jpg",
+        "dob": "2002-09-16T18:00:00.000Z",
+        "registration_date": "2023-08-01T10:46:19.000Z",
+        "status": "active",
+        "created_on": "2023-08-01T10:46:19.000Z",
+        "last_updated_on": "2023-08-01T10:46:19.000Z",
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    }
+}
 ```
 
-## e. Delete a Review ( Soft Deletion )
+## e. Delete a Review
 
 Endpoint URL:  
 ```
@@ -2485,20 +2702,58 @@ None
 ```
 Example Response:    
 ```json
-
+{
+    "review_id": 5,
+    "user_id": 2,
+    "posting_date": "2023-08-01T21:49:11.000Z",
+    "description": "Wholesome Trip !!!",
+    "rating": 5,
+    "image_url": "dummy.jpg",
+    "upvote_count": 0,
+    "object": {
+        "object_id": 1,
+        "object_type": "trip",
+        "object": {
+            "trip_id": 1,
+            "from_city_id": 1,
+            "to_city_id": 2,
+            "from_city_name": "Dhaka",
+            "to_city_name": "Chittagong",
+            "name": "Novelty Tour",
+            "description": "A wonderful Trip, it will be.",
+            "image_url": "dummy.jpg",
+            "total_price": 22799,
+            "start_date": "2023-06-30T18:00:00.000Z",
+            "end_date": "2023-07-24T18:00:00.000Z",
+            "created_on": "2023-08-01T12:57:17.000Z",
+            "last_updated_on": "2023-08-01T12:57:17.000Z",
+            "deleted_on": null
+        }
+    },
+    "user": {
+        "user_id": 2,
+        "email": "xyz@gmail.com",
+        "role": "client",
+        "name": "Jaber Ahmed Deeder",
+        "bio": "Pro Coder",
+        "city_id": 1,
+        "facebook_url": "facebook.com/xyz",
+        "twitter_url": "twitter.com/xyz",
+        "instagram_url": "instagram.com/xyz",
+        "profile_picture": "dummy.jpg",
+        "dob": "2002-09-16T18:00:00.000Z",
+        "registration_date": "2023-08-01T10:46:19.000Z",
+        "status": "active",
+        "created_on": "2023-08-01T10:46:19.000Z",
+        "last_updated_on": "2023-08-01T10:46:19.000Z",
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    }
+}
 ```
 
-## f. Delete a Review ( Permanent Deletion )
-
-Endpoint URL:
-```
-DELETE
-```
-```
-/api/v1/review/danger/5
-``` 
-Request Body: `None`    
-Example Response:    
-```json
-
-```
