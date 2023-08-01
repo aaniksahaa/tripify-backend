@@ -19,7 +19,9 @@ The respective API endpoints are as follows:
 ## a. Get Single User by user_id
 
 Endpoint URL:    
-``GET``
+```
+GET
+```
 ```
 /api/v1/user/1
 ```  
@@ -59,7 +61,10 @@ Example Response:
 
 Endpoint URL:  
 ```
-GET /api/v1/user?name=e&city_id=1,2,3&min_age=5&max_age=92&page=1&per_page=3&orderby=name&ordertype=desc
+GET
+```
+```
+/api/v1/user?name=e&city_id=1,2,3&min_age=5&max_age=92&page=1&per_page=3&orderby=name&ordertype=desc
 ```
 Request Body: `None`    
 Example Response:    
@@ -279,9 +284,12 @@ Example Response:
 
 ## a. Get Single City by city_id
 
-Endpoint URL:     
+Endpoint URL: 
 ```
-GET /api/v1/city/1
+GET
+```
+```
+/api/v1/city/1
 ``` 
 Request Body: `None`    
 Example Response:    
@@ -299,9 +307,12 @@ Example Response:
 
 #### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
-Endpoint URL:  
+Endpoint URL: 
 ```
-GET /api/v1/city?name=a&country_name=ban&population_min=1000000&population_max=231231231&weather_type=rainy&orderby=population&ordertype=desc&page=1&per_page=10
+GET
+```
+```
+/api/v1/city?name=a&country_name=ban&population_min=1000000&population_max=231231231&weather_type=rainy&orderby=population&ordertype=desc&page=1&per_page=10
 ``` 
 Request Body: `None`    
 Example Response:    
@@ -405,7 +416,10 @@ Example Response:
 ## a. Get Single Trip by trip_id
 Endpoint URL: 
 ```
-GET /api/v1/trip/16
+GET
+```
+```
+/api/v1/trip/16
 ```
 Request Body: `None`    
 Example Response:    
@@ -426,7 +440,10 @@ Example Response:
 ## b. Get Single Trip Details by trip_id
 Endpoint URL: 
 ```
-GET /api/v1/trip/details/2
+GET
+```
+```
+/api/v1/trip/details/2
 ```  
 Request Body: `None`    
 Example Response:    
@@ -667,9 +684,12 @@ Example Response:
 
 ## a. Get Single Hotel by hotel_id
 
-Endpoint URL:     
+Endpoint URL:   
 ```
-GET /api/v1/hotel/21
+GET
+```
+```
+/api/v1/hotel/21
 ``` 
 Request Body: `None`    
 Example Response:    
@@ -694,9 +714,12 @@ Example Response:
 
 #### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
-Endpoint URL:     
+Endpoint URL:
 ```
-GET /api/v1/hotel?name=hotel&address=bangladesh&city_id=24,25,26,1,2,3&min_price=500&max_price=8000&has_wifi=1&has_parking=1&has_gym=1&orderby=price_per_day&ordertype=desc&page=1&per_page=2
+GET
+```
+```
+/api/v1/hotel?name=hotel&address=bangladesh&city_id=24,25,26,1,2,3&min_price=500&max_price=8000&has_wifi=1&has_parking=1&has_gym=1&orderby=price_per_day&ordertype=desc&page=1&per_page=2
 ```
 Request Body: `None`    
 Example Response:    
@@ -846,9 +869,12 @@ Example Response:
 
 ## a. Get Single Restaurant by restaurant_id
 
-Endpoint URL:     
+Endpoint URL: 
 ```
-GET /api/v1/restaurant/3
+GET
+```
+```
+/api/v1/restaurant/3
 ```  
 Request Body: `None`    
 Example Response:    
@@ -882,7 +908,10 @@ Example Response:
 
 Endpoint URL: 
 ```
-GET /api/v1/restaurant?name=cafe&city_id=6,22,28&min_price=50&max_price=300&page=1&per_page=2&orderby=price&ordertype=desc
+GET
+```
+```
+/api/v1/restaurant?name=cafe&city_id=6,22,28&min_price=50&max_price=300&page=1&per_page=2&orderby=price&ordertype=desc
 ```  
 Request Body: `None`    
 Example Response:    
