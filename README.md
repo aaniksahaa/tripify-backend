@@ -13,6 +13,7 @@ The API Endpoints belong to  major routes. The routes are as follows:
 ## [Hotel](#hotel-1)
 ## [Restaurant](#restaurant-1)
 ## [Flight](#flight-1)
+## [Review](#review-1)
 
 The respective API endpoints are as follows:    
 
@@ -2338,3 +2339,166 @@ Example Response:
 }
 ```
 
+# Review
+
+## a. Get Single Review by review_id
+
+Endpoint URL:    
+```
+GET
+```
+```
+/api/v1/review/4
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "review_id": 4,
+    "user_id": 2,
+    "posting_date": "2023-08-01T21:08:54.000Z",
+    "description": "Absolutely amazing restaurant",
+    "rating": 5,
+    "image_url": "dummy.jpg",
+    "upvote_count": 0,
+    "object": {
+        "object_id": 15,
+        "object_type": "restaurant",
+        "object": {
+            "restaurant_id": 15,
+            "name": "Authentic Pizzeria Burger Restaurant",
+            "reservation_price": 72,
+            "address": "60 Riverfront",
+            "city_id": 10,
+            "description": "A restaurant serving Passionately Elegant Greek Dim Sum.",
+            "image_url": "dummy.jpg",
+            "cuisine_type": "Italian",
+            "contact": "015135654557",
+            "email": "authenticpizzeriaburgerrestaurant@outlook.com",
+            "created_on": "2023-08-01T10:46:20.000Z",
+            "last_updated_on": "2023-08-01T10:46:20.000Z",
+            "city": {
+                "city_id": 10,
+                "name": "Narayanganj",
+                "country_name": "Bangladesh",
+                "population": 2200000,
+                "weather_type": "sunny"
+            }
+        }
+    },
+    "user": {
+        "user_id": 2,
+        "email": "xyz@gmail.com",
+        "role": "client",
+        "name": "Jaber Ahmed Deeder",
+        "bio": "Pro Coder",
+        "city_id": 1,
+        "facebook_url": "facebook.com/xyz",
+        "twitter_url": "twitter.com/xyz",
+        "instagram_url": "instagram.com/xyz",
+        "profile_picture": "dummy.jpg",
+        "dob": "2002-09-16T18:00:00.000Z",
+        "registration_date": "2023-08-01T10:46:19.000Z",
+        "status": "active",
+        "created_on": "2023-08-01T10:46:19.000Z",
+        "last_updated_on": "2023-08-01T10:46:19.000Z",
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    }
+}
+```
+
+## b. Get Reviews by querying on attributes ( Paginated )  
+
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+
+Endpoint URL:  
+```
+GET
+```
+```
+/api/v1/review?query=value
+```
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+
+```
+
+## c. Create New Review
+
+Endpoint URL: 
+```
+POST
+```
+```
+/api/v1/review/
+```  
+Request Body:    
+```json
+
+```
+Example Response:  
+```json
+
+```
+## d. Update a Review
+Endpoint URL: 
+```
+PUT
+```
+```
+/api/v1/review/
+```  
+Request Body:    
+```json
+
+```
+Example Response:  
+```json
+
+```
+
+## e. Delete a Review ( Soft Deletion )
+
+Endpoint URL:  
+```
+DELETE
+```
+```
+api/v1/review/4
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+
+```
+
+## f. Delete a Review ( Permanent Deletion )
+
+Endpoint URL:
+```
+DELETE
+```
+```
+/api/v1/review/danger/5
+``` 
+Request Body: `None`    
+Example Response:    
+```json
+
+```
