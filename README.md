@@ -2989,7 +2989,7 @@ Example Response:
 
 Endpoint URL: 
 ```
-POST
+PUT
 ```
 ```
 /api/v1/tripbooking/payment/
@@ -3067,7 +3067,7 @@ Example Response:
 
 Endpoint URL: 
 ```
-POST
+PUT
 ```
 ```
 /api/v1/tripbooking/processed/
@@ -3143,7 +3143,7 @@ Example Response:
 
 Endpoint URL: 
 ```
-POST
+PUT
 ```
 ```
 /api/v1/tripbooking/complete/
