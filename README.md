@@ -1199,7 +1199,63 @@ Example Response:
 }
 ```
 
-## c. Create New Trip
+## b. Get Trips by querying on attributes ( Paginated )  
+
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+
+Endpoint URL:  
+```
+GET
+```
+```
+/api/v1/trip?from_city_id=1,2&to_city_id=2,3&name=new&price_min=10000&price_max=50000&start_date=2023-01-01&end_date=2024-01-01
+```
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+[
+    {
+        "trip_id": 2,
+        "from_city_id": 1,
+        "to_city_id": 2,
+        "from_city_name": "Dhaka",
+        "to_city_name": "Chittagong",
+        "name": "New Mini Tour",
+        "description": "A wonderful Trip, it will be.",
+        "image_url": "dummy.jpg",
+        "total_price": 29728,
+        "start_date": "2023-06-30T18:00:00.000Z",
+        "end_date": "2023-07-24T18:00:00.000Z",
+        "creator_user_id": 1,
+        "created_on": "2023-08-02T14:14:10.000Z",
+        "last_updated_on": "2023-08-02T14:14:10.000Z",
+        "deleted_on": null
+    },
+    {
+        "trip_id": 3,
+        "from_city_id": 1,
+        "to_city_id": 2,
+        "from_city_name": "Dhaka",
+        "to_city_name": "Chittagong",
+        "name": "New   New Mini Tour",
+        "description": "A wonderful Trip, it will be.",
+        "image_url": "dummy.jpg",
+        "total_price": 29728,
+        "start_date": "2023-06-30T18:00:00.000Z",
+        "end_date": "2023-07-24T18:00:00.000Z",
+        "creator_user_id": 1,
+        "created_on": "2023-08-02T14:14:17.000Z",
+        "last_updated_on": "2023-08-02T14:14:17.000Z",
+        "deleted_on": null
+    }
+]
+```
+
+
+## d. Create New Trip
 Endpoint URL: 
 ```
 POST
@@ -1279,7 +1335,7 @@ Example Response:
     "deleted_on": null
 }
 ```
-## d. Update a Trip
+## e. Update a Trip
 Endpoint URL: 
 ```
 PUT
@@ -1570,7 +1626,7 @@ Example Response:
     ]
 }
 ```
-## e. Delete a Trip ( Soft Deletion )
+## f. Delete a Trip ( Soft Deletion )
 
 Endpoint URL:  
 ```
@@ -1601,7 +1657,7 @@ Example Response:
 }
 ```
 
-## f. Delete a Trip ( Permanent )
+## g. Delete a Trip ( Permanent )
 
 Endpoint URL:  
 ```
