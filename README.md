@@ -335,7 +335,7 @@ POST
 /api/v1/user/2/unfollow/1
 ```  
 Request Body:    
-```json
+```
 None
 ```
 Example Response:  
