@@ -149,45 +149,37 @@ POST
 Request Body:    
 ```json
 {
+    "username": "john",
     "email": "example@example.com",
-    "password_hash": "hashed_password",
-    "role": "user,guide",
+    "password": "123",
     "name": "John Doe",
-    "bio": "I love traveling and exploring new places.",
-    "city_id": 1,
-    "facebook_url": "https://www.facebook.com/johndoe",
-    "twitter_url": "https://twitter.com/johndoe",
-    "instagram_url": "https://www.instagram.com/johndoe",
-    "profile_picture": "https://example.com/profile_picture.jpg",
     "dob": "1990-05-15"
 }
-
 ```
 Example Response:  
 ```json
 {
-    "user_id": 4,
+    "user_id": 3,
     "email": "example@example.com",
-    "password_hash": "hashed_password",
-    "role": "user",
+    "role": "client",
     "name": "John Doe",
-    "bio": "I love traveling and exploring new places.",
-    "city_id": 1,
-    "facebook_url": "https://www.facebook.com/johndoe",
-    "twitter_url": "https://twitter.com/johndoe",
-    "instagram_url": "https://www.instagram.com/johndoe",
-    "profile_picture": "https://example.com/profile_picture.jpg",
+    "bio": "Hey! I am using Tripify",
+    "city_id": 0,
+    "facebook_url": "https://www.facebook.com/leomessi",
+    "twitter_url": "https://twitter.com/imessi",
+    "instagram_url": "https://www.instagram.com/leomessi",
+    "profile_picture": "https://avatars.dicebear.com/api/avataaars/avatar.svg",
     "dob": "1990-05-14T18:00:00.000Z",
-    "registration_date": "2023-08-01T11:37:45.000Z",
+    "registration_date": "2023-08-02T22:20:32.000Z",
     "status": "active",
-    "created_on": "2023-08-01T11:37:45.000Z",
-    "last_updated_on": "2023-08-01T11:37:45.000Z",
+    "created_on": "2023-08-02T22:20:32.000Z",
+    "last_updated_on": "2023-08-02T22:20:32.000Z",
     "city": {
-        "city_id": 1,
-        "name": "Dhaka",
-        "country_name": "Bangladesh",
-        "population": 168957745,
-        "weather_type": "rainy"
+        "city_id": 0,
+        "name": "Dummy",
+        "country_name": "Dummy",
+        "population": 0,
+        "weather_type": "sunny"
     }
 }
 ```
