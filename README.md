@@ -1199,7 +1199,7 @@ Example Response:
 }
 ```
 
-## b. Get Trips by querying on attributes ( Paginated )  
+## c. Get Trips by querying on attributes ( Paginated )  
 
 #### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
