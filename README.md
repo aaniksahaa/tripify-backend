@@ -2898,7 +2898,7 @@ Endpoint URL:
 GET
 ```
 ```
-/api/v1/tripbooking?query=value
+/api/v1/tripbooking?user_id=1&is_paid=1&is_processed=1&is_completed=0&payment_method=bkash&page=1&per_page=2&orderby=booking_date&ordertype=desc
 ```
 Request Body: 
 ```
@@ -2906,7 +2906,120 @@ None
 ```
 Example Response:    
 ```json
-
+[
+    {
+        "user_id": 1,
+        "trip_id": 3,
+        "booking_date": "2023-08-02T14:15:12.000Z",
+        "is_paid": 1,
+        "is_processed": 1,
+        "is_completed": 0,
+        "payment_method": "bkash",
+        "transaction_id": "ABCDE",
+        "payment_date": "2023-08-02T15:52:58.000Z",
+        "completion_date": null,
+        "is_private": null,
+        "created_on": "2023-08-02T14:15:12.000Z",
+        "last_updated_on": "2023-08-02T15:53:13.000Z",
+        "trip": {
+            "trip_id": 3,
+            "from_city_id": 1,
+            "to_city_id": 2,
+            "from_city_name": "Dhaka",
+            "to_city_name": "Chittagong",
+            "name": "New   New Mini Tour",
+            "description": "A wonderful Trip, it will be.",
+            "image_url": "dummy.jpg",
+            "total_price": 29728,
+            "start_date": "2023-06-30T18:00:00.000Z",
+            "end_date": "2023-07-24T18:00:00.000Z",
+            "creator_user_id": 1,
+            "created_on": "2023-08-02T14:14:17.000Z",
+            "last_updated_on": "2023-08-02T14:14:17.000Z",
+            "deleted_on": null
+        },
+        "user": {
+            "user_id": 1,
+            "email": "abc@gmail.com",
+            "role": "client",
+            "name": "Anik Saha",
+            "bio": "Little Coder",
+            "city_id": 1,
+            "facebook_url": "facebook.com/abc",
+            "twitter_url": "twitter.com/abc",
+            "instagram_url": "instagram.com/abc",
+            "profile_picture": "dummy.jpg",
+            "dob": "2002-09-16T18:00:00.000Z",
+            "registration_date": "2023-08-02T14:11:02.000Z",
+            "status": "active",
+            "created_on": "2023-08-02T14:11:02.000Z",
+            "last_updated_on": "2023-08-02T14:11:02.000Z",
+            "city": {
+                "city_id": 1,
+                "name": "Dhaka",
+                "country_name": "Bangladesh",
+                "population": 168957745,
+                "weather_type": "rainy"
+            }
+        }
+    },
+    {
+        "user_id": 1,
+        "trip_id": 2,
+        "booking_date": "2023-08-02T14:15:08.000Z",
+        "is_paid": 1,
+        "is_processed": 1,
+        "is_completed": 0,
+        "payment_method": "bkash",
+        "transaction_id": "XYZ",
+        "payment_date": "2023-08-02T16:00:58.000Z",
+        "completion_date": null,
+        "is_private": null,
+        "created_on": "2023-08-02T14:15:08.000Z",
+        "last_updated_on": "2023-08-02T16:01:20.000Z",
+        "trip": {
+            "trip_id": 2,
+            "from_city_id": 1,
+            "to_city_id": 2,
+            "from_city_name": "Dhaka",
+            "to_city_name": "Chittagong",
+            "name": "New Mini Tour",
+            "description": "A wonderful Trip, it will be.",
+            "image_url": "dummy.jpg",
+            "total_price": 29728,
+            "start_date": "2023-06-30T18:00:00.000Z",
+            "end_date": "2023-07-24T18:00:00.000Z",
+            "creator_user_id": 1,
+            "created_on": "2023-08-02T14:14:10.000Z",
+            "last_updated_on": "2023-08-02T14:14:10.000Z",
+            "deleted_on": null
+        },
+        "user": {
+            "user_id": 1,
+            "email": "abc@gmail.com",
+            "role": "client",
+            "name": "Anik Saha",
+            "bio": "Little Coder",
+            "city_id": 1,
+            "facebook_url": "facebook.com/abc",
+            "twitter_url": "twitter.com/abc",
+            "instagram_url": "instagram.com/abc",
+            "profile_picture": "dummy.jpg",
+            "dob": "2002-09-16T18:00:00.000Z",
+            "registration_date": "2023-08-02T14:11:02.000Z",
+            "status": "active",
+            "created_on": "2023-08-02T14:11:02.000Z",
+            "last_updated_on": "2023-08-02T14:11:02.000Z",
+            "city": {
+                "city_id": 1,
+                "name": "Dhaka",
+                "country_name": "Bangladesh",
+                "population": 168957745,
+                "weather_type": "rainy"
+            }
+        }
+    }
+]
 ```
 
 ## c. Create New TripBooking
