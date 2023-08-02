@@ -314,7 +314,7 @@ POST
 /api/v1/user/2/follow/1
 ```  
 Request Body:    
-```json
+```
 None
 ```
 Example Response:  
