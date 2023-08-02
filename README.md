@@ -2929,14 +2929,244 @@ Example Response:
 }
 ```
 
-## d. Delete a TripBooking ( Soft Deletion )
+## d. Confirm Payment for TripBooking
+
+Endpoint URL: 
+```
+POST
+```
+```
+/api/v1/tripbooking/payment/
+```  
+Request Body:    
+```json
+{
+    "user_id": 2,
+    "trip_id": 1,
+    "payment_method": "bkash",
+    "transaction_id": "ABCDE"
+}
+```
+Example Response:  
+```json
+{
+    "user_id": 2,
+    "trip_id": 1,
+    "booking_date": "2023-08-02T13:38:21.000Z",
+    "is_paid": 1,
+    "is_processed": 0,
+    "is_completed": 0,
+    "payment_method": "bkash",
+    "transaction_id": "ABCDE",
+    "payment_date": "2023-08-02T13:40:17.000Z",
+    "completion_date": null,
+    "is_private": 1,
+    "created_on": "2023-08-02T13:38:21.000Z",
+    "last_updated_on": "2023-08-02T13:40:17.000Z",
+    "user": {
+        "user_id": 2,
+        "email": "xyz@gmail.com",
+        "role": "client",
+        "name": "Jaber Ahmed Deeder",
+        "bio": "Pro Coder",
+        "city_id": 1,
+        "facebook_url": "facebook.com/xyz",
+        "twitter_url": "twitter.com/xyz",
+        "instagram_url": "instagram.com/xyz",
+        "profile_picture": "dummy.jpg",
+        "dob": "2002-09-16T18:00:00.000Z",
+        "registration_date": "2023-08-02T09:59:14.000Z",
+        "status": "active",
+        "created_on": "2023-08-02T09:59:14.000Z",
+        "last_updated_on": "2023-08-02T09:59:14.000Z",
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    },
+    "trip": {
+        "trip_id": 1,
+        "from_city_id": 1,
+        "to_city_id": 2,
+        "from_city_name": "Dhaka",
+        "to_city_name": "Chittagong",
+        "name": "Departmental Tour to Infinity",
+        "description": "A wonderful Trip, it will be.",
+        "image_url": "dummy.jpg",
+        "total_price": 32571,
+        "start_date": "2023-06-30T18:00:00.000Z",
+        "end_date": "2023-07-24T18:00:00.000Z",
+        "creator_user_id": 0,
+        "created_on": "2023-08-02T10:05:52.000Z",
+        "last_updated_on": "2023-08-02T10:05:52.000Z",
+        "deleted_on": null
+    }
+}
+```
+
+## e. Confirm Processing for TripBooking
+
+Endpoint URL: 
+```
+POST
+```
+```
+/api/v1/tripbooking/processed/
+```  
+Request Body:    
+```json
+{
+    "user_id": 1,
+    "trip_id": 3
+}
+```
+Example Response:  
+```json
+{
+    "user_id": 1,
+    "trip_id": 3,
+    "booking_date": "2023-08-02T13:38:06.000Z",
+    "is_paid": 1,
+    "is_processed": 1,
+    "is_completed": 0,
+    "payment_method": "bkash",
+    "transaction_id": "ABCDE",
+    "payment_date": "2023-08-02T14:06:37.000Z",
+    "completion_date": null,
+    "is_private": 1,
+    "created_on": "2023-08-02T13:38:06.000Z",
+    "last_updated_on": "2023-08-02T14:06:54.000Z",
+    "user": {
+        "user_id": 1,
+        "email": "abc@gmail.com",
+        "role": "client",
+        "name": "Anik Saha",
+        "bio": "Little Coder",
+        "city_id": 1,
+        "facebook_url": "facebook.com/abc",
+        "twitter_url": "twitter.com/abc",
+        "instagram_url": "instagram.com/abc",
+        "profile_picture": "dummy.jpg",
+        "dob": "2002-09-16T18:00:00.000Z",
+        "registration_date": "2023-08-02T09:59:14.000Z",
+        "status": "active",
+        "created_on": "2023-08-02T09:59:14.000Z",
+        "last_updated_on": "2023-08-02T09:59:14.000Z",
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    },
+    "trip": {
+        "trip_id": 3,
+        "from_city_id": 1,
+        "to_city_id": 2,
+        "from_city_name": "Dhaka",
+        "to_city_name": "Chittagong",
+        "name": "Summer 33 Vacation",
+        "description": "Enjoy the summer break",
+        "image_url": "trip_image.jpg",
+        "total_price": 49878,
+        "start_date": "2023-06-30T18:00:00.000Z",
+        "end_date": "2023-07-24T18:00:00.000Z",
+        "creator_user_id": 1,
+        "created_on": "2023-08-02T10:10:58.000Z",
+        "last_updated_on": "2023-08-02T10:10:58.000Z",
+        "deleted_on": null
+    }
+}
+```
+
+## f. Confirm Completion for TripBooking
+
+Endpoint URL: 
+```
+POST
+```
+```
+/api/v1/tripbooking/complete/
+```  
+Request Body:    
+```json
+{
+    "user_id": 1,
+    "trip_id": 3
+}
+```
+Example Response:  
+```json
+{
+    "user_id": 1,
+    "trip_id": 3,
+    "booking_date": "2023-08-02T13:38:06.000Z",
+    "is_paid": 1,
+    "is_processed": 1,
+    "is_completed": 1,
+    "payment_method": "bkash",
+    "transaction_id": "ABCDE",
+    "payment_date": "2023-08-02T14:06:37.000Z",
+    "completion_date": "2023-08-02T14:08:21.000Z",
+    "is_private": 1,
+    "created_on": "2023-08-02T13:38:06.000Z",
+    "last_updated_on": "2023-08-02T14:08:21.000Z",
+    "user": {
+        "user_id": 1,
+        "email": "abc@gmail.com",
+        "role": "client",
+        "name": "Anik Saha",
+        "bio": "Little Coder",
+        "city_id": 1,
+        "facebook_url": "facebook.com/abc",
+        "twitter_url": "twitter.com/abc",
+        "instagram_url": "instagram.com/abc",
+        "profile_picture": "dummy.jpg",
+        "dob": "2002-09-16T18:00:00.000Z",
+        "registration_date": "2023-08-02T09:59:14.000Z",
+        "status": "active",
+        "created_on": "2023-08-02T09:59:14.000Z",
+        "last_updated_on": "2023-08-02T09:59:14.000Z",
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    },
+    "trip": {
+        "trip_id": 3,
+        "from_city_id": 1,
+        "to_city_id": 2,
+        "from_city_name": "Dhaka",
+        "to_city_name": "Chittagong",
+        "name": "Summer 33 Vacation",
+        "description": "Enjoy the summer break",
+        "image_url": "trip_image.jpg",
+        "total_price": 49878,
+        "start_date": "2023-06-30T18:00:00.000Z",
+        "end_date": "2023-07-24T18:00:00.000Z",
+        "creator_user_id": 1,
+        "created_on": "2023-08-02T10:10:58.000Z",
+        "last_updated_on": "2023-08-02T10:10:58.000Z",
+        "deleted_on": null
+    }
+}
+```
+
+## g. Delete a TripBooking ( Soft Deletion )
 
 Endpoint URL:  
 ```
 DELETE
 ```
 ```
-api/v1/tripbooking/4
+/api/v1/tripbooking/1/1
 ```  
 Request Body: 
 ```
@@ -2944,21 +3174,80 @@ None
 ```
 Example Response:    
 ```json
-
+{
+    "user_id": 1,
+    "trip_id": 1,
+    "booking_date": "2023-08-02T14:15:04.000Z",
+    "is_paid": 0,
+    "is_processed": 0,
+    "is_completed": 0,
+    "payment_method": null,
+    "transaction_id": null,
+    "payment_date": null,
+    "completion_date": null,
+    "is_private": null,
+    "created_on": "2023-08-02T14:15:04.000Z",
+    "last_updated_on": "2023-08-02T14:15:04.000Z",
+    "user": {
+        "user_id": 1,
+        "email": "abc@gmail.com",
+        "role": "client",
+        "name": "Anik Saha",
+        "bio": "Little Coder",
+        "city_id": 1,
+        "facebook_url": "facebook.com/abc",
+        "twitter_url": "twitter.com/abc",
+        "instagram_url": "instagram.com/abc",
+        "profile_picture": "dummy.jpg",
+        "dob": "2002-09-16T18:00:00.000Z",
+        "registration_date": "2023-08-02T14:11:02.000Z",
+        "status": "active",
+        "created_on": "2023-08-02T14:11:02.000Z",
+        "last_updated_on": "2023-08-02T14:11:02.000Z",
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    },
+    "trip": {
+        "trip_id": 1,
+        "from_city_id": 1,
+        "to_city_id": 2,
+        "from_city_name": "Dhaka",
+        "to_city_name": "Chittagong",
+        "name": "Mini Tour",
+        "description": "A wonderful Trip, it will be.",
+        "image_url": "dummy.jpg",
+        "total_price": 29728,
+        "start_date": "2023-06-30T18:00:00.000Z",
+        "end_date": "2023-07-24T18:00:00.000Z",
+        "creator_user_id": 1,
+        "created_on": "2023-08-02T14:13:58.000Z",
+        "last_updated_on": "2023-08-02T14:13:58.000Z",
+        "deleted_on": null
+    }
+}
 ```
 
-## f. Delete a TripBooking ( Permanent Deletion )
+## h. Delete a TripBooking ( Permanent Deletion )
 
 Endpoint URL:
 ```
 DELETE
 ```
 ```
-/api/v1/tripbooking/danger/5
+/api/v1/tripbooking/danger/1/1
 ``` 
 Request Body: `None`    
 Example Response:    
 ```json
-
+{
+    "user_id": "1",
+    "trip_id": "1",
+    "status": "permanently deleted"
+}
 ```
 
