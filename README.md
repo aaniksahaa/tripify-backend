@@ -396,7 +396,55 @@ Example Response:
     "message": "unfollowed"
 }
 ```
-## i. Get User Profile
+## i. Making an object Favorite
+Endpoint URL: 
+```
+POST
+```
+```
+/api/v1/user/1/favorite/2
+```  
+Request Body:    
+```
+{
+    "object_type": "hotel"
+}
+```
+Example Response:  
+```json
+{
+    "user_id": 1,
+    "object_type": "hotel",
+    "object_id": 2,
+    "added_on": "2023-08-03T21:46:15.000Z"
+}
+```
+
+## j. Removing Favorite from an object
+Endpoint URL: 
+```
+DELETE
+```
+```
+/api/v1/user/1/favorite/2
+```  
+Request Body:    
+```
+{
+    "object_type": "hotel"
+}
+```
+Example Response:  
+```json
+{
+    "user_id": 1,
+    "object_type": "hotel",
+    "object_id": 2,
+    "added_on": "2023-08-03T21:46:15.000Z"
+}
+```
+
+## k. Get User Profile
 
 Endpoint URL:    
 ```
