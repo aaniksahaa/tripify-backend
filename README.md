@@ -17,6 +17,7 @@ The API Endpoints belong to  major routes. The routes are as follows:
 ## [TripBooking](#tripbooking-1)
 ## [Post](#post-1)
 ## [Comment](#comment-1)
+## [Feed](#feed-1)
 
 The respective API endpoints are as follows:    
 
@@ -4486,4 +4487,185 @@ Example Response:
         }
     }
 }
+```
+
+# Feed
+
+## a. Get Feed of current user ( Paginated )  
+### user_id auto grabbed from req.user
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+
+Endpoint URL:  
+```
+GET
+```
+```
+/api/v1/feed?page=1&per_page=8&orderby=posting_date&ordertype=desc
+```
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+[
+    {
+        "post_id": 13,
+        "user_id": 2,
+        "posting_date": "2023-07-28T18:00:00.000Z",
+        "description": "Enjoying a beautiful sunset!",
+        "image_url": "https://example.com/sunset.jpg",
+        "comments": [],
+        "reacts": []
+    },
+    {
+        "post_id": 14,
+        "user_id": 2,
+        "posting_date": "2023-07-28T18:00:00.000Z",
+        "description": "New Amazing Post",
+        "image_url": "amazing.jpg",
+        "comments": [],
+        "reacts": []
+    },
+    {
+        "post_id": 20,
+        "user_id": 11,
+        "posting_date": "2023-08-03T20:31:17.000Z",
+        "description": "At Canada Guys!",
+        "image_url": "https://example.com/sunset.jpg",
+        "comments": [
+            {
+                "comment_id": 9,
+                "user_id": 1,
+                "post_id": 20,
+                "commenting_date": "2023-08-03T20:33:06.000Z",
+                "text": "wow, Canada is cool",
+                "upvote_count": 0,
+                "user": {
+                    "user_id": 1,
+                    "username": "aaniksahaa",
+                    "email": "abc@gmail.com",
+                    "role": "client",
+                    "name": "Anik Saha",
+                    "bio": "Little Coder",
+                    "city_id": 1,
+                    "facebook_url": "facebook.com/abc",
+                    "twitter_url": "twitter.com/abc",
+                    "instagram_url": "instagram.com/abc",
+                    "profile_picture": "dummy.jpg",
+                    "dob": "2002-09-16T18:00:00.000Z",
+                    "registration_date": "2023-08-03T07:32:21.000Z",
+                    "status": "active",
+                    "created_on": "2023-08-03T07:32:21.000Z",
+                    "last_updated_on": "2023-08-03T07:32:21.000Z",
+                    "city": {
+                        "city_id": 1,
+                        "name": "Dhaka",
+                        "country_name": "Bangladesh",
+                        "population": 168957745,
+                        "weather_type": "rainy"
+                    }
+                }
+            }
+        ],
+        "reacts": [
+            {
+                "user_id": 1,
+                "react_type": "care",
+                "reacting_date": "2023-08-03T20:34:20.000Z"
+            }
+        ]
+    },
+    {
+        "post_id": 19,
+        "user_id": 11,
+        "posting_date": "2023-08-03T20:31:08.000Z",
+        "description": "At Bulgeria Guys!",
+        "image_url": "https://example.com/sunset.jpg",
+        "comments": [],
+        "reacts": []
+    },
+    {
+        "post_id": 11,
+        "user_id": 1,
+        "posting_date": "2023-08-03T12:43:56.000Z",
+        "description": "Updated Amazing Post",
+        "image_url": "amazing.jpg",
+        "comments": [],
+        "reacts": []
+    },
+    {
+        "post_id": 9,
+        "user_id": 1,
+        "posting_date": "2023-08-03T09:38:39.000Z",
+        "description": "Amazing Post",
+        "image_url": "amazing.jpg",
+        "comments": [],
+        "reacts": [
+            {
+                "user_id": 1,
+                "react_type": "haha",
+                "reacting_date": "2023-08-03T12:56:51.000Z"
+            }
+        ]
+    },
+    {
+        "post_id": 8,
+        "user_id": 1,
+        "posting_date": "2023-08-03T09:34:47.000Z",
+        "description": "Amazing Post",
+        "image_url": "dummy.jpg",
+        "comments": [
+            {
+                "comment_id": 7,
+                "user_id": 1,
+                "post_id": 8,
+                "commenting_date": "2023-08-03T16:39:19.000Z",
+                "text": "cool post",
+                "upvote_count": 0,
+                "user": {
+                    "user_id": 1,
+                    "username": "aaniksahaa",
+                    "email": "abc@gmail.com",
+                    "role": "client",
+                    "name": "Anik Saha",
+                    "bio": "Little Coder",
+                    "city_id": 1,
+                    "facebook_url": "facebook.com/abc",
+                    "twitter_url": "twitter.com/abc",
+                    "instagram_url": "instagram.com/abc",
+                    "profile_picture": "dummy.jpg",
+                    "dob": "2002-09-16T18:00:00.000Z",
+                    "registration_date": "2023-08-03T07:32:21.000Z",
+                    "status": "active",
+                    "created_on": "2023-08-03T07:32:21.000Z",
+                    "last_updated_on": "2023-08-03T07:32:21.000Z",
+                    "city": {
+                        "city_id": 1,
+                        "name": "Dhaka",
+                        "country_name": "Bangladesh",
+                        "population": 168957745,
+                        "weather_type": "rainy"
+                    }
+                }
+            }
+        ],
+        "reacts": [
+            {
+                "user_id": 1,
+                "react_type": "like",
+                "reacting_date": "2023-08-03T13:04:17.000Z"
+            }
+        ]
+    },
+    {
+        "post_id": 7,
+        "user_id": 1,
+        "posting_date": "2023-08-03T09:34:42.000Z",
+        "description": "Cool Post",
+        "image_url": "dummy.jpg",
+        "comments": [],
+        "reacts": []
+    }
+]
 ```
