@@ -138,7 +138,7 @@ Example Response:
 ```
 
 ## c. Create New User
-### If a user is also a guide, just include the substring 'guide' in his role...
+### These five attributes are mandatory
 Endpoint URL: 
 ```
 POST
@@ -149,7 +149,7 @@ POST
 Request Body:    
 ```json
 {
-    "username": "john",
+    "username": "john_buet",
     "email": "example@example.com",
     "password": "123",
     "name": "John Doe",
@@ -159,7 +159,8 @@ Request Body:
 Example Response:  
 ```json
 {
-    "user_id": 3,
+    "user_id": 11,
+    "username": "john_buet",
     "email": "example@example.com",
     "role": "client",
     "name": "John Doe",
@@ -170,10 +171,10 @@ Example Response:
     "instagram_url": "https://www.instagram.com/leomessi",
     "profile_picture": "https://avatars.dicebear.com/api/avataaars/avatar.svg",
     "dob": "1990-05-14T18:00:00.000Z",
-    "registration_date": "2023-08-02T22:20:32.000Z",
+    "registration_date": "2023-08-03T08:37:53.000Z",
     "status": "active",
-    "created_on": "2023-08-02T22:20:32.000Z",
-    "last_updated_on": "2023-08-02T22:20:32.000Z",
+    "created_on": "2023-08-03T08:37:53.000Z",
+    "last_updated_on": "2023-08-03T08:37:53.000Z",
     "city": {
         "city_id": 0,
         "name": "Dummy",
@@ -184,6 +185,8 @@ Example Response:
 }
 ```
 ## d. Update a User
+### If a user is also a guide, just include the substring 'guide' in his role...
+### Here all attributes are mandatory except for password, you may include or omit the password from the request body
 Endpoint URL: 
 ```
 PUT
@@ -194,10 +197,11 @@ PUT
 Request Body:    
 ```json
 {
-    "user_id":1,
-    "email": "changed_email@example.com",
-    "password_hash": "hashed_password",
-    "role": "user",
+    "user_id":10,
+    "username": "cooljohn",
+    "password": "my_new_password",
+    "email": "changed@example.com",
+    "role": "user,guide,new",
     "name": "John Doe",
     "bio": "I love traveling and exploring new places.",
     "city_id": 1,
@@ -211,10 +215,10 @@ Request Body:
 Example Response:  
 ```json
 {
-    "user_id": 1,
-    "email": "changed_email@example.com",
-    "password_hash": "hashed_password",
-    "role": "user",
+    "user_id": 10,
+    "username": "cooljohn",
+    "email": "changed@example.com",
+    "role": "user,guide,new",
     "name": "John Doe",
     "bio": "I love traveling and exploring new places.",
     "city_id": 1,
@@ -223,10 +227,10 @@ Example Response:
     "instagram_url": "https://www.instagram.com/johndoe",
     "profile_picture": "https://example.com/profile_picture.jpg",
     "dob": "1990-05-14T18:00:00.000Z",
-    "registration_date": "2023-08-01T10:46:19.000Z",
+    "registration_date": "2023-08-03T08:12:59.000Z",
     "status": "active",
-    "created_on": "2023-08-01T10:46:19.000Z",
-    "last_updated_on": "2023-08-01T11:46:58.000Z",
+    "created_on": "2023-08-03T08:12:59.000Z",
+    "last_updated_on": "2023-08-03T08:35:06.000Z",
     "city": {
         "city_id": 1,
         "name": "Dhaka",
