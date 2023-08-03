@@ -3432,7 +3432,7 @@ Example Response:
 ```
 
 ## c. Create New TripBooking
-
+### user_id is auto grabbed from req.user
 Endpoint URL: 
 ```
 POST
@@ -3443,7 +3443,6 @@ POST
 Request Body:    
 ```json
 {
-    "user_id": 1,
     "trip_id": 3,
     "is_private": 1
 }
@@ -3508,7 +3507,7 @@ Example Response:
 ```
 
 ## d. Confirm Payment for TripBooking
-
+### user_id is auto grabbed from req.user
 Endpoint URL: 
 ```
 PUT
@@ -3519,7 +3518,6 @@ PUT
 Request Body:    
 ```json
 {
-    "user_id": 2,
     "trip_id": 1,
     "payment_method": "bkash",
     "transaction_id": "ABCDE"
@@ -3586,13 +3584,13 @@ Example Response:
 ```
 
 ## e. Confirm Processing for TripBooking
-
+### It is intended that this route be used only by admins or managers
 Endpoint URL: 
 ```
 PUT
 ```
 ```
-/api/v1/tripbooking/processed/
+/api/v1/tripbooking/onlyadmin/processed/
 ```  
 Request Body:    
 ```json
@@ -3662,13 +3660,13 @@ Example Response:
 ```
 
 ## f. Confirm Completion for TripBooking
-
+### It is intended that this route be used only by admins or managers
 Endpoint URL: 
 ```
 PUT
 ```
 ```
-/api/v1/tripbooking/complete/
+/api/v1/tripbooking/onlyadmin/complete/
 ```  
 Request Body:    
 ```json
@@ -3738,13 +3736,13 @@ Example Response:
 ```
 
 ## g. Delete a TripBooking ( Soft Deletion )
-
+### user_id is auto grabbed from req.user
 Endpoint URL:  
 ```
 DELETE
 ```
 ```
-/api/v1/tripbooking/1/1
+/api/v1/tripbooking/2
 ```  
 Request Body: 
 ```
@@ -3754,7 +3752,7 @@ Example Response:
 ```json
 {
     "user_id": 1,
-    "trip_id": 1,
+    "trip_id": 2,
     "booking_date": "2023-08-02T14:15:04.000Z",
     "is_paid": 0,
     "is_processed": 0,
@@ -3811,20 +3809,20 @@ Example Response:
 ```
 
 ## h. Delete a TripBooking ( Permanent Deletion )
-
+### user_id is auto grabbed from req.user
 Endpoint URL:
 ```
 DELETE
 ```
 ```
-/api/v1/tripbooking/danger/1/1
+/api/v1/tripbooking/danger/2
 ``` 
 Request Body: `None`    
 Example Response:    
 ```json
 {
     "user_id": "1",
-    "trip_id": "1",
+    "trip_id": "2",
     "status": "permanently deleted"
 }
 ```
