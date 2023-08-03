@@ -2998,7 +2998,7 @@ Example Response:
 ```
 
 ## c. Create New Review
-
+### user_id will be auto grabbed from req.user
 Endpoint URL: 
 ```
 POST
@@ -3009,9 +3009,8 @@ POST
 Request Body:    
 ```json
 {
-  "user_id": 2,
   "description": "Wholesome Trip !!!",
-  "rating": 5,
+  "rating": 4.5,
   "image_url": "dummy.jpg",
   "object_type": "trip",
   "object_id": 1
@@ -3020,11 +3019,11 @@ Request Body:
 Example Response:  
 ```json
 {
-    "review_id": 5,
-    "user_id": 2,
-    "posting_date": "2023-08-01T21:49:11.000Z",
+    "review_id": 3,
+    "user_id": 1,
+    "posting_date": "2023-08-03T13:30:26.000Z",
     "description": "Wholesome Trip !!!",
-    "rating": 5,
+    "rating": 4.5,
     "image_url": "dummy.jpg",
     "upvote_count": 0,
     "object": {
@@ -3036,33 +3035,35 @@ Example Response:
             "to_city_id": 2,
             "from_city_name": "Dhaka",
             "to_city_name": "Chittagong",
-            "name": "Novelty Tour",
-            "description": "A wonderful Trip, it will be.",
-            "image_url": "dummy.jpg",
-            "total_price": 22799,
+            "name": "Summer Vacation in Paris",
+            "description": "Enjoy the charm of Paris in summer",
+            "image_url": "paris_summer.jpg",
+            "total_price": 49878,
             "start_date": "2023-06-30T18:00:00.000Z",
             "end_date": "2023-07-24T18:00:00.000Z",
-            "created_on": "2023-08-01T12:57:17.000Z",
-            "last_updated_on": "2023-08-01T12:57:17.000Z",
+            "creator_user_id": 1,
+            "created_on": "2023-08-03T07:32:23.000Z",
+            "last_updated_on": "2023-08-03T07:32:23.000Z",
             "deleted_on": null
         }
     },
     "user": {
-        "user_id": 2,
-        "email": "xyz@gmail.com",
+        "user_id": 1,
+        "username": "aaniksahaa",
+        "email": "abc@gmail.com",
         "role": "client",
-        "name": "Jaber Ahmed Deeder",
-        "bio": "Pro Coder",
+        "name": "Anik Saha",
+        "bio": "Little Coder",
         "city_id": 1,
-        "facebook_url": "facebook.com/xyz",
-        "twitter_url": "twitter.com/xyz",
-        "instagram_url": "instagram.com/xyz",
+        "facebook_url": "facebook.com/abc",
+        "twitter_url": "twitter.com/abc",
+        "instagram_url": "instagram.com/abc",
         "profile_picture": "dummy.jpg",
         "dob": "2002-09-16T18:00:00.000Z",
-        "registration_date": "2023-08-01T10:46:19.000Z",
+        "registration_date": "2023-08-03T07:32:21.000Z",
         "status": "active",
-        "created_on": "2023-08-01T10:46:19.000Z",
-        "last_updated_on": "2023-08-01T10:46:19.000Z",
+        "created_on": "2023-08-03T07:32:21.000Z",
+        "last_updated_on": "2023-08-03T07:32:21.000Z",
         "city": {
             "city_id": 1,
             "name": "Dhaka",
@@ -3085,24 +3086,22 @@ PUT
 Request Body:    
 ```json
 {
-  "review_id": 5,
-  "user_id": 2,
-  "description": "Veryyy Wholesome Trip !!!",
-  "rating": 5,
+  "review_id": 3,
+  "description": "Wholesome Trip !!!",
+  "rating": 3.5,
   "image_url": "dummy.jpg",
   "object_type": "trip",
   "object_id": 1
 }
-
 ```
 Example Response:  
 ```json
 {
-    "review_id": 6,
-    "user_id": 2,
-    "posting_date": "2023-08-01T21:50:35.000Z",
-    "description": "Veryyy Wholesome Trip !!!",
-    "rating": 5,
+    "review_id": 3,
+    "user_id": 1,
+    "posting_date": "2023-08-03T13:30:26.000Z",
+    "description": "Wholesome Trip !!!",
+    "rating": 3.5,
     "image_url": "dummy.jpg",
     "upvote_count": 0,
     "object": {
@@ -3114,33 +3113,35 @@ Example Response:
             "to_city_id": 2,
             "from_city_name": "Dhaka",
             "to_city_name": "Chittagong",
-            "name": "Novelty Tour",
-            "description": "A wonderful Trip, it will be.",
-            "image_url": "dummy.jpg",
-            "total_price": 22799,
+            "name": "Summer Vacation in Paris",
+            "description": "Enjoy the charm of Paris in summer",
+            "image_url": "paris_summer.jpg",
+            "total_price": 49878,
             "start_date": "2023-06-30T18:00:00.000Z",
             "end_date": "2023-07-24T18:00:00.000Z",
-            "created_on": "2023-08-01T12:57:17.000Z",
-            "last_updated_on": "2023-08-01T12:57:17.000Z",
+            "creator_user_id": 1,
+            "created_on": "2023-08-03T07:32:23.000Z",
+            "last_updated_on": "2023-08-03T07:32:23.000Z",
             "deleted_on": null
         }
     },
     "user": {
-        "user_id": 2,
-        "email": "xyz@gmail.com",
+        "user_id": 1,
+        "username": "aaniksahaa",
+        "email": "abc@gmail.com",
         "role": "client",
-        "name": "Jaber Ahmed Deeder",
-        "bio": "Pro Coder",
+        "name": "Anik Saha",
+        "bio": "Little Coder",
         "city_id": 1,
-        "facebook_url": "facebook.com/xyz",
-        "twitter_url": "twitter.com/xyz",
-        "instagram_url": "instagram.com/xyz",
+        "facebook_url": "facebook.com/abc",
+        "twitter_url": "twitter.com/abc",
+        "instagram_url": "instagram.com/abc",
         "profile_picture": "dummy.jpg",
         "dob": "2002-09-16T18:00:00.000Z",
-        "registration_date": "2023-08-01T10:46:19.000Z",
+        "registration_date": "2023-08-03T07:32:21.000Z",
         "status": "active",
-        "created_on": "2023-08-01T10:46:19.000Z",
-        "last_updated_on": "2023-08-01T10:46:19.000Z",
+        "created_on": "2023-08-03T07:32:21.000Z",
+        "last_updated_on": "2023-08-03T07:32:21.000Z",
         "city": {
             "city_id": 1,
             "name": "Dhaka",
