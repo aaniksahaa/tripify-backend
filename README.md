@@ -15,6 +15,7 @@ The API Endpoints belong to  major routes. The routes are as follows:
 ## [Flight](#flight-1)
 ## [Review](#review-1)
 ## [TripBooking](#tripbooking-1)
+## [Post](#post-1)
 
 The respective API endpoints are as follows:    
 
@@ -3827,3 +3828,142 @@ Example Response:
 }
 ```
 
+# Post
+
+## a. Get Single Post by post_id
+
+Endpoint URL:    
+```
+GET
+```
+```
+/api/v1/post/2
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "post_id": 2,
+    "user_id": 1,
+    "posting_date": "2023-08-03T09:34:12.000Z",
+    "description": "First Post",
+    "image_url": "dummy.jpg"
+}
+```
+
+## b. Get Posts by querying on attributes ( Paginated )  
+
+#### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
+
+Endpoint URL:  
+```
+GET
+```
+```
+/api/v1/post?user_id=1&posting_date=2023-08-03&page=2&per_page=2&orderby=posting_date&ordertype=desc
+```
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+[
+    {
+        "post_id": 6,
+        "user_id": 1,
+        "posting_date": "2023-08-03T09:34:36.000Z",
+        "description": "New Post",
+        "image_url": "dummy.jpg"
+    },
+    {
+        "post_id": 4,
+        "user_id": 1,
+        "posting_date": "2023-08-03T09:34:29.000Z",
+        "description": "First Post",
+        "image_url": "dummy.jpg"
+    }
+]
+```
+
+## c. Create New Post
+
+Endpoint URL: 
+```
+POST
+```
+```
+/api/v1/post/
+```  
+Request Body:    
+```json
+{
+    "user_id": 2,
+    "description": "Amazing Post",
+    "image_url": "amazing.jpg"
+}
+```
+Example Response:  
+```json
+{
+    "post_id": 10,
+    "user_id": 1,
+    "posting_date": "2023-08-03T09:38:43.000Z",
+    "description": "Amazing Post",
+    "image_url": "amazing.jpg"
+}
+```
+## d. Update a Post
+Endpoint URL: 
+```
+PUT
+```
+```
+/api/v1/post/
+```  
+Request Body:    
+```json
+{
+    "post_id": 10,
+    "user_id": 2,
+    "description": "Updated Amazing Post",
+    "image_url": "amazing.jpg"
+}
+```
+Example Response:  
+```json
+{
+    "post_id": 10,
+    "user_id": 2,
+    "posting_date": "2023-08-03T09:38:43.000Z",
+    "description": "Updated Amazing Post",
+    "image_url": "amazing.jpg"
+}
+```
+
+## e. Delete a Post
+
+Endpoint URL:  
+```
+DELETE
+```
+```
+api/v1/post/10
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "post_id": 10,
+    "user_id": 2,
+    "posting_date": "2023-08-03T09:38:43.000Z",
+    "description": "Updated Amazing Post",
+    "image_url": "amazing.jpg"
+}
+```
