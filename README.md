@@ -34,8 +34,11 @@ POST
 /api/v1/login
 ```  
 Request Body: 
-```
-None
+```json
+{
+    "username": "aaniksahaa",
+    "password": "123"
+}
 ```
 Example Response:    
 ```json
