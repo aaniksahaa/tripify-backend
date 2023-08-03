@@ -19,6 +19,7 @@ The API Endpoints belong to  major routes. The routes are as follows:
 ## [Post](#post-1)
 ## [Comment](#comment-1)
 ## [Feed](#feed-1)
+## [Stat](#stat-1)
 
 The respective API endpoints are as follows:    
 
@@ -4765,6 +4766,316 @@ Example Response:
         "image_url": "dummy.jpg",
         "comments": [],
         "reacts": []
+    }
+]
+```
+# Stat
+
+## a. Get Stat of Hotels
+
+Endpoint URL:    
+```
+GET
+```
+```
+/api/v1/stat/hotel
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+[
+    {
+        "hotel_id": 1,
+        "total_revenue": 102207,
+        "favorite_count": 1,
+        "hotel": {
+            "hotel_id": 1,
+            "name": "Quaint Villa Hotel",
+            "address": "48 Lakeview Drive Bhola , Bangladesh",
+            "city_id": 25,
+            "description": "A Exquisitely Rustic hotel in Bhola.",
+            "image_url": "dummy.jpg",
+            "price_per_day": 4867,
+            "phone": "019157054121",
+            "email": "quaintvillahotel@gmail.com",
+            "has_wifi": 1,
+            "has_parking": 1,
+            "has_gym": 0,
+            "creator_user_id": 0,
+            "created_on": "2023-08-03T07:32:22.000Z",
+            "last_updated_on": "2023-08-03T07:32:22.000Z",
+            "city": {
+                "city_id": 25,
+                "name": "Bhola",
+                "country_name": "Bangladesh",
+                "population": 183113,
+                "weather_type": "sunny"
+            }
+        }
+    },
+    {
+        "hotel_id": 5,
+        "total_revenue": 74888,
+        "favorite_count": 0,
+        "hotel": {
+            "hotel_id": 5,
+            "name": "Glorious Hideaway Hotel",
+            "address": "18 Beach Road Dinajpur , Bangladesh",
+            "city_id": 17,
+            "description": "A Extravagantly Glorious hotel in Dinajpur.",
+            "image_url": "dummy.jpg",
+            "price_per_day": 3256,
+            "phone": "015238514617",
+            "email": "glorioushideawayhotel@gmail.com",
+            "has_wifi": 0,
+            "has_parking": 0,
+            "has_gym": 0,
+            "creator_user_id": 0,
+            "created_on": "2023-08-03T07:32:22.000Z",
+            "last_updated_on": "2023-08-03T07:32:22.000Z",
+            "city": {
+                "city_id": 17,
+                "name": "Dinajpur",
+                "country_name": "Bangladesh",
+                "population": 204874,
+                "weather_type": "cold"
+            }
+        }
+    },
+    {
+        "hotel_id": 37,
+        "total_revenue": 32104,
+        "favorite_count": 1,
+        "hotel": {
+            "hotel_id": 37,
+            "name": "Modern Palace Hotel",
+            "address": "29 Ocean Drive Tangail , Bangladesh",
+            "city_id": 29,
+            "description": "A Uniquely Boutique hotel in Tangail.",
+            "image_url": "dummy.jpg",
+            "price_per_day": 4013,
+            "phone": "011504484489",
+            "email": "modernpalacehotel@outlook.com",
+            "has_wifi": 1,
+            "has_parking": 0,
+            "has_gym": 0,
+            "creator_user_id": 0,
+            "created_on": "2023-08-03T07:32:22.000Z",
+            "last_updated_on": "2023-08-03T07:32:22.000Z",
+            "city": {
+                "city_id": 29,
+                "name": "Tangail",
+                "country_name": "Bangladesh",
+                "population": 160937,
+                "weather_type": "rainy"
+            }
+        }
+    },
+    {
+        "hotel_id": 23,
+        "total_revenue": 29625,
+        "favorite_count": 0,
+        "hotel": {
+            "hotel_id": 23,
+            "name": "Seaside Retreat Hotel",
+            "address": "39 Lakeview Drive Pabna , Bangladesh",
+            "city_id": 14,
+            "description": "A Majestically Cozy hotel in Pabna.",
+            "image_url": "dummy.jpg",
+            "price_per_day": 1975,
+            "phone": "019769742786",
+            "email": "seasideretreathotel@gmail.com",
+            "has_wifi": 1,
+            "has_parking": 1,
+            "has_gym": 0,
+            "creator_user_id": 0,
+            "created_on": "2023-08-03T07:32:22.000Z",
+            "last_updated_on": "2023-08-03T07:32:22.000Z",
+            "city": {
+                "city_id": 14,
+                "name": "Pabna",
+                "country_name": "Bangladesh",
+                "population": 389918,
+                "weather_type": "sunny"
+            }
+        }
+    },
+    {
+        "hotel_id": 8,
+        "total_revenue": 21450,
+        "favorite_count": 0,
+        "hotel": {
+            "hotel_id": 8,
+            "name": "Charming Resort Hotel",
+            "address": "33 Sunset Boulevard Bandarban , Bangladesh",
+            "city_id": 24,
+            "description": "A Majestically Spectacular hotel in Bandarban.",
+            "image_url": "dummy.jpg",
+            "price_per_day": 4290,
+            "phone": "018711754651",
+            "email": "charmingresorthotel@yahoo.com",
+            "has_wifi": 0,
+            "has_parking": 0,
+            "has_gym": 0,
+            "creator_user_id": 0,
+            "created_on": "2023-08-03T07:32:22.000Z",
+            "last_updated_on": "2023-08-03T07:32:22.000Z",
+            "city": {
+                "city_id": 24,
+                "name": "Bandarban",
+                "country_name": "Bangladesh",
+                "population": 126379,
+                "weather_type": "rainy"
+            }
+        }
+    },
+    {
+        "hotel_id": 24,
+        "total_revenue": 16640,
+        "favorite_count": 2,
+        "hotel": {
+            "hotel_id": 24,
+            "name": "Glorious Cottage Hotel",
+            "address": "39 Park Avenue Manikganj , Bangladesh",
+            "city_id": 26,
+            "description": "A Uniquely Glorious hotel in Manikganj.",
+            "image_url": "dummy.jpg",
+            "price_per_day": 1040,
+            "phone": "015053009336",
+            "email": "gloriouscottagehotel@gmail.com",
+            "has_wifi": 0,
+            "has_parking": 0,
+            "has_gym": 0,
+            "creator_user_id": 0,
+            "created_on": "2023-08-03T07:32:22.000Z",
+            "last_updated_on": "2023-08-03T07:32:22.000Z",
+            "city": {
+                "city_id": 26,
+                "name": "Manikganj",
+                "country_name": "Bangladesh",
+                "population": 160093,
+                "weather_type": "rainy"
+            }
+        }
+    },
+    {
+        "hotel_id": 28,
+        "total_revenue": 12696,
+        "favorite_count": 0,
+        "hotel": {
+            "hotel_id": 28,
+            "name": "Rustic Sanctuary Hotel",
+            "address": "54 Riverfront Bhola , Bangladesh",
+            "city_id": 25,
+            "description": "A Exceptionally Spectacular hotel in Bhola.",
+            "image_url": "dummy.jpg",
+            "price_per_day": 3174,
+            "phone": "017479789959",
+            "email": "rusticsanctuaryhotel@gmail.com",
+            "has_wifi": 0,
+            "has_parking": 0,
+            "has_gym": 0,
+            "creator_user_id": 0,
+            "created_on": "2023-08-03T07:32:22.000Z",
+            "last_updated_on": "2023-08-03T07:32:22.000Z",
+            "city": {
+                "city_id": 25,
+                "name": "Bhola",
+                "country_name": "Bangladesh",
+                "population": 183113,
+                "weather_type": "sunny"
+            }
+        }
+    },
+    {
+        "hotel_id": 25,
+        "total_revenue": 6965,
+        "favorite_count": 0,
+        "hotel": {
+            "hotel_id": 25,
+            "name": "Elegant Lodge Hotel",
+            "address": "64 Beach Road Sylhet , Bangladesh",
+            "city_id": 8,
+            "description": "A Gracefully Elegant hotel in Sylhet.",
+            "image_url": "dummy.jpg",
+            "price_per_day": 1393,
+            "phone": "015316556115",
+            "email": "elegantlodgehotel@yahoo.com",
+            "has_wifi": 0,
+            "has_parking": 1,
+            "has_gym": 0,
+            "creator_user_id": 0,
+            "created_on": "2023-08-03T07:32:22.000Z",
+            "last_updated_on": "2023-08-03T07:32:22.000Z",
+            "city": {
+                "city_id": 8,
+                "name": "Sylhet",
+                "country_name": "Bangladesh",
+                "population": 3482659,
+                "weather_type": "rainy"
+            }
+        }
+    },
+    {
+        "hotel_id": 2,
+        "total_revenue": 6314,
+        "favorite_count": 1,
+        "hotel": {
+            "hotel_id": 2,
+            "name": "Elegant Cottage Hotel",
+            "address": "40 Beach Road Narsingdi , Bangladesh",
+            "city_id": 12,
+            "description": "A Majestically Rustic hotel in Narsingdi.",
+            "image_url": "dummy.jpg",
+            "price_per_day": 902,
+            "phone": "014489813442",
+            "email": "elegantcottagehotel@gmail.com",
+            "has_wifi": 1,
+            "has_parking": 1,
+            "has_gym": 1,
+            "creator_user_id": 0,
+            "created_on": "2023-08-03T07:32:22.000Z",
+            "last_updated_on": "2023-08-03T07:32:22.000Z",
+            "city": {
+                "city_id": 12,
+                "name": "Narsingdi",
+                "country_name": "Bangladesh",
+                "population": 705768,
+                "weather_type": "rainy"
+            }
+        }
+    },
+    {
+        "hotel_id": 30,
+        "total_revenue": 4115,
+        "favorite_count": 0,
+        "hotel": {
+            "hotel_id": 30,
+            "name": "Charming Castle Hotel",
+            "address": "67 Harbor View Narsingdi , Bangladesh",
+            "city_id": 22,
+            "description": "A Serenely Cozy hotel in Narsingdi.",
+            "image_url": "dummy.jpg",
+            "price_per_day": 823,
+            "phone": "018449479335",
+            "email": "charmingcastlehotel@gmail.com",
+            "has_wifi": 0,
+            "has_parking": 0,
+            "has_gym": 1,
+            "creator_user_id": 0,
+            "created_on": "2023-08-03T07:32:22.000Z",
+            "last_updated_on": "2023-08-03T07:32:22.000Z",
+            "city": {
+                "city_id": 22,
+                "name": "Narsingdi",
+                "country_name": "Bangladesh",
+                "population": 705768,
+                "weather_type": "cold"
+            }
+        }
     }
 ]
 ```
