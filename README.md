@@ -5,6 +5,7 @@
 # API Endpoints
 The API Endpoints belong to  major routes. The routes are as follows:   
 
+## [Login](#login-1)
 ## [User](#user-1)
 ## [City](#city-1)
 ## [Destination](#destination-1)
@@ -20,6 +21,53 @@ The API Endpoints belong to  major routes. The routes are as follows:
 ## [Feed](#feed-1)
 
 The respective API endpoints are as follows:    
+
+# Login
+
+## a. Login with username and password
+
+Endpoint URL:    
+```
+POST
+```
+```
+/api/v1/login
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFhbmlrc2FoYWEiLCJpZCI6MSwiaWF0IjoxNjkxMDk1MjQ4fQ.40HbWfyXnqH9-rZ-bscoRykL0wJW_qDuyaAE-6EkMDw",
+    "user": {
+        "user_id": 1,
+        "username": "aaniksahaa",
+        "email": "abc@gmail.com",
+        "role": "client",
+        "name": "Anik Saha",
+        "bio": "Little Coder",
+        "city_id": 1,
+        "facebook_url": "facebook.com/abc",
+        "twitter_url": "twitter.com/abc",
+        "instagram_url": "instagram.com/abc",
+        "profile_picture": "dummy.jpg",
+        "dob": "2002-09-16T18:00:00.000Z",
+        "registration_date": "2023-08-03T07:32:21.000Z",
+        "status": "active",
+        "created_on": "2023-08-03T07:32:21.000Z",
+        "last_updated_on": "2023-08-03T07:32:21.000Z",
+        "city": {
+            "city_id": 1,
+            "name": "Dhaka",
+            "country_name": "Bangladesh",
+            "population": 168957745,
+            "weather_type": "rainy"
+        }
+    }
+}
+```
 
 # User
 
