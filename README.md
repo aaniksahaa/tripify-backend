@@ -3854,7 +3854,144 @@ Example Response:
 }
 ```
 
-## b. Get Posts by querying on attributes ( Paginated )  
+## b. Get Single Post Details by post_id
+
+Endpoint URL:    
+```
+GET
+```
+```
+/api/v1/post/details/1
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "post_id": 1,
+    "user_id": 1,
+    "posting_date": "2023-08-03T09:30:54.000Z",
+    "description": "hi",
+    "image_url": "hello",
+    "comments": [
+        {
+            "comment_id": 4,
+            "user_id": 1,
+            "post_id": 1,
+            "commenting_date": "2023-07-28T18:00:00.000Z",
+            "text": "This is a great post!",
+            "upvote_count": 10,
+            "user": {
+                "user_id": 1,
+                "username": "aaniksahaa",
+                "email": "abc@gmail.com",
+                "role": "client",
+                "name": "Anik Saha",
+                "bio": "Little Coder",
+                "city_id": 1,
+                "facebook_url": "facebook.com/abc",
+                "twitter_url": "twitter.com/abc",
+                "instagram_url": "instagram.com/abc",
+                "profile_picture": "dummy.jpg",
+                "dob": "2002-09-16T18:00:00.000Z",
+                "registration_date": "2023-08-03T07:32:21.000Z",
+                "status": "active",
+                "created_on": "2023-08-03T07:32:21.000Z",
+                "last_updated_on": "2023-08-03T07:32:21.000Z",
+                "city": {
+                    "city_id": 1,
+                    "name": "Dhaka",
+                    "country_name": "Bangladesh",
+                    "population": 168957745,
+                    "weather_type": "rainy"
+                }
+            }
+        },
+        {
+            "comment_id": 5,
+            "user_id": 1,
+            "post_id": 1,
+            "commenting_date": "2023-07-28T18:00:00.000Z",
+            "text": "Another Comment done",
+            "upvote_count": 10,
+            "user": {
+                "user_id": 1,
+                "username": "aaniksahaa",
+                "email": "abc@gmail.com",
+                "role": "client",
+                "name": "Anik Saha",
+                "bio": "Little Coder",
+                "city_id": 1,
+                "facebook_url": "facebook.com/abc",
+                "twitter_url": "twitter.com/abc",
+                "instagram_url": "instagram.com/abc",
+                "profile_picture": "dummy.jpg",
+                "dob": "2002-09-16T18:00:00.000Z",
+                "registration_date": "2023-08-03T07:32:21.000Z",
+                "status": "active",
+                "created_on": "2023-08-03T07:32:21.000Z",
+                "last_updated_on": "2023-08-03T07:32:21.000Z",
+                "city": {
+                    "city_id": 1,
+                    "name": "Dhaka",
+                    "country_name": "Bangladesh",
+                    "population": 168957745,
+                    "weather_type": "rainy"
+                }
+            }
+        },
+        {
+            "comment_id": 6,
+            "user_id": 1,
+            "post_id": 1,
+            "commenting_date": "2023-07-28T18:00:00.000Z",
+            "text": "Yet Another comment done!",
+            "upvote_count": 10,
+            "user": {
+                "user_id": 1,
+                "username": "aaniksahaa",
+                "email": "abc@gmail.com",
+                "role": "client",
+                "name": "Anik Saha",
+                "bio": "Little Coder",
+                "city_id": 1,
+                "facebook_url": "facebook.com/abc",
+                "twitter_url": "twitter.com/abc",
+                "instagram_url": "instagram.com/abc",
+                "profile_picture": "dummy.jpg",
+                "dob": "2002-09-16T18:00:00.000Z",
+                "registration_date": "2023-08-03T07:32:21.000Z",
+                "status": "active",
+                "created_on": "2023-08-03T07:32:21.000Z",
+                "last_updated_on": "2023-08-03T07:32:21.000Z",
+                "city": {
+                    "city_id": 1,
+                    "name": "Dhaka",
+                    "country_name": "Bangladesh",
+                    "population": 168957745,
+                    "weather_type": "rainy"
+                }
+            }
+        }
+    ],
+    "reacts": [
+        {
+            "user_id": 1,
+            "react_type": "like",
+            "reacting_date": "2023-08-03T12:28:22.000Z"
+        },
+        {
+            "user_id": 2,
+            "react_type": "love",
+            "reacting_date": "2023-07-28T18:00:00.000Z"
+        }
+    ]
+}
+```
+
+## c. Get Posts by querying on attributes ( Paginated )  
 
 #### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
@@ -3889,7 +4026,7 @@ Example Response:
 ]
 ```
 
-## c. Create New Post
+## d. Create New Post
 ### user_id is auto grabbed from req.user
 Endpoint URL: 
 ```
@@ -3915,7 +4052,7 @@ Example Response:
     "image_url": "amazing.jpg"
 }
 ```
-## d. Update a Post
+## e. Update a Post
 ### user_id is auto grabbed from req.user
 Endpoint URL: 
 ```
@@ -3943,7 +4080,7 @@ Example Response:
 }
 ```
 
-## e. Delete a Post
+## f. Delete a Post
 
 Endpoint URL:  
 ```
@@ -3966,7 +4103,7 @@ Example Response:
     "image_url": "amazing.jpg"
 }
 ```
-## f. Reacting to a post
+## g. Reacting to a post
 ### The user_id will be auto grabbed from req.user
 ### Allowable reacts: 1 - like, 2 - love, 3 - haha, 4 - care, 5 - wow, 6 - sad
 Endpoint URL:    
@@ -3990,7 +4127,7 @@ Example Response:
 }
 ```
 
-## g. Removing react from a post
+## h. Removing react from a post
 ### The user_id will be auto grabbed from req.user
 ### Allowable reacts: 1 - like, 2 - love, 3 - haha, 4 - care, 5 - wow, 6 - sad
 Endpoint URL:    
