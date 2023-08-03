@@ -3991,7 +3991,7 @@ Example Response:
 }
 ```
 
-## c. Get Posts by querying on attributes ( Paginated )  
+## c. Get Post Details by querying on attributes ( Paginated )  
 
 #### Note that, all attributes are optional, you can either mention, not mention or leave them blank    
 
@@ -4010,18 +4010,62 @@ Example Response:
 ```json
 [
     {
-        "post_id": 6,
+        "post_id": 8,
         "user_id": 1,
-        "posting_date": "2023-08-03T09:34:36.000Z",
-        "description": "New Post",
-        "image_url": "dummy.jpg"
+        "posting_date": "2023-08-03T09:34:47.000Z",
+        "description": "Amazing Post",
+        "image_url": "dummy.jpg",
+        "comments": [
+            {
+                "comment_id": 7,
+                "user_id": 1,
+                "post_id": 8,
+                "commenting_date": "2023-08-03T16:39:19.000Z",
+                "text": "cool post",
+                "upvote_count": 0,
+                "user": {
+                    "user_id": 1,
+                    "username": "aaniksahaa",
+                    "email": "abc@gmail.com",
+                    "role": "client",
+                    "name": "Anik Saha",
+                    "bio": "Little Coder",
+                    "city_id": 1,
+                    "facebook_url": "facebook.com/abc",
+                    "twitter_url": "twitter.com/abc",
+                    "instagram_url": "instagram.com/abc",
+                    "profile_picture": "dummy.jpg",
+                    "dob": "2002-09-16T18:00:00.000Z",
+                    "registration_date": "2023-08-03T07:32:21.000Z",
+                    "status": "active",
+                    "created_on": "2023-08-03T07:32:21.000Z",
+                    "last_updated_on": "2023-08-03T07:32:21.000Z",
+                    "city": {
+                        "city_id": 1,
+                        "name": "Dhaka",
+                        "country_name": "Bangladesh",
+                        "population": 168957745,
+                        "weather_type": "rainy"
+                    }
+                }
+            }
+        ],
+        "reacts": [
+            {
+                "user_id": 1,
+                "react_type": "like",
+                "reacting_date": "2023-08-03T13:04:17.000Z"
+            }
+        ]
     },
     {
-        "post_id": 4,
+        "post_id": 7,
         "user_id": 1,
-        "posting_date": "2023-08-03T09:34:29.000Z",
-        "description": "First Post",
-        "image_url": "dummy.jpg"
+        "posting_date": "2023-08-03T09:34:42.000Z",
+        "description": "Cool Post",
+        "image_url": "dummy.jpg",
+        "comments": [],
+        "reacts": []
     }
 ]
 ```
