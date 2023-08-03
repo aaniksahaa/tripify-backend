@@ -326,10 +326,10 @@ Example Response:
 ## h. Unfollowing a User
 Endpoint URL: 
 ```
-POST
+DELETE
 ```
 ```
-/api/v1/user/2/unfollow/1
+/api/v1/user/2/follow/1
 ```  
 Request Body:    
 ```
@@ -3965,5 +3965,52 @@ Example Response:
     "posting_date": "2023-08-03T09:38:43.000Z",
     "description": "Updated Amazing Post",
     "image_url": "amazing.jpg"
+}
+```
+## f. Reacting to a post
+### The user_id will be auto grabbed from req.user
+### Allowable reacts: 1 - like, 2 - love, 3 - haha, 4 - care, 5 - wow, 6 - sad
+Endpoint URL:    
+```
+POST
+```
+```
+/api/v1/post/11/react/4
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "user_id": 1,
+    "post_id": 11,
+    "react_type": "care",
+    "reacting_date": "2023-08-03T13:07:59.000Z"
+}
+```
+
+## g. Removing react from a post
+### The user_id will be auto grabbed from req.user
+### Allowable reacts: 1 - like, 2 - love, 3 - haha, 4 - care, 5 - wow, 6 - sad
+Endpoint URL:    
+```
+DELETE
+```
+```
+/api/v1/post/11/react/
+```  
+Request Body: 
+```
+None
+```
+Example Response:    
+```json
+{
+    "user_id": 1,
+    "post_id": 11,
+    "react_type": "haha",
+    "reacting_date": "2023-08-03T13:20:38.000Z"
 }
 ```
