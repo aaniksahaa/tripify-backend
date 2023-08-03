@@ -3227,13 +3227,13 @@ Example Response:
 # TripBooking
 
 ## a. Get Single TripBooking by user_id and trip_id
-
+### user_id is auto grabbed from req.user
 Endpoint URL:    
 ```
 GET
 ```
 ```
-/api/v1/tripbooking/1/1
+/api/v1/tripbooking/1
 ```  
 Request Body: 
 ```
@@ -3307,7 +3307,7 @@ Endpoint URL:
 GET
 ```
 ```
-/api/v1/tripbooking?user_id=1&is_paid=1&is_processed=1&is_completed=0&payment_method=bkash&page=1&per_page=2&orderby=booking_date&ordertype=desc
+/api/v1/tripbooking?is_paid=1&is_processed=1&is_completed=0&payment_method=bkash&page=1&per_page=2&orderby=booking_date&ordertype=desc
 ```
 Request Body: 
 ```
