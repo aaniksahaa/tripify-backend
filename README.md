@@ -3889,7 +3889,7 @@ Example Response:
 ```
 
 ## c. Create New Post
-
+### user_id is auto grabbed from req.user
 Endpoint URL: 
 ```
 POST
@@ -3900,7 +3900,6 @@ POST
 Request Body:    
 ```json
 {
-    "user_id": 2,
     "description": "Amazing Post",
     "image_url": "amazing.jpg"
 }
@@ -3916,6 +3915,7 @@ Example Response:
 }
 ```
 ## d. Update a Post
+### user_id is auto grabbed from req.user
 Endpoint URL: 
 ```
 PUT
@@ -3927,7 +3927,6 @@ Request Body:
 ```json
 {
     "post_id": 10,
-    "user_id": 2,
     "description": "Updated Amazing Post",
     "image_url": "amazing.jpg"
 }
