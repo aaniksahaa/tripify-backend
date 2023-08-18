@@ -1,13 +1,20 @@
 const express = require('express');
 const { validationResult } = require('express-validator');
-const { getSingleRestaurant, getRestaurants, createRestaurant, updateRestaurant, deleteRestaurant } = require('../controllers/restaurant');
+const {
+    getSingleDestination,
+    getDestinations,
+    createDestination,
+    updateDestination,
+    deleteDestination,
+} = require('../controllers/destination');
+
 const router = express.Router();
 
-router.get('/:restaurant_id', async (req, res, next) => {
+router.get('/:destination_id', async (req, res, next) => {
     try {
-        const restaurant = await getSingleRestaurant(req.params);
-        console.log(restaurant);
-        res.json(restaurant);
+        const destination = await getSingleDestination(req.params);
+        console.log(destination);
+        res.json(destination);
     } catch (err) {
         console.log(err);
         next(err);
@@ -16,9 +23,9 @@ router.get('/:restaurant_id', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
     try {
-        const restaurants = await getRestaurants(req.query);
-        console.log(restaurants);
-        res.json(restaurants);
+        const destinations = await getDestinations(req.query);
+        console.log(destinations);
+        res.json(destinations);
     } catch (err) {
         console.log(err);
         next(err);
@@ -33,8 +40,8 @@ router.post('/', async (req, res, next) => {
     }
     try {
         req.body.creator_user_id = req.user ? req.user.user_id : 1;
-        const restaurant = await createRestaurant(req.body);
-        res.json(restaurant);
+        const destination = await createDestination(req.body);
+        res.json(destination);
     } catch (error) {
         next(error);
     }
@@ -46,21 +53,21 @@ router.put('/', async (req, res, next) => {
         return res.send({ errors: result.array() });
     }
     try {
-        const restaurant = await updateRestaurant(req.body);
-        res.json(restaurant);
+        const destination = await updateDestination(req.body);
+        res.json(destination);
     } catch (error) {
         next(error);
     }
 });
 
-router.delete('/:restaurant_id', async (req, res, next) => {
+router.delete('/:destination_id', async (req, res, next) => {
     const result = validationResult(req);
     if (result.isEmpty() === false) {
         return res.send({ errors: result.array() });
     }
     try {
-        const restaurant = await deleteRestaurant(req.params);
-        res.json(restaurant);
+        const destination = await deleteDestination(req.params);
+        res.json(destination);
     } catch (error) {
         next(error);
     }

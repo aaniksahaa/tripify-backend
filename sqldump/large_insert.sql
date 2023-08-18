@@ -12,15 +12,13 @@ DELETE FROM Restaurants;
 DELETE FROM Flights;
 DELETE FROM Provides;
 
----Users
+-- Insert Dummy City for inserting Admin
 
-INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, dob ) VALUES ( 'abc@gmail.com', '123', 'client', 'Anik Saha', 'Little Coder', 'facebook.com/abc', 'twitter.com/abc', 'instagram.com/abc', 'dummy.jpg', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
-INSERT INTO Users ( email, password_hash, role, name, bio, facebook_url, twitter_url, instagram_url, profile_picture, dob ) VALUES ( 'xyz@gmail.com', '456', 'client', 'Jaber Ahmed Deeder', 'Pro Coder', 'facebook.com/xyz', 'twitter.com/xyz', 'instagram.com/xyz', 'dummy.jpg', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
+INSERT INTO Cities (city_id, name, country_name, population, weather_type) VALUES (0, 'Dummy', 'Dummy', 0, 'sunny');
 
----Guides
+-- Insert Global Admin User ( user_id = 0 )
 
-INSERT INTO Guides (user_id) VALUES (1);
-INSERT INTO Guides (user_id) VALUES (2);
+INSERT INTO Users ( user_id, username, email, password_hash, role, name, bio, city_id, facebook_url, twitter_url, instagram_url, profile_picture, status, dob ) VALUES ( 0, 'admin', 'admin@gmail.com', 'admin', 'admin', 'Oppenheimer', 'I am from Andromida', 0, 'facebook.com/opp', 'twitter.com/opp', 'instagram.com/opp', 'dummy.jpg', 'active', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
 
 ---Cities
 
@@ -54,6 +52,16 @@ INSERT INTO Cities (name, country_name, population, weather_type) VALUES ('Coxs 
 INSERT INTO Cities (name, country_name, population, weather_type) VALUES ('Rangamati', 'Bangladesh', 3482659, 'cold');
 INSERT INTO Cities (name, country_name, population, weather_type) VALUES ('Tangail', 'Bangladesh', 160937, 'rainy');
 INSERT INTO Cities (name, country_name, population, weather_type) VALUES ('Chandpur', 'Bangladesh', 115000, 'rainy');
+
+---Users
+
+INSERT INTO Users ( username, email, password_hash, role, name, bio, city_id, facebook_url, twitter_url, instagram_url, profile_picture, dob ) VALUES ( 'anik', 'abc@gmail.com', '123', 'client', 'Anik Saha', 'Little Coder', 1, 'facebook.com/abc', 'twitter.com/abc', 'instagram.com/abc', 'dummy.jpg', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
+INSERT INTO Users ( username, email, password_hash, role, name, bio, city_id, facebook_url, twitter_url, instagram_url, profile_picture, dob ) VALUES ( 'jaber', 'xyz@gmail.com', '456', 'client', 'Jaber Ahmed Deeder', 'Pro Coder', 1, 'facebook.com/xyz', 'twitter.com/xyz', 'instagram.com/xyz', 'dummy.jpg', TO_DATE('2002-09-17', 'YYYY-MM-DD') );
+
+---Guides
+
+INSERT INTO Guides (user_id) VALUES (1);
+INSERT INTO Guides (user_id) VALUES (2);
 
 ---Destinations
 
@@ -740,3 +748,68 @@ INSERT INTO Provides (destination_id, activity_id, price, is_available) VALUES (
 INSERT INTO Provides (destination_id, activity_id, price, is_available) VALUES (80, 17, 300, 1);
 INSERT INTO Provides (destination_id, activity_id, price, is_available) VALUES (80, 19, 50, 1);
 INSERT INTO Provides (destination_id, activity_id, price, is_available) VALUES (80, 36, 250, 1);
+
+
+-- Insert dummy trips
+
+DECLARE
+  l_hotels HotelDatesList := HotelDatesList(
+    HotelDates(1, TO_DATE('2023-07-01', 'YYYY-MM-DD'), TO_DATE('2023-07-10', 'YYYY-MM-DD')),
+    HotelDates(2, TO_DATE('2023-07-15', 'YYYY-MM-DD'), TO_DATE('2023-07-20', 'YYYY-MM-DD'))
+  );
+  l_restaurants RestaurantList := RestaurantList(1, 2, 3);
+  l_contains DestinationActivitiesList := DestinationActivitiesList(
+    DestinationActivity(1, 1, TO_DATE('2023-07-15', 'YYYY-MM-DD')),
+    DestinationActivity(1, 4, TO_DATE('2023-07-17', 'YYYY-MM-DD'))
+  );
+  l_guides GuideList := GuideList(1, 2);
+  p_trip_id NUMBER;
+BEGIN
+  AddTrip(1, 2, 'Summer Vacation in Paris', 'Enjoy the charm of Paris in summer', 'paris_summer.jpg', TO_DATE('2023-07-01', 'YYYY-MM-DD'), TO_DATE('2023-07-25', 'YYYY-MM-DD'), 1, l_contains, l_hotels, l_restaurants, l_guides, p_trip_id);
+  
+  DBMS_OUTPUT.PUT_LINE(p_trip_id);
+END;
+/
+
+DECLARE
+  l_hotels HotelDatesList := HotelDatesList(
+    HotelDates(5, TO_DATE('2023-08-10', 'YYYY-MM-DD'), TO_DATE('2023-08-20', 'YYYY-MM-DD')),
+    HotelDates(8, TO_DATE('2023-08-25', 'YYYY-MM-DD'), TO_DATE('2023-08-30', 'YYYY-MM-DD'))
+  );
+  l_restaurants RestaurantList := RestaurantList(10, 15, 20);
+  l_contains DestinationActivitiesList := DestinationActivitiesList(
+    DestinationActivity(2, 8, TO_DATE('2023-08-15', 'YYYY-MM-DD')),
+    DestinationActivity(2, 9, TO_DATE('2023-08-18', 'YYYY-MM-DD'))
+  );
+  l_guides GuideList := GuideList(1);
+  p_trip_id NUMBER;
+BEGIN
+  AddTrip(3, 4, 'Adventure in the Himalayas', 'Experience thrilling adventure in the Himalayas', 'himalayas_adventure.jpg', TO_DATE('2023-08-10', 'YYYY-MM-DD'), TO_DATE('2023-08-30', 'YYYY-MM-DD'), 2, l_contains, l_hotels, l_restaurants, l_guides, p_trip_id);
+  
+  DBMS_OUTPUT.PUT_LINE(p_trip_id);
+END;
+/
+
+DECLARE
+  l_hotels HotelDatesList := HotelDatesList(
+    HotelDates(25, TO_DATE('2023-09-05', 'YYYY-MM-DD'), TO_DATE('2023-09-10', 'YYYY-MM-DD')),
+    HotelDates(30, TO_DATE('2023-09-15', 'YYYY-MM-DD'), TO_DATE('2023-09-20', 'YYYY-MM-DD'))
+  );
+  l_restaurants RestaurantList := RestaurantList(18, 21, 22);
+  l_contains DestinationActivitiesList := DestinationActivitiesList(
+    DestinationActivity(3, 3, TO_DATE('2023-09-12', 'YYYY-MM-DD')),
+    DestinationActivity(3, 7, TO_DATE('2023-09-15', 'YYYY-MM-DD'))
+  );
+  l_guides GuideList := GuideList(1, 2);
+  p_trip_id NUMBER;
+BEGIN
+  AddTrip(5, 6, 'Relaxing Beach Vacation', 'Unwind on the beautiful beaches of Maldives', 'maldives_beach.jpg', TO_DATE('2023-09-05', 'YYYY-MM-DD'), TO_DATE('2023-09-20', 'YYYY-MM-DD'), 0, l_contains, l_hotels, l_restaurants, l_guides, p_trip_id);
+  
+  DBMS_OUTPUT.PUT_LINE(p_trip_id);
+END;
+/
+
+
+
+SELECT * FROM USERS;
+

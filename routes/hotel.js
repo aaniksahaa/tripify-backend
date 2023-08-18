@@ -34,10 +34,12 @@ router.post('/', async (req, res, next) => {
         return res.send({errors: result.array()})
     }
     try { 
+        req.body.creator_user_id = req.user ? req.user.user_id : 1;
         const hotel = await createHotel(req.body)
         res.json(hotel)
     }
     catch(error) {
+        console.log(error)
         next(error)
     }
 })
@@ -52,6 +54,7 @@ router.put('/', async (req,res,next) => {
         res.json(hotel);
     }
     catch(error) {
+        console.log(error)
         next(error)
     }
 })
@@ -66,6 +69,7 @@ router.delete('/:hotel_id', async(req, res, next)=> {
         res.json(hotel)
     }
     catch(error) {
+        console.log(error)
         next(error)
     }
 })

@@ -7,3 +7,4 @@ Run the sql files in following order:
 5. custom_types 
 6. procedures 
 7. functions
+8. triggers

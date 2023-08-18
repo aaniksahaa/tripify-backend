@@ -14,26 +14,70 @@ CREATE SEQUENCE notification_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE message_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE group_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE guide_seq START WITH 1 INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE log_seq START WITH 1 INCREMENT BY 1 NOCACHE;
 
--- 1. Users 
+-- 1. Cities  
+
+CREATE TABLE Cities (
+    city_id NUMBER DEFAULT city_seq.NEXTVAL PRIMARY KEY,
+    name VARCHAR2(100) NOT NULL,
+    country_name VARCHAR2(100) NOT NULL,
+    population NUMBER,
+    weather_type VARCHAR2(50) CHECK (LOWER(weather_type) IN ('sunny', 'rainy', 'cold', 'snowy')),
+		created_on DATE DEFAULT CURRENT_DATE,
+    last_updated_on DATE DEFAULT CURRENT_DATE
+)
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- dummy city insertion 
+
+/*
+INSERT INTO Cities (name, country_name, population, weather_type)
+VALUES ('Dhaka', 'Bangladesh', 20000000, 'sunny');
+
+INSERT INTO Cities (name, country_name, population, weather_type)
+VALUES ('Chattogram', 'Bangladesh', 5000000, 'sunny');
+
+SELECT * FROM CITIES;
+*/
+
+
+-- 2. Users 
 
 CREATE TABLE Users(
 		user_id NUMBER DEFAULT user_seq.NEXTVAL PRIMARY KEY,
+		username VARCHAR2(100) UNIQUE NOT NULL,
     email VARCHAR2(100) NOT NULL CONSTRAINT check_valid_email CHECK (email LIKE '%@%.%'),
     password_hash VARCHAR2(100) NOT NULL,
-    role VARCHAR2(50),
+    role VARCHAR2(50) DEFAULT 'client',
     name VARCHAR2(100) NOT NULL,
-		bio VARCHAR2(200),
-    facebook_url VARCHAR2(50),
-    twitter_url VARCHAR2(50),
-		instagram_url VARCHAR2(50),
-    profile_picture VARCHAR2(200),
+		bio VARCHAR2(200) DEFAULT 'Hey! I am using Tripify',
+		city_id NUMBER DEFAULT 0 NOT NULL,
+    facebook_url VARCHAR2(50) DEFAULT 'https://www.facebook.com/leomessi',
+    twitter_url VARCHAR2(50) DEFAULT 'https://twitter.com/imessi',
+		instagram_url VARCHAR2(50) DEFAULT 'https://www.instagram.com/leomessi',
+    profile_picture VARCHAR2(200) DEFAULT 'https://avatars.dicebear.com/api/avataaars/avatar.svg',
     registration_date DATE DEFAULT CURRENT_DATE NOT NULL,
     status VARCHAR2(20) DEFAULT 'active',
     dob DATE NOT NULL,
 		created_on DATE DEFAULT CURRENT_DATE,
     last_updated_on DATE DEFAULT CURRENT_DATE,
-    deleted_on DATE  -- will be null until soft deleted
+    deleted_on DATE,  -- will be null until soft deleted
+		FOREIGN KEY (city_id) REFERENCES Cities(city_id) ON DELETE SET NULL
 )
 LOGGING
 NOCOMPRESS
@@ -59,6 +103,7 @@ INSERT INTO Users (
     role,
     name,
 		bio,
+		city_id,
     facebook_url,
     twitter_url,
     instagram_url,
@@ -71,6 +116,7 @@ INSERT INTO Users (
     'client',
     'Anik Saha',
 		'Little Coder',
+		 1,
     'facebook.com/abc',
     'twitter.com/abc',
     'instagram.com/abc',
@@ -110,42 +156,6 @@ INSERT INTO Users (
 SELECT * FROM USERS;
 */
 
--- 2. Cities  
-
-CREATE TABLE Cities (
-    city_id NUMBER DEFAULT city_seq.NEXTVAL PRIMARY KEY,
-    name VARCHAR2(100) NOT NULL,
-    country_name VARCHAR2(100) NOT NULL,
-    population NUMBER,
-    weather_type VARCHAR2(50) CHECK (LOWER(weather_type) IN ('sunny', 'rainy', 'cold', 'snowy'))
-)
-LOGGING
-NOCOMPRESS
-PCTFREE 10
-INITRANS 1
-STORAGE (
-  INITIAL 65536 
-  NEXT 1048576 
-  MINEXTENTS 1
-  MAXEXTENTS 2147483645
-  BUFFER_POOL DEFAULT
-)
-PARALLEL 1
-NOCACHE
-DISABLE ROW MOVEMENT
-;
-
--- dummy city insertion 
-
-/*
-INSERT INTO Cities (name, country_name, population, weather_type)
-VALUES ('Dhaka', 'Bangladesh', 20000000, 'sunny');
-
-INSERT INTO Cities (name, country_name, population, weather_type)
-VALUES ('Chattogram', 'Bangladesh', 5000000, 'sunny');
-
-SELECT * FROM CITIES;
-*/
 
 -- 3. Destinations
 
@@ -158,6 +168,10 @@ CREATE TABLE Destinations (
     longitude NUMBER(8,4) CHECK (longitude >= -180 AND longitude <= 180),
     description VARCHAR2(1000),
     image_url VARCHAR2(200),
+		created_on DATE DEFAULT CURRENT_DATE,
+		last_updated_on DATE DEFAULT CURRENT_DATE,
+		creator_user_id NUMBER DEFAULT 0,
+		FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE SET NULL,
     FOREIGN KEY (city_id) REFERENCES Cities(city_id) ON DELETE CASCADE
 )
 LOGGING
@@ -194,7 +208,11 @@ CREATE TABLE Activities (
     description VARCHAR2(1000),
     image_url VARCHAR2(200),
     min_age NUMBER,
-    max_age NUMBER
+    max_age NUMBER,
+		created_on DATE DEFAULT CURRENT_DATE,
+		last_updated_on DATE DEFAULT CURRENT_DATE,
+		creator_user_id NUMBER DEFAULT 0,
+		FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE SET NULL
 )
 LOGGING
 NOCOMPRESS
@@ -238,6 +256,8 @@ CREATE TABLE Trips (
 		created_on DATE DEFAULT CURRENT_DATE,
     last_updated_on DATE DEFAULT CURRENT_DATE,
     deleted_on DATE,  -- will be null until soft deleted
+		creator_user_id NUMBER DEFAULT 0,
+		FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE SET NULL,
     FOREIGN KEY (from_city_id) REFERENCES Cities(city_id) ON DELETE SET NULL,
     FOREIGN KEY (to_city_id) REFERENCES Cities(city_id) ON DELETE SET NULL
 )
@@ -285,6 +305,8 @@ CREATE TABLE Hotels (
     has_gym NUMBER(1) DEFAULT 1 CHECK (has_gym IN (0, 1)),
 		created_on DATE DEFAULT CURRENT_DATE,
 		last_updated_on DATE DEFAULT CURRENT_DATE,
+		creator_user_id NUMBER DEFAULT 0,
+		FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE SET NULL,
     FOREIGN KEY (city_id) REFERENCES Cities(city_id) ON DELETE CASCADE
 )
 LOGGING
@@ -327,6 +349,10 @@ CREATE TABLE Flights (
     seat_class VARCHAR2(20) CHECK(LOWER(seat_class) IN ('economy', 'business', 'first')),
     flight_duration NUMBER, -- in minutes
     booking_url VARCHAR2(200) NOT NULL,
+		created_on DATE DEFAULT CURRENT_DATE,
+		last_updated_on DATE DEFAULT CURRENT_DATE,
+		creator_user_id NUMBER DEFAULT 0,
+		FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE SET NULL,
     FOREIGN KEY (from_city_id) REFERENCES Cities(city_id) ON DELETE CASCADE,
     FOREIGN KEY (to_city_id) REFERENCES Cities(city_id) ON DELETE CASCADE,
 		CHECK (return_date > departure_date)
@@ -371,6 +397,10 @@ CREATE TABLE Restaurants (
     cuisine_type VARCHAR2(20),
     contact VARCHAR2(20),
     email VARCHAR2(100),
+		created_on DATE DEFAULT CURRENT_DATE,
+		last_updated_on DATE DEFAULT CURRENT_DATE,
+		creator_user_id NUMBER DEFAULT 0,
+		FOREIGN KEY (creator_user_id) REFERENCES Users(user_id) ON DELETE SET NULL,
     FOREIGN KEY (city_id) REFERENCES Cities(city_id) ON DELETE CASCADE
 )
 LOGGING
@@ -414,6 +444,9 @@ CREATE TABLE TripBookings (
     payment_date DATE,
     completion_date DATE,
     is_private NUMBER(1) DEFAULT 0 CHECK (is_private IN (0, 1)),
+		created_on DATE DEFAULT CURRENT_DATE,
+		last_updated_on DATE DEFAULT CURRENT_DATE,
+		deleted_on DATE,  -- will be null until soft deleted
     PRIMARY KEY (user_id, trip_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (trip_id) REFERENCES Trips(trip_id) ON DELETE CASCADE,
@@ -1168,3 +1201,71 @@ VALUES (1, 1);
 
 SELECT * FROM TRIPGUIDES;
 */
+
+-- 30. Favorites ( String user's favorite entities )
+
+-- DROP TABLE Favorites;
+
+CREATE TABLE Favorites (
+    user_id NUMBER,
+    object_id NUMBER,
+    object_type VARCHAR2(50),
+    added_on DATE DEFAULT CURRENT_DATE,
+		PRIMARY KEY (user_id, object_type, object_id ),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+		CHECK (object_type IN ('destination', 'activity', 'hotel', 'restaurant', 'trip', 'city', 'flight'))
+)
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- Dummy Favorites Insert
+/*
+INSERT INTO FAVORITES(user_id, object_type, object_id) VALUES(1,'restaurant',1);
+*/
+
+-- 31. ProcedureLog
+
+CREATE TABLE ProcedureLog (
+    log_id NUMBER DEFAULT log_seq.NEXTVAL PRIMARY KEY,
+    procedure_name VARCHAR2(100) NOT NULL,
+    calling_date DATE DEFAULT CURRENT_DATE NOT NULL,
+    user_id NUMBER,
+    parameters VARCHAR2(4000),
+		FOREIGN KEY (user_id) REFERENCES Users(user_id)
+)
+LOGGING
+NOCOMPRESS
+PCTFREE 10
+INITRANS 1
+STORAGE (
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1
+  MAXEXTENTS 2147483645
+  BUFFER_POOL DEFAULT
+)
+PARALLEL 1
+NOCACHE
+DISABLE ROW MOVEMENT
+;
+
+-- dummy ProcedureLog insert 
+/*
+INSERT INTO ProcedureLog( procedure_name, user_id, parameters )
+VALUES( 'dummy procedure', 0, 'a = 5' );
+*/
+
+SELECT * FROM USERS;

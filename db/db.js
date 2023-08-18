@@ -37,6 +37,7 @@ async function execute(sql, binds, options){
     } catch (err) {
         console.log("\n\nERROR executing sql: \n" + err.message + '\n\n');
         console.log('The provided SQL was \n' + sql)
+        throw err;
     } finally {
         if (connection) {
             try {

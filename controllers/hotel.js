@@ -1,6 +1,7 @@
 const oracledb = require('oracledb')
 
-const db = require('../db/db')
+const db = require('../db/db');
+const { getSingleCity } = require('./city');
 
 const getSingleHotel = async (payload) => {
     
@@ -10,7 +11,7 @@ const getSingleHotel = async (payload) => {
     
     const sql = `
     SELECT hotel_id AS "hotel_id", name AS "name", address AS "address", city_id AS "city_id", description AS "description", image_url AS "image_url", price_per_day AS "price_per_day", phone AS "phone", email AS "email", has_wifi AS "has_wifi", has_parking AS "has_parking", has_gym AS "has_gym"
-    , created_on AS "created_on", last_updated_on AS "last_updated_on" 
+    , creator_user_id AS "creator_user_id", created_on AS "created_on", last_updated_on AS "last_updated_on" 
     FROM Hotels 
     WHERE hotel_id = :hotel_id 
     `;
@@ -20,15 +21,18 @@ const getSingleHotel = async (payload) => {
     }
 
     try{
-      const result = (await db.execute(sql, binds, db.options)).rows;
+      result = (await db.execute(sql, binds, db.options)).rows;
       if(result.length == 0){
         console.log('Invalid hotel_id')
         return null
       }
-      return result[0];
+      hotel = result[0]
+      hotel.city = await getSingleCity({ city_id : hotel.city_id })
+      return hotel;
     }
     catch(err){
       console.log(err)
+      throw err;
     }
 }
 
@@ -54,7 +58,7 @@ const getHotels = async (payload) => {
 
     sql = `
     SELECT hotel_id AS "hotel_id", name AS "name", address AS "address", city_id AS "city_id", description AS "description", image_url AS "image_url", price_per_day AS "price_per_day", phone AS "phone", email AS "email", has_wifi AS "has_wifi", has_parking AS "has_parking", has_gym AS "has_gym"
-    , created_on AS "created_on", last_updated_on AS "last_updated_on" 
+    , creator_user_id AS "creator_user_id", created_on AS "created_on", last_updated_on AS "last_updated_on" 
     FROM Hotels 
     WHERE hotel_id>0 `;
 
@@ -131,6 +135,13 @@ const getHotels = async (payload) => {
             binds.has_gym = payload.has_gym
         }
     }
+    if (payload.creator_user_id !== undefined && payload.creator_user_id !== '') {
+        const creator_user_id = parseInt(payload.creator_user_id);
+        if (!isNaN(creator_user_id)) {
+          sql += `AND CREATOR_USER_ID = :creator_user_id `;
+          binds.creator_user_id = creator_user_id;
+        }
+    }      
     if(payload.page !== undefined && payload.page !== ''){
         const in_page = parseInt(payload.page);
         if(!isNaN(in_page)){
@@ -169,11 +180,16 @@ const getHotels = async (payload) => {
 
     try{
         console.log(sql)
-        const result = (await db.execute(sql, binds, db.options)).rows;
+        result = (await db.execute(sql, binds, db.options)).rows;
+        for(let hotel of result)
+        {
+            hotel.city = await getSingleCity({ city_id : hotel.city_id })
+        }
         return result;
     }
     catch(err){
         console.log(err)
+        throw err;
     }
 }
 
@@ -183,8 +199,8 @@ const createHotel = async (payload) => {
     DECLARE
         l_id NUMBER;
     BEGIN
-        INSERT INTO Hotels (name, address, city_id, description, image_url, price_per_day, phone, email, has_wifi, has_parking, has_gym)
-        VALUES (:name, :address, :city_id , :description, :image_url, :price_per_day , :phone , :email , :has_wifi, :has_parking, :has_gym)
+        INSERT INTO Hotels (name, address, city_id, description, image_url, price_per_day, phone, email, has_wifi, has_parking, has_gym, creator_user_id )
+        VALUES (:name, :address, :city_id , :description, :image_url, :price_per_day , :phone , :email , :has_wifi, :has_parking, :has_gym, :creator_user_id )
         RETURNING hotel_id INTO l_id;
         :hotel_id := l_id;
     END;
@@ -201,6 +217,7 @@ const createHotel = async (payload) => {
         has_wifi: payload.has_wifi,
         has_parking: payload.has_parking,
         has_gym: payload.has_gym,
+        creator_user_id: payload.creator_user_id,
         hotel_id: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT }
     };
     try{ 
@@ -214,7 +231,7 @@ const createHotel = async (payload) => {
     }
     catch(err){
         console.log(err)
-        next(err)
+        throw err;
     }
 }
 
@@ -268,7 +285,7 @@ const updateHotel = async (payload) => {
     }
     catch(err){
         console.log(err)
-        next(err)
+        throw err;
     }
 }
 

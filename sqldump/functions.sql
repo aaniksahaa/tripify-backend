@@ -37,6 +37,11 @@ BEGIN
         total_price := total_price + temp_price;
 				
     END LOOP;
+		
+		-- log into ProcedureLog Table 
+		
+		INSERT INTO ProcedureLog( procedure_name, user_id, parameters )
+		VALUES( 'CALCULATE_TRIP_PRICE', 0, 'total_price = ' || TO_CHAR(total_price) );
 
     RETURN total_price;
 		
@@ -45,3 +50,39 @@ EXCEPTION
         RETURN NULL;
 END;
 /
+
+
+CREATE OR REPLACE FUNCTION MY_HASH_PASSWORD(
+	p_password IN VARCHAR2
+) RETURN VARCHAR2 
+AS
+  hashed_password VARCHAR2(100);
+BEGIN
+	SELECT TO_CHAR(ORA_HASH(p_password)) INTO hashed_password FROM DUAL;
+  RETURN hashed_password;
+END;
+/
+
+CREATE OR REPLACE FUNCTION CHECK_CREDENTIALS(
+  p_username IN VARCHAR2,
+  p_password IN VARCHAR2
+) RETURN NUMBER
+AS
+  l_count NUMBER;
+BEGIN
+  
+  SELECT COUNT(*)
+  INTO l_count
+  FROM USERS
+  WHERE username = p_username AND password_hash = MY_HASH_PASSWORD(p_password);
+
+  RETURN CASE WHEN l_count > 0 THEN 1 ELSE 0 END;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    RETURN 0;
+END;
+/
+
+
+
+
